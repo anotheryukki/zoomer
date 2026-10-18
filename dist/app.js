@@ -224,4 +224,19 @@
   document.querySelectorAll('[data-mood]').forEach(button => button.addEventListener('click', () => setMood(button.dataset.mood)));
   try { const stored = localStorage.getItem('zoomer-mood'); if (stored) setMood(stored); } catch {}
   activateScene(0);
+
+  const caChip = document.getElementById('ca-chip');
+  if (caChip) {
+    const caLabel = caChip.querySelector('.ca-chip-label');
+    caChip.addEventListener('click', async () => {
+      const ca = caChip.dataset.ca;
+      try {
+        await navigator.clipboard.writeText(ca);
+        caLabel.textContent = 'Copied!';
+      } catch {
+        caLabel.textContent = 'Copy failed';
+      }
+      setTimeout(() => { caLabel.textContent = 'CA'; }, 1800);
+    });
+  }
 })();
