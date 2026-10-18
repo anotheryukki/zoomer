@@ -73,7 +73,7 @@
       activateScene(Math.min(3, Math.floor(progress * 4)));
       document.querySelector('.story-progress>span').style.transform = `scaleX(${progress})`;
       const heroProgress = clamp(scrollY / innerHeight);
-      document.querySelector('.hero-art').style.transform = `scale(${1.01 + heroProgress * .025}) translateY(${heroProgress * 35}px)`;
+      document.querySelector('.hero-art').style.transform = `scale(${1 + heroProgress * .025}) translateY(${heroProgress * 35}px)`;
     }
     if (rect.top < innerHeight * 1.7 && rect.bottom > 0 && !reduceQuery.matches) {
       playVideo(scenes[Math.max(current, 0)].querySelector('video'));
@@ -207,10 +207,10 @@
   });
 
   const moods = {
-    'caffeinated': {title: 'Small cup.<br>Big plans.', copy: 'Start with something green. See where the day takes you.', image: 'mood-caffeinated', alt: 'Zoomer brewing a tiny cup of matcha beside an elaborate green-tea apparatus in his kitchen', name: 'Caffeinated'},
-    'tuned-out': {title: 'Do not<br>disturb.', copy: 'Headphones on. Notifications off. This next song is for you.', image: 'mood-tuned-out', alt: 'Zoomer reclining on a crescent moon above the city with his headphones on', name: 'Tuned out'},
-    'down-bad': {title: 'Close the tab.<br>Take a lap.', copy: 'Even your rain cloud needs a break. Take a breath. The day can still turn around.', image: 'mood-down-bad', alt: 'Zoomer checking an empty wallet under his own little rain cloud outside an arcade', name: 'Down bad'},
-    'unbothered': {title: 'Good chips.<br>Better company.', copy: "Nothing to refresh. Nowhere to rush. You're exactly where you need to be.", image: 'mood-unbothered', alt: 'Zoomer relaxing with chips in a rooftop hammock while a pigeon rests on his skateboard', name: 'Unbothered'}
+    'caffeinated': {title: 'Small cup.<br>Big plans.', copy: 'Start with something green. See where the day takes you.', image: 'mood-caffeinated-2k', alt: 'Zoomer brewing a tiny cup of matcha beside an elaborate green-tea apparatus in his kitchen', name: 'Caffeinated'},
+    'tuned-out': {title: 'Do not<br>disturb.', copy: 'Headphones on. Notifications off. This next song is for you.', image: 'mood-tuned-out-2k', alt: 'Zoomer reclining on a crescent moon above the city with his headphones on', name: 'Tuned out'},
+    'down-bad': {title: 'Close the tab.<br>Take a lap.', copy: 'Even your rain cloud needs a break. Take a breath. The day can still turn around.', image: 'mood-down-bad-2k', alt: 'Zoomer checking an empty wallet under his own little rain cloud outside an arcade', name: 'Down bad'},
+    'unbothered': {title: 'Good chips.<br>Better company.', copy: "Nothing to refresh. Nowhere to rush. You're exactly where you need to be.", image: 'mood-unbothered-2k', alt: 'Zoomer relaxing with chips in a rooftop hammock while a pigeon rests on his skateboard', name: 'Unbothered'}
   };
   function setMood(key) {
     if (!moods[key]) return;

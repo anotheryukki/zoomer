@@ -1,29 +1,19 @@
 {
   "character": "Zoomer",
   "originals": {
-    "cafe.webp": "User-supplied codex-clipboard-41876463-be5d-404d-8d10-d095a986492d.png; optimized to WebP, no visual edits.",
-    "skate.webp": "User-supplied codex-clipboard-e4d1b499-9c61-40dd-94d6-336c5903bd6b.png; optimized to WebP, no visual edits.",
-    "train.webp": "User-supplied codex-clipboard-eed52f85-b22e-4b90-848e-25292990080d.png; optimized to WebP, no visual edits.",
-    "laptop.webp": "User-supplied codex-clipboard-6b971500-adf4-4629-acb8-c78dfcb998fd.png; optimized to WebP, no visual edits."
-  },
-  "hero.webp": {
-    "provider": "Built-in image_gen",
-    "source": "exec-1ea74337-e370-4d3d-af86-2105be04c354.png",
-    "reference": "User-supplied skatepark character image",
-    "prompt": "Use case: illustration-story. Create a premium wide 16:9 hand-drawn 2D editorial illustration for the opening of a playful website about ZOOMER. Use supplied image as strict CHARACTER IDENTITY and illustration-style reference. Same exact white-skinned elongated wojak face, rectangular tall head, short orange combed-up hair with black strokes and shaved sides, thin oval black glasses, small smirk, gray t-shirt, charcoal baggy trousers, black backpack, green camouflage high-top canvas sneakers with white rubber soles. SCENE: Zoomer is riding his skateboard toward the right through a quiet concrete city skatepark at warm late-afternoon sunset, holding an iced pale-green matcha drink carefully upright. His entire body and board are visible, his back foot rests on the board and front leg pushes off the ground; coherent anatomy with two arms and two legs. He occupies the right 45% of the landscape frame. Plenty of beautiful open apricot sky in the top half and left 45% for live HTML typography that will be added later. Low drawn skyline, sloping skatepark ramps and sparse distant trees, warm terracotta peach sky, buttery-yellow low sun, muted sage foliage and warm concrete. Medium-weight irregular clean black ink contour lines, flat matte cel color, tactile subtle paper, sharp legible character features. No 3D, no rendered gradients, no photo texture, no text, no lettering, no watermark, no logo. Art direction should feel like a high-end independent animated comic. This is an original scene of the exact supplied character, not a new design."
+    "cafe-2k.webp": "User-supplied codex-clipboard-41876463-be5d-404d-8d10-d095a986492d.png; optimized to WebP, no visual edits.",
+    "skate-2k.webp": "User-supplied codex-clipboard-e4d1b499-9c61-40dd-94d6-336c5903bd6b.png; optimized to WebP, no visual edits.",
+    "train-2k.webp": "User-supplied codex-clipboard-eed52f85-b22e-4b90-848e-25292990080d.png; optimized to WebP, no visual edits.",
+    "laptop-2k.webp": "User-supplied codex-clipboard-6b971500-adf4-4629-acb8-c78dfcb998fd.png; optimized to WebP, no visual edits."
   },
   "animations": {
     "provider": "Higgsfield",
     "model": "Wan 2.7 for story scenes; Seedance 2.0 fast for opening ride",
-    "durationSeconds": 5,
+    "durationSeconds": 4.966667,
     "quotedCreditsTotal": 71.5,
-    "format": "H.264, yuv420p, silent, faststart, CRF 25",
+    "format": "2K H.264 High, yuv420p, silent, faststart; hero CRF17 and story CRF18, 60fps",
     "sourcePolicy": "Original respective image supplied as both start and end reference, fixed composition, consistent 2D anatomy.",
-    "cafe.mp4": "Raise cup, sip, lower cup and blink. 960x960, 461013 bytes.",
-    "train.mp4": "Head/shoulder bob, weight shift and passing scenery. 960x960, 725805 bytes.",
-    "laptop.mp4": "Sigh, close eyelids, head droop and recover. 960x960, 507868 bytes.",
-    "skate.mp4": "Chip bite, hand motion, nod and blink. 960x960, 547089 bytes.",
-    "hero-ride-loop.mp4": {
+    "previousHero720p": {
       "provider": "Higgsfield",
       "model": "Seedance 2.0 fast",
       "jobId": "5f36ca37-f7ec-484d-8af8-5e5fffa0ab7e",
@@ -44,6 +34,100 @@
       "verification": "Independent frame audit: supporting foot remains on deck; rear foot reaches pavement then extends and recovers; stable cup and identity; no ghosting or frozen tail. Encoded seam ROI difference 1.805/255 versus normal nonduplicate median 2.284/255.",
       "revisionQuotedCredits": 34,
       "rejectedTake": "Kling 3.0 Pro take rejected for foot swapping and ghosting; not shipped."
+    },
+    "cafe-2k60.mp4": "Raise cup, sip, lower cup and blink. 960x960, 461013 bytes.",
+    "train-2k60.mp4": "Head/shoulder bob, weight shift and passing scenery. 960x960, 725805 bytes.",
+    "laptop-2k60.mp4": "Sigh, close eyelids, head droop and recover. 960x960, 507868 bytes.",
+    "skate-2k60.mp4": "Chip bite, hand motion, nod and blink. 960x960, 547089 bytes.",
+    "hero-ride-fluid-2k60.mp4": {
+      "status": "completed_and_passed_cadence_seam_anatomy_review_with_minor_interpolation_softness",
+      "file": "hero-ride-fluid-2k60.mp4",
+      "sha256": "9e31d4d6a8b804967c99242becf214849593208ecb0382fd1bb2733694ef5c5c",
+      "final": {
+        "width": 2560,
+        "height": 1440,
+        "fps": 60,
+        "frames": 240,
+        "duration_seconds": 4,
+        "bytes": 5089908,
+        "encoding": "H.264 CRF17 slow, yuv420p, 60fps, closedGOP240, silent, faststart",
+        "cycles_per_container": 4,
+        "cycle_duration_seconds": 1
+      },
+      "speed": {
+        "previous_cycle_seconds": 1.5,
+        "new_cycle_seconds": 1,
+        "relative_speed": 1.5
+      },
+      "source": {
+        "file": "../hero-upscaled-source.mp4",
+        "source_type": "AI-upscaled sharp 4K cloud master from approved original Seedance skating cycle",
+        "width": 3840,
+        "height": 2160,
+        "fps": 60,
+        "sampled_frame_indices": [
+          120,
+          125,
+          130,
+          135,
+          140,
+          145,
+          150,
+          155,
+          160,
+          165,
+          170,
+          175
+        ],
+        "sampled_pose_count": 12,
+        "source_near_duplicate_holds_removed": true,
+        "pose_extraction": "ffmpeg select=between(n,120,175)*not(mod(n-120,5)),scale=1280:720:flags=lanczos; fps_mode=passthrough"
+      },
+      "interpolation": {
+        "implementation": "RIFE ncnn Vulkan portable Windows official release20221029",
+        "model": "rife-v4.6",
+        "license": "MIT",
+        "official_source": "https://github.com/nihui/rife-ncnn-vulkan",
+        "release_asset": "https://github.com/nihui/rife-ncnn-vulkan/releases/download/20221029/rife-ncnn-vulkan-20221029-windows.zip",
+        "inference_width": 1280,
+        "inference_height": 720,
+        "inference_device": "CPU -g -1",
+        "temporal_tta": true,
+        "spatial_tta": false,
+        "cyclic_input": "13 PNGs: 12 distinct poses followed by an exact copy of the first pose",
+        "command": "rife-ncnn-vulkan.exe -i ../input-poses -o ../output-frames -n 65 -m ./rife-v4.6 -g -1 -j 1:4:2 -f %08d.png -z",
+        "sampling": "Each source pair contributes t=0,.2,.4,.6,.8. Output frames 00000001..00000060 retained; final five clamped duplicates discarded.",
+        "export_scaling": "Neural inference at 1280x720; final 2560x1440 is a Lanczos upscale of neural output, not native 2K inference.",
+        "no_reverse_pingpong_crossfade_or_held_tail": true,
+        "runtime_note": "Portable CPU run emits vkCreateInstance failed-9 because host has noVulkan GPU, but CPU inference completes correctly and emits validPNGs. No global softwareinstall."
+      },
+      "qa": {
+        "metrics_file": "final-metrics.json",
+        "near_duplicate_adjacent_pairs_under_roi_mae_0_1": 0,
+        "cloud_master_near_duplicate_pairs": 14,
+        "mean_adjacent_roi_mae": 2.1636107725364457,
+        "max_adjacent_roi_mae": 4.746885434244067,
+        "cloud_master_max_adjacent_roi_mae": 11.985387570459196,
+        "seam_roi_mae": 0.4640792733278282,
+        "visual_review": "Reviewed full push phases 32..43, circular wrap 56..63 and face/body phases. Single rear shoe/leg remains coherent, planted front foot stable, no foot swaps, stable eyes/glasses/cup. Continuous intermediate motion and clean loop wrap.",
+        "material_limit": "Minor neural interpolation softness/occlusion fleck around rear shoe/rear wheel crossing at frames 37..38; no large ghost limbs or doubled shoes. Root handles final browser playback and dropped-frame verification.",
+        "evidence": [
+          "rife-push-detail.jpg",
+          "rife-wrap-detail.jpg",
+          "rife-face-phases.jpg",
+          "kick-tests-comparison.png"
+        ]
+      },
+      "oneCycleRender": {
+        "width": 2560,
+        "height": 1440,
+        "fps": 60,
+        "frames": 60,
+        "duration_seconds": 1,
+        "bytes": 1397862,
+        "encoding": "H.264, libx264 slow CRF17, yuv420p, faststart, no audio"
+      },
+      "browser_delivery": "Four identical continuous action cycles in one4s stream reduce browserdecoder resets; action remains1s and1.5x faster than old1.5s cycle."
     }
   },
   "fonts": {
@@ -62,7 +146,7 @@
         "reference": "codex-clipboard-e4d1b499-9c61-40dd-94d6-336c5903bd6b.png",
         "output": "work/mood-art/caffeinated.png",
         "prompt": "Use case: illustration-story. Asset type: original square mood illustration for Zoomer character website, Caffeinated mood. Input image is REFERENCE ONLY for character identity and hand-drawn 2D style; invent an entirely new scene, do not recreate its skatepark scene. Scene: Zoomer as an overenthusiastic home-brew alchemist at his small apartment kitchen counter in warm morning sunlight, carefully pouring emerald-green matcha from a little bamboo-whisk bowl into a comically tiny cup. An elaborate improvised but charming cold-brew apparatus with curved glass tubes and green bubbly liquid stands behind him, a houseplant reaching toward window and open sketchbook of scribbles on counter; focused excited tiny smirk. Character prominent from knees up, head central upper half, face and hands fully clear, both hands correctly engaged with bowl and tiny cup; black backpack hooked on chair behind. Preserve Zoomer's long white wojak face and tall head, short orange swept-up hair with black strokes and shaved sides, thin black oval glasses, gray tee, charcoal pants, small relaxed smirk. Style: matte 2D editorial comic, crisp slightly irregular black linework, flat cel colors and restrained subtle paper texture. Palette warm butter yellow and sage green with orange hair. Full-bleed square composition with dominant character in central75 percent, face safely away from corners for an arched website crop. Coherent anatomy exactly two arms, two hands, no extra fingers or limbs. No text, no logos, no borders, no 3D, no photorealism. The humor is in the over-engineered green tea machine and tiny cup, refined clear readable shapes, expressive original setting.",
-        "website_asset": "assets/mood-caffeinated.webp",
+        "website_asset": "assets/mood-caffeinated-2k.webp",
         "processing": "Resized to 1000x1000 and encoded WebP quality 86; no creative pixel edits.",
         "bytes": 210858
       },
@@ -76,7 +160,7 @@
         "generatedSourcePath": "exec-90e94a28-d3bc-4e20-94b9-96c59f3c01c6.png",
         "outputPath": "tuned-out.png",
         "inspection": "Passed: distinctive orange hair, oval glasses, elongated white face, gray shirt, backpack, camouflage sneakers retained; two arms/two legs. Fresh crescent-moon lounge scene, face in central upper half, useful full-bleed square composition.",
-        "website_asset": "assets/mood-tuned-out.webp",
+        "website_asset": "assets/mood-tuned-out-2k.webp",
         "processing": "Resized to 1000x1000 and encoded WebP quality 86; no creative pixel edits.",
         "bytes": 128216
       },
@@ -89,7 +173,7 @@
         "original_generated_path": "exec-34c4755a-c9f6-4f14-b783-212a0d8f7d99.png",
         "final_path": "down-bad.png",
         "inspection": "Confirmed same orange hair, shaved side, long white face, oval glasses, gray tee, charcoal trousers and camo high-tops. Two coherent arms and legs; empty wallet clearly readable; localized raincloud and warm arcade backdrop. New setting and props; no original supplied scene reused.",
-        "website_asset": "assets/mood-down-bad.webp",
+        "website_asset": "assets/mood-down-bad-2k.webp",
         "processing": "Resized to 1000x1000 and encoded WebP quality 86; no creative pixel edits.",
         "bytes": 188804
       },
@@ -103,10 +187,926 @@
         "final_path": "unbothered.png",
         "prompt": "Use case: illustration-story.\nAsset type: one original square full-bleed illustration for the Unbothered mood on the Zoomer character website.\nInput image: identity and drawing-style reference ONLY; create a completely new scene and composition, do not recreate the seated skatepark in the reference.\nScene: a whimsical urban rooftop garden in a warm golden afternoon. Zoomer is happily reclining diagonally in a cream-and-sage striped hammock tied securely between two oversized potted tropical plants. The skyline is distant and busy but the rooftop is serene. A small scruffy pigeon stands on his skateboard on the rooftop floor below. His black backpack rests nearby. A little bowl of potato chips rests naturally on his belly.\nSubject: preserve this exact recognizable character identity from the reference: long white wojak face and tall rectangular head, short orange swept-up hair drawn with black strokes and shaved sides, thin black oval eyeglasses, small eyes, tiny calm smile, gray short-sleeved T-shirt, charcoal trousers, green camouflage high-top sneakers with white soles and white laces. His eyes are open behind his glasses, relaxed and content. Two anatomically coherent arms and two legs. One hand rests behind his head, the other lazily holds a chip beside the bowl. His torso and both legs visibly rest inside the hammock.\nStyle: matte 2D hand-drawn editorial comic, crisp irregular black outlines, restrained flat cel colors, subtle paper texture, same face and inking language as the reference. Sage foliage, warm cream hammock, muted coral roof and soft pale gold sky. No 3D or photographic rendering.\nComposition: square full bleed; Zoomer is the clearly dominant subject, large enough to read at 400px display size. Keep his face near the upper central half, safely within the central 75% of the image for an arched website crop. Show the entire reclining character, hammock curve, both potted plants and pigeon/skateboard without clutter. Friendly clever art direction, cinematic layered rooftop foreground and distant city background.\nConstraints: only one Zoomer; exactly two arms and two legs, coherent hands, preserved orange hair and oval glasses; no extra limbs, no face distortion. No text, typography, logos, watermarks, frame or border.",
         "qa": "Inspected generated PNG. Consistent orange hair, long white face, thin oval glasses, gray T-shirt, charcoal trousers and camouflage sneakers. Two coherent arms and legs; bowl and hands read cleanly. New rooftop hammock setting, pigeon/skateboard. Face safely near x36% y24% within central crop.",
-        "website_asset": "assets/mood-unbothered.webp",
+        "website_asset": "assets/mood-unbothered-2k.webp",
         "processing": "Resized to 1000x1000 and encoded WebP quality 86; no creative pixel edits.",
         "bytes": 197558
       }
     ]
+  },
+  "renditions2k": {
+    "stills": {
+      "description": "Eight2K resampled original illustrations and a2Kposter from AI-enhanced animation",
+      "no_generative_processing": false,
+      "assets": [
+        {
+          "name": "cafe",
+          "input": "codex-clipboard-41876463-be5d-404d-8d10-d095a986492d.png",
+          "input_native_dimensions": {
+            "width": 1280,
+            "height": 1280
+          },
+          "output": "cafe-2k.webp",
+          "dimensions": {
+            "width": 2048,
+            "height": 2048
+          },
+          "bytes": 268172,
+          "sha256": "8ea52c8332eba7d40bd920e7914044ce29dff554be0ee3cfa35735535e41eeda",
+          "processing": "resampled original (does not invent source detail)",
+          "resampling": "FFmpeg Lanczos, entire source frame, no crop or sharpening",
+          "format": "WebP quality 92",
+          "comparison_bytes": {
+            "quality92": 268172,
+            "lossless": 1462412
+          },
+          "aspect_note": "Original square aspect retained; no crop"
+        },
+        {
+          "name": "train",
+          "input": "codex-clipboard-eed52f85-b22e-4b90-848e-25292990080d.png",
+          "input_native_dimensions": {
+            "width": 1280,
+            "height": 1280
+          },
+          "output": "train-2k.webp",
+          "dimensions": {
+            "width": 2048,
+            "height": 2048
+          },
+          "bytes": 238352,
+          "sha256": "caa87f9b32ba2e94ff8e8a3c3b36b7edd57369510dc7abee287453d65263f75e",
+          "processing": "resampled original (does not invent source detail)",
+          "resampling": "FFmpeg Lanczos, entire source frame, no crop or sharpening",
+          "format": "WebP quality 92",
+          "comparison_bytes": {
+            "quality92": 238352,
+            "lossless": 1329934
+          },
+          "aspect_note": "Original square aspect retained; no crop"
+        },
+        {
+          "name": "laptop",
+          "input": "codex-clipboard-6b971500-adf4-4629-acb8-c78dfcb998fd.png",
+          "input_native_dimensions": {
+            "width": 1280,
+            "height": 1280
+          },
+          "output": "laptop-2k.webp",
+          "dimensions": {
+            "width": 2048,
+            "height": 2048
+          },
+          "bytes": 255794,
+          "sha256": "6dabde10b2f235067a35631fe3ccdfdb9c2ace08da687e74c198b8b3a159844a",
+          "processing": "resampled original (does not invent source detail)",
+          "resampling": "FFmpeg Lanczos, entire source frame, no crop or sharpening",
+          "format": "WebP quality 92",
+          "comparison_bytes": {
+            "quality92": 255794,
+            "lossless": 1384668
+          },
+          "aspect_note": "Original square aspect retained; no crop"
+        },
+        {
+          "name": "skate",
+          "input": "codex-clipboard-e4d1b499-9c61-40dd-94d6-336c5903bd6b.png",
+          "input_native_dimensions": {
+            "width": 1280,
+            "height": 1280
+          },
+          "output": "skate-2k.webp",
+          "dimensions": {
+            "width": 2048,
+            "height": 2048
+          },
+          "bytes": 273822,
+          "sha256": "e006ae8dc269409656b9e7917e120d81d952779d1cda074b668b223b310e5c21",
+          "processing": "resampled original (does not invent source detail)",
+          "resampling": "FFmpeg Lanczos, entire source frame, no crop or sharpening",
+          "format": "WebP quality 92",
+          "comparison_bytes": {
+            "quality92": 273822,
+            "lossless": 1709952
+          },
+          "aspect_note": "Original square aspect retained; no crop"
+        },
+        {
+          "name": "hero",
+          "input": "hero-upscaled-source.mp4 frame120",
+          "input_native_dimensions": {
+            "width": 3840,
+            "height": 2160
+          },
+          "output": "hero-2k.webp",
+          "dimensions": {
+            "width": 2560,
+            "height": 1440
+          },
+          "bytes": 258974,
+          "sha256": "11b2d46fe2a70f7a878e04b6a1fec7ac507692a61b2d77e3461c864668081488",
+          "processing": "Poster extracted from ByteDance AIGC-enhanced approved animation frame120, downsampled with Lanczos to2560x1440. No new scene generated.",
+          "resampling": "FFmpeg Lanczos, entire source frame, no crop or sharpening",
+          "format": "WebP quality 92",
+          "comparison_bytes": {
+            "quality92": 279010,
+            "lossless": 2386098
+          },
+          "aspect_note": "1672x941 source resampled to 2560x1440; 0.053% aspect adjustment, no crop"
+        },
+        {
+          "name": "mood-caffeinated",
+          "input": "caffeinated.png",
+          "input_native_dimensions": {
+            "width": 1254,
+            "height": 1254
+          },
+          "output": "mood-caffeinated-2k.webp",
+          "dimensions": {
+            "width": 2048,
+            "height": 2048
+          },
+          "bytes": 661926,
+          "sha256": "ee3afa1f1ad8325801cda8ad905b2f07aa743099437c1c8ce6ad17d3846c2635",
+          "processing": "resampled original (does not invent source detail)",
+          "resampling": "FFmpeg Lanczos, entire source frame, no crop or sharpening",
+          "format": "WebP quality 92",
+          "comparison_bytes": {
+            "quality92": 661926,
+            "lossless": 3674508
+          },
+          "aspect_note": "Original square aspect retained; no crop"
+        },
+        {
+          "name": "mood-tuned-out",
+          "input": "tuned-out.png",
+          "input_native_dimensions": {
+            "width": 1254,
+            "height": 1254
+          },
+          "output": "mood-tuned-out-2k.webp",
+          "dimensions": {
+            "width": 2048,
+            "height": 2048
+          },
+          "bytes": 446970,
+          "sha256": "3abcc37793cdcefb2208589be143634b1025b6dac1b2bd9a7ca4eb0c38976959",
+          "processing": "resampled original (does not invent source detail)",
+          "resampling": "FFmpeg Lanczos, entire source frame, no crop or sharpening",
+          "format": "WebP quality 92",
+          "comparison_bytes": {
+            "quality92": 446970,
+            "lossless": 3572118
+          },
+          "aspect_note": "Original square aspect retained; no crop"
+        },
+        {
+          "name": "mood-down-bad",
+          "input": "down-bad.png",
+          "input_native_dimensions": {
+            "width": 1254,
+            "height": 1254
+          },
+          "output": "mood-down-bad-2k.webp",
+          "dimensions": {
+            "width": 2048,
+            "height": 2048
+          },
+          "bytes": 618004,
+          "sha256": "192431f47e4d8302f1650c6b22eecb4f97f00f01e67445ece0110b834cd22c8c",
+          "processing": "resampled original (does not invent source detail)",
+          "resampling": "FFmpeg Lanczos, entire source frame, no crop or sharpening",
+          "format": "WebP quality 92",
+          "comparison_bytes": {
+            "quality92": 618004,
+            "lossless": 3510912
+          },
+          "aspect_note": "Original square aspect retained; no crop"
+        },
+        {
+          "name": "mood-unbothered",
+          "input": "unbothered.png",
+          "input_native_dimensions": {
+            "width": 1254,
+            "height": 1254
+          },
+          "output": "mood-unbothered-2k.webp",
+          "dimensions": {
+            "width": 2048,
+            "height": 2048
+          },
+          "bytes": 643792,
+          "sha256": "74e54df0c34f7604cd92d5516ea66c5f5efe5089dcc38ab822640ea89e7e2f58",
+          "processing": "resampled original (does not invent source detail)",
+          "resampling": "FFmpeg Lanczos, entire source frame, no crop or sharpening",
+          "format": "WebP quality 92",
+          "comparison_bytes": {
+            "quality92": 643792,
+            "lossless": 3667848
+          },
+          "aspect_note": "Original square aspect retained; no crop"
+        }
+      ],
+      "total_bytes": 3665806,
+      "visual_qa": "Original compositions preserved. Eight stills are resampled sources; hero poster is taken from approved AI-enhanced animation.",
+      "no_new_scene_generation": true
+    },
+    "storyVideos": {
+      "purpose": "2K square 60 fps story animation delivery",
+      "native_processed_source": "ByteDance AIGC upscale/interpolation supplied by root; each source video is 1440 square at 60 fps with 298 frames. This step performs no interpolation, retouching, denoising, creative edits, crop, or motion changes.",
+      "processing": "Normalize PTS by frame index at 60 fps, Lanczos resize from 1440 square to 2048 square, H.264 CRF 18 preset medium, yuv420p, silent, faststart. 298/60 = 4.966667 seconds.",
+      "qa_frame_indices": [
+        0,
+        149,
+        297
+      ],
+      "assets": [
+        {
+          "name": "cafe",
+          "source": "cafe-upscaled-source.mp4",
+          "source_probe": {
+            "programs": [],
+            "stream_groups": [],
+            "streams": [
+              {
+                "index": 0,
+                "codec_name": "h264",
+                "profile": "High",
+                "codec_type": "video",
+                "width": 1440,
+                "height": 1440,
+                "pix_fmt": "yuv420p",
+                "level": 50,
+                "r_frame_rate": "60/1",
+                "avg_frame_rate": "60/1",
+                "time_base": "1/15360",
+                "duration": "4.966667",
+                "nb_frames": "298"
+              },
+              {
+                "index": 1,
+                "codec_name": "aac",
+                "profile": "LC",
+                "codec_type": "audio",
+                "r_frame_rate": "0/0",
+                "avg_frame_rate": "0/0",
+                "time_base": "1/44100",
+                "duration": "5.061950",
+                "nb_frames": "220"
+              }
+            ],
+            "format": {
+              "duration": "5.061950",
+              "size": "3952877"
+            }
+          },
+          "output": "cafe-2k60.mp4",
+          "output_probe": {
+            "programs": [],
+            "stream_groups": [],
+            "streams": [
+              {
+                "index": 0,
+                "codec_name": "h264",
+                "profile": "High",
+                "codec_type": "video",
+                "width": 2048,
+                "height": 2048,
+                "pix_fmt": "yuv420p",
+                "level": 51,
+                "r_frame_rate": "60/1",
+                "avg_frame_rate": "60/1",
+                "time_base": "1/15360",
+                "duration": "4.966667",
+                "nb_frames": "298"
+              }
+            ],
+            "format": {
+              "duration": "4.966667",
+              "size": "5642568"
+            }
+          },
+          "sha256": "35d1a9e2170b70bc007b62092469ae68a52addf7945e5253468261991ef162f9",
+          "bytes": 5642568,
+          "processing_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "cafe-upscaled-source.mp4",
+            "-map",
+            "0:v:0",
+            "-vf",
+            "setpts=N/(60*TB),scale=2048:2048:flags=lanczos,setsar=1",
+            "-r",
+            "60",
+            "-fps_mode",
+            "cfr",
+            "-an",
+            "-c:v",
+            "libx264",
+            "-crf",
+            "18",
+            "-preset",
+            "medium",
+            "-pix_fmt",
+            "yuv420p",
+            "-g",
+            "120",
+            "-threads",
+            "4",
+            "-movflags",
+            "+faststart",
+            "cafe-2k60.mp4"
+          ],
+          "contact_sheet": "cafe-qa.jpg",
+          "encoding_seconds": 16.22,
+          "qa": {
+            "decoded_frames": 298,
+            "unique_frames": 298,
+            "repeated_adjacent": 0,
+            "qa_method": "Full decode with 128x128 area downsample grayscale framemd5; early/mid/late visual inspection at frames 0,149,297.",
+            "visual_inspection": "Zoomer lifts the matcha straw to his mouth and returns the cup. Oval glasses, face identity, arms, phone hand and both planted camo sneakers remain intact in early/mid/late frames.",
+            "faststart_confirmed": true,
+            "mp4_top_level_atoms": [
+              {
+                "type": "ftyp",
+                "offset": 0,
+                "size": 32
+              },
+              {
+                "type": "moov",
+                "offset": 32,
+                "size": 4476
+              },
+              {
+                "type": "free",
+                "offset": 4508,
+                "size": 8
+              },
+              {
+                "type": "mdat",
+                "offset": 4516,
+                "size": 5638052
+              }
+            ],
+            "max_timestamp_error_seconds_vs_60fps": 3.33333333379926e-07
+          }
+        },
+        {
+          "name": "train",
+          "source": "train-upscaled-source.mp4",
+          "source_probe": {
+            "programs": [],
+            "stream_groups": [],
+            "streams": [
+              {
+                "index": 0,
+                "codec_name": "h264",
+                "profile": "High",
+                "codec_type": "video",
+                "width": 1440,
+                "height": 1440,
+                "pix_fmt": "yuv420p",
+                "level": 50,
+                "r_frame_rate": "60/1",
+                "avg_frame_rate": "60/1",
+                "time_base": "1/15360",
+                "duration": "4.966667",
+                "nb_frames": "298"
+              },
+              {
+                "index": 1,
+                "codec_name": "aac",
+                "profile": "LC",
+                "codec_type": "audio",
+                "r_frame_rate": "0/0",
+                "avg_frame_rate": "0/0",
+                "time_base": "1/44100",
+                "duration": "5.061950",
+                "nb_frames": "220"
+              }
+            ],
+            "format": {
+              "duration": "5.061950",
+              "size": "5968219"
+            }
+          },
+          "output": "train-2k60.mp4",
+          "output_probe": {
+            "programs": [],
+            "stream_groups": [],
+            "streams": [
+              {
+                "index": 0,
+                "codec_name": "h264",
+                "profile": "High",
+                "codec_type": "video",
+                "width": 2048,
+                "height": 2048,
+                "pix_fmt": "yuv420p",
+                "level": 51,
+                "r_frame_rate": "60/1",
+                "avg_frame_rate": "60/1",
+                "time_base": "1/15360",
+                "duration": "4.966667",
+                "nb_frames": "298"
+              }
+            ],
+            "format": {
+              "duration": "4.966667",
+              "size": "8181509"
+            }
+          },
+          "sha256": "fd54891dcc5b62ee016eb68d1515de7f74b0fccb397da3b7382f0cae1b6267ff",
+          "bytes": 8181509,
+          "processing_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "train-upscaled-source.mp4",
+            "-map",
+            "0:v:0",
+            "-vf",
+            "setpts=N/(60*TB),scale=2048:2048:flags=lanczos,setsar=1",
+            "-r",
+            "60",
+            "-fps_mode",
+            "cfr",
+            "-an",
+            "-c:v",
+            "libx264",
+            "-crf",
+            "18",
+            "-preset",
+            "medium",
+            "-pix_fmt",
+            "yuv420p",
+            "-g",
+            "120",
+            "-threads",
+            "4",
+            "-movflags",
+            "+faststart",
+            "train-2k60.mp4"
+          ],
+          "contact_sheet": "train-qa.jpg",
+          "encoding_seconds": 22.42,
+          "qa": {
+            "decoded_frames": 298,
+            "unique_frames": 298,
+            "repeated_adjacent": 0,
+            "qa_method": "Full decode with 128x128 area downsample grayscale framemd5; early/mid/late visual inspection at frames 0,149,297.",
+            "visual_inspection": "Zoomer sways his head and torso with his headphones on. Facing direction, glasses, headphone geometry, hands in pockets, legs and shoes remain coherent.",
+            "faststart_confirmed": true,
+            "mp4_top_level_atoms": [
+              {
+                "type": "ftyp",
+                "offset": 0,
+                "size": 32
+              },
+              {
+                "type": "moov",
+                "offset": 32,
+                "size": 4504
+              },
+              {
+                "type": "free",
+                "offset": 4536,
+                "size": 8
+              },
+              {
+                "type": "mdat",
+                "offset": 4544,
+                "size": 8176965
+              }
+            ],
+            "max_timestamp_error_seconds_vs_60fps": 3.33333333379926e-07
+          }
+        },
+        {
+          "name": "laptop",
+          "source": "laptop-upscaled-source.mp4",
+          "source_probe": {
+            "programs": [],
+            "stream_groups": [],
+            "streams": [
+              {
+                "index": 0,
+                "codec_name": "h264",
+                "profile": "High",
+                "codec_type": "video",
+                "width": 1440,
+                "height": 1440,
+                "pix_fmt": "yuv420p",
+                "level": 50,
+                "r_frame_rate": "60/1",
+                "avg_frame_rate": "60/1",
+                "time_base": "1/15360",
+                "duration": "4.966667",
+                "nb_frames": "298"
+              },
+              {
+                "index": 1,
+                "codec_name": "aac",
+                "profile": "LC",
+                "codec_type": "audio",
+                "r_frame_rate": "0/0",
+                "avg_frame_rate": "0/0",
+                "time_base": "1/44100",
+                "duration": "5.061950",
+                "nb_frames": "220"
+              }
+            ],
+            "format": {
+              "duration": "5.061950",
+              "size": "4336578"
+            }
+          },
+          "output": "laptop-2k60.mp4",
+          "output_probe": {
+            "programs": [],
+            "stream_groups": [],
+            "streams": [
+              {
+                "index": 0,
+                "codec_name": "h264",
+                "profile": "High",
+                "codec_type": "video",
+                "width": 2048,
+                "height": 2048,
+                "pix_fmt": "yuv420p",
+                "level": 51,
+                "r_frame_rate": "60/1",
+                "avg_frame_rate": "60/1",
+                "time_base": "1/15360",
+                "duration": "4.966667",
+                "nb_frames": "298"
+              }
+            ],
+            "format": {
+              "duration": "4.966667",
+              "size": "6047344"
+            }
+          },
+          "sha256": "7afa207eaf7f8e0ee8d7a0ddc96940b3efaa3366af0f6dabc0731e4e9e30a237",
+          "bytes": 6047344,
+          "processing_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "laptop-upscaled-source.mp4",
+            "-map",
+            "0:v:0",
+            "-vf",
+            "setpts=N/(60*TB),scale=2048:2048:flags=lanczos,setsar=1",
+            "-r",
+            "60",
+            "-fps_mode",
+            "cfr",
+            "-an",
+            "-c:v",
+            "libx264",
+            "-crf",
+            "18",
+            "-preset",
+            "medium",
+            "-pix_fmt",
+            "yuv420p",
+            "-g",
+            "120",
+            "-threads",
+            "4",
+            "-movflags",
+            "+faststart",
+            "laptop-2k60.mp4"
+          ],
+          "contact_sheet": "laptop-qa.jpg",
+          "encoding_seconds": 18.88,
+          "qa": {
+            "decoded_frames": 298,
+            "unique_frames": 298,
+            "repeated_adjacent": 0,
+            "qa_method": "Full decode with 128x128 area downsample grayscale framemd5; early/mid/late visual inspection at frames 0,149,297.",
+            "visual_inspection": "Zoomer drops his head and restores his resting chin posture. The supported hand, laptop, crossed legs, camo shoes and face identity remain coherent.",
+            "faststart_confirmed": true,
+            "mp4_top_level_atoms": [
+              {
+                "type": "ftyp",
+                "offset": 0,
+                "size": 32
+              },
+              {
+                "type": "moov",
+                "offset": 32,
+                "size": 4476
+              },
+              {
+                "type": "free",
+                "offset": 4508,
+                "size": 8
+              },
+              {
+                "type": "mdat",
+                "offset": 4516,
+                "size": 6042828
+              }
+            ],
+            "max_timestamp_error_seconds_vs_60fps": 3.33333333379926e-07
+          }
+        },
+        {
+          "name": "skate",
+          "source": "skate-upscaled-source.mp4",
+          "source_probe": {
+            "programs": [],
+            "stream_groups": [],
+            "streams": [
+              {
+                "index": 0,
+                "codec_name": "h264",
+                "profile": "High",
+                "codec_type": "video",
+                "width": 1440,
+                "height": 1440,
+                "pix_fmt": "yuv420p",
+                "level": 50,
+                "r_frame_rate": "60/1",
+                "avg_frame_rate": "60/1",
+                "time_base": "1/15360",
+                "duration": "4.966667",
+                "nb_frames": "298"
+              },
+              {
+                "index": 1,
+                "codec_name": "aac",
+                "profile": "LC",
+                "codec_type": "audio",
+                "r_frame_rate": "0/0",
+                "avg_frame_rate": "0/0",
+                "time_base": "1/44100",
+                "duration": "5.061950",
+                "nb_frames": "220"
+              }
+            ],
+            "format": {
+              "duration": "5.061950",
+              "size": "4957027"
+            }
+          },
+          "output": "skate-2k60.mp4",
+          "output_probe": {
+            "programs": [],
+            "stream_groups": [],
+            "streams": [
+              {
+                "index": 0,
+                "codec_name": "h264",
+                "profile": "High",
+                "codec_type": "video",
+                "width": 2048,
+                "height": 2048,
+                "pix_fmt": "yuv420p",
+                "level": 51,
+                "r_frame_rate": "60/1",
+                "avg_frame_rate": "60/1",
+                "time_base": "1/15360",
+                "duration": "4.966667",
+                "nb_frames": "298"
+              }
+            ],
+            "format": {
+              "duration": "4.966667",
+              "size": "7016360"
+            }
+          },
+          "sha256": "20daa1b014e191ee45d0d6d9ff09772a4a47e4fc281f981af10737973297c58e",
+          "bytes": 7016360,
+          "processing_command": [
+            "ffmpeg",
+            "-hide_banner",
+            "-loglevel",
+            "error",
+            "-y",
+            "-i",
+            "skate-upscaled-source.mp4",
+            "-map",
+            "0:v:0",
+            "-vf",
+            "setpts=N/(60*TB),scale=2048:2048:flags=lanczos,setsar=1",
+            "-r",
+            "60",
+            "-fps_mode",
+            "cfr",
+            "-an",
+            "-c:v",
+            "libx264",
+            "-crf",
+            "18",
+            "-preset",
+            "medium",
+            "-pix_fmt",
+            "yuv420p",
+            "-g",
+            "120",
+            "-threads",
+            "4",
+            "-movflags",
+            "+faststart",
+            "skate-2k60.mp4"
+          ],
+          "contact_sheet": "skate-qa.jpg",
+          "encoding_seconds": 18.94,
+          "qa": {
+            "decoded_frames": 298,
+            "unique_frames": 298,
+            "repeated_adjacent": 0,
+            "qa_method": "Full decode with 128x128 area downsample grayscale framemd5; early/mid/late visual inspection at frames 0,149,297.",
+            "visual_inspection": "Zoomer lowers the chip hand while closing his eyes, then lifts it again. The bag hand, face, glasses, legs, shoes and leaning skateboard remain intact.",
+            "faststart_confirmed": true,
+            "mp4_top_level_atoms": [
+              {
+                "type": "ftyp",
+                "offset": 0,
+                "size": 32
+              },
+              {
+                "type": "moov",
+                "offset": 32,
+                "size": 4496
+              },
+              {
+                "type": "free",
+                "offset": 4528,
+                "size": 8
+              },
+              {
+                "type": "mdat",
+                "offset": 4536,
+                "size": 7011824
+              }
+            ],
+            "max_timestamp_error_seconds_vs_60fps": 3.33333333379926e-07
+          }
+        }
+      ]
+    },
+    "hero": {
+      "status": "completed_and_passed_cadence_seam_anatomy_review_with_minor_interpolation_softness",
+      "file": "hero-ride-fluid-2k60.mp4",
+      "sha256": "9e31d4d6a8b804967c99242becf214849593208ecb0382fd1bb2733694ef5c5c",
+      "final": {
+        "width": 2560,
+        "height": 1440,
+        "fps": 60,
+        "frames": 240,
+        "duration_seconds": 4,
+        "bytes": 5089908,
+        "encoding": "H.264 CRF17 slow, yuv420p, 60fps, closedGOP240, silent, faststart",
+        "cycles_per_container": 4,
+        "cycle_duration_seconds": 1
+      },
+      "speed": {
+        "previous_cycle_seconds": 1.5,
+        "new_cycle_seconds": 1,
+        "relative_speed": 1.5
+      },
+      "source": {
+        "file": "../hero-upscaled-source.mp4",
+        "source_type": "AI-upscaled sharp 4K cloud master from approved original Seedance skating cycle",
+        "width": 3840,
+        "height": 2160,
+        "fps": 60,
+        "sampled_frame_indices": [
+          120,
+          125,
+          130,
+          135,
+          140,
+          145,
+          150,
+          155,
+          160,
+          165,
+          170,
+          175
+        ],
+        "sampled_pose_count": 12,
+        "source_near_duplicate_holds_removed": true,
+        "pose_extraction": "ffmpeg select=between(n,120,175)*not(mod(n-120,5)),scale=1280:720:flags=lanczos; fps_mode=passthrough"
+      },
+      "interpolation": {
+        "implementation": "RIFE ncnn Vulkan portable Windows official release20221029",
+        "model": "rife-v4.6",
+        "license": "MIT",
+        "official_source": "https://github.com/nihui/rife-ncnn-vulkan",
+        "release_asset": "https://github.com/nihui/rife-ncnn-vulkan/releases/download/20221029/rife-ncnn-vulkan-20221029-windows.zip",
+        "inference_width": 1280,
+        "inference_height": 720,
+        "inference_device": "CPU -g -1",
+        "temporal_tta": true,
+        "spatial_tta": false,
+        "cyclic_input": "13 PNGs: 12 distinct poses followed by an exact copy of the first pose",
+        "command": "rife-ncnn-vulkan.exe -i ../input-poses -o ../output-frames -n 65 -m ./rife-v4.6 -g -1 -j 1:4:2 -f %08d.png -z",
+        "sampling": "Each source pair contributes t=0,.2,.4,.6,.8. Output frames 00000001..00000060 retained; final five clamped duplicates discarded.",
+        "export_scaling": "Neural inference at 1280x720; final 2560x1440 is a Lanczos upscale of neural output, not native 2K inference.",
+        "no_reverse_pingpong_crossfade_or_held_tail": true,
+        "runtime_note": "Portable CPU run emits vkCreateInstance failed-9 because host has noVulkan GPU, but CPU inference completes correctly and emits validPNGs. No global softwareinstall."
+      },
+      "qa": {
+        "metrics_file": "final-metrics.json",
+        "near_duplicate_adjacent_pairs_under_roi_mae_0_1": 0,
+        "cloud_master_near_duplicate_pairs": 14,
+        "mean_adjacent_roi_mae": 2.1636107725364457,
+        "max_adjacent_roi_mae": 4.746885434244067,
+        "cloud_master_max_adjacent_roi_mae": 11.985387570459196,
+        "seam_roi_mae": 0.4640792733278282,
+        "visual_review": "Reviewed full push phases 32..43, circular wrap 56..63 and face/body phases. Single rear shoe/leg remains coherent, planted front foot stable, no foot swaps, stable eyes/glasses/cup. Continuous intermediate motion and clean loop wrap.",
+        "material_limit": "Minor neural interpolation softness/occlusion fleck around rear shoe/rear wheel crossing at frames 37..38; no large ghost limbs or doubled shoes. Root handles final browser playback and dropped-frame verification.",
+        "evidence": [
+          "rife-push-detail.jpg",
+          "rife-wrap-detail.jpg",
+          "rife-face-phases.jpg",
+          "kick-tests-comparison.png"
+        ]
+      },
+      "oneCycleRender": {
+        "width": 2560,
+        "height": 1440,
+        "fps": 60,
+        "frames": 60,
+        "duration_seconds": 1,
+        "bytes": 1397862,
+        "encoding": "H.264, libx264 slow CRF17, yuv420p, faststart, no audio"
+      },
+      "browser_delivery": "Four identical continuous action cycles in one4s stream reduce browserdecoder resets; action remains1s and1.5x faster than old1.5s cycle.",
+      "browserVerification": {
+        "test": "Chromium1440x900,12continuous1sactions across3native4scontainerwraps",
+        "decoded_frames": 688,
+        "dropped_frames": 3,
+        "limit": "Virtual-machine browser; timing varies by device. No universal zero-drop claim."
+      }
+    },
+    "cloudJobs": [
+      {
+        "index": 0,
+        "job_id": "da635fa5-f6a1-43a0-b45a-bba23a67291c",
+        "status": "completed",
+        "type": "video",
+        "model": "bytedance_video_upscale",
+        "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Jy8AgVdNftiC61Y1Ek3eOUUVfa/hf_20261018_125822_da635fa5-f6a1-43a0-b45a-bba23a67291c.mp4",
+        "scene": "hero"
+      },
+      {
+        "index": 1,
+        "job_id": "d7223359-1ea6-4d00-9e10-57272dd9c4d6",
+        "status": "completed",
+        "type": "video",
+        "model": "bytedance_video_upscale",
+        "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Jy8AgVdNftiC61Y1Ek3eOUUVfa/hf_20261018_125954_d7223359-1ea6-4d00-9e10-57272dd9c4d6.mp4",
+        "scene": "cafe"
+      },
+      {
+        "index": 2,
+        "job_id": "47ee26d0-7932-44e9-8b2e-aa9e6e01c4ad",
+        "status": "completed",
+        "type": "video",
+        "model": "bytedance_video_upscale",
+        "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Jy8AgVdNftiC61Y1Ek3eOUUVfa/hf_20261018_125955_47ee26d0-7932-44e9-8b2e-aa9e6e01c4ad.mp4",
+        "scene": "train"
+      },
+      {
+        "index": 3,
+        "job_id": "bdafa892-8b75-4ff3-8562-059e749fc209",
+        "status": "completed",
+        "type": "video",
+        "model": "bytedance_video_upscale",
+        "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Jy8AgVdNftiC61Y1Ek3eOUUVfa/hf_20261018_125956_bdafa892-8b75-4ff3-8562-059e749fc209.mp4",
+        "scene": "laptop"
+      },
+      {
+        "index": 4,
+        "job_id": "7f5d3308-fe01-4f4f-a2fe-ca01562d5340",
+        "status": "completed",
+        "type": "video",
+        "model": "bytedance_video_upscale",
+        "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Jy8AgVdNftiC61Y1Ek3eOUUVfa/hf_20261018_125958_7f5d3308-fe01-4f4f-a2fe-ca01562d5340.mp4",
+        "scene": "skate"
+      }
+    ],
+    "policy": "Final delivery 2560x1440 for wide hero and 2048x2048 for square artwork/video. Higher-resolution intermediate processing masters are excluded from deployment. Only referenced files ship."
+  },
+  "hero-2k.webp": {
+    "provider": "Built-in image_gen",
+    "source": "exec-1ea74337-e370-4d3d-af86-2105be04c354.png",
+    "reference": "User-supplied skatepark character image",
+    "prompt": "Use case: illustration-story. Create a premium wide 16:9 hand-drawn 2D editorial illustration for the opening of a playful website about ZOOMER. Use supplied image as strict CHARACTER IDENTITY and illustration-style reference. Same exact white-skinned elongated wojak face, rectangular tall head, short orange combed-up hair with black strokes and shaved sides, thin oval black glasses, small smirk, gray t-shirt, charcoal baggy trousers, black backpack, green camouflage high-top canvas sneakers with white rubber soles. SCENE: Zoomer is riding his skateboard toward the right through a quiet concrete city skatepark at warm late-afternoon sunset, holding an iced pale-green matcha drink carefully upright. His entire body and board are visible, his back foot rests on the board and front leg pushes off the ground; coherent anatomy with two arms and two legs. He occupies the right 45% of the landscape frame. Plenty of beautiful open apricot sky in the top half and left 45% for live HTML typography that will be added later. Low drawn skyline, sloping skatepark ramps and sparse distant trees, warm terracotta peach sky, buttery-yellow low sun, muted sage foliage and warm concrete. Medium-weight irregular clean black ink contour lines, flat matte cel color, tactile subtle paper, sharp legible character features. No 3D, no rendered gradients, no photo texture, no text, no lettering, no watermark, no logo. Art direction should feel like a high-end independent animated comic. This is an original scene of the exact supplied character, not a new design."
   }
 }

@@ -21,3 +21,7 @@ The included vercel.json configures the static dist directory. Import this repos
 Artwork and motion provenance is recorded in ASSETS.json. Fonts are self-hosted. Decorative videos are muted, play only when relevant and retain static image fallbacks for reduced-motion, data-saving and playback failures.
 
 The current version includes four original mood illustrations, the continuous skateboarding loop and the complete-character closing composition. Removed decorative captions and controls remain absent.
+
+## 2K media delivery
+
+The wide hero is 2560×1440, with a faster one-second skateboard cycle and dedicated neural interpolation to 60 fps. Square illustrations and story videos are delivered at 2048×2048. Story videos use 60 fps. AI video enhancement restores cleaner contours; static image resampling preserves the source artwork without inventing detail. Only active media plays, with reduced-motion and data-saving static fallbacks.
