@@ -24,4 +24,4 @@ The current version includes four original mood illustrations, the continuous sk
 
 ## 2K media delivery
 
-The wide hero is 2560×1440, with a faster one-second skateboard cycle and dedicated neural interpolation to 60 fps. Square illustrations and story videos are delivered at 2048×2048. Story videos use 60 fps. AI video enhancement restores cleaner contours; static image resampling preserves the source artwork without inventing detail. Only active media plays, with reduced-motion and data-saving static fallbacks.
+The wide hero is 2560×1440, with a one-second skateboard cycle, dedicated neural interpolation to 60 fps and a seamless 16-second moving-world composition. The camera follows Zoomer while the park travels left and the pavement passes twice as fast; the sky stays anchored. This is baked into a single video to avoid extra browser animation work. Square illustrations and story videos are delivered at 2048×2048. Story videos use 60 fps. AI video enhancement restores cleaner contours; static image resampling preserves the source artwork without inventing detail. Only active media plays, with reduced-motion and data-saving static fallbacks.

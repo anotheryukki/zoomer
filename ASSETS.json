@@ -11,7 +11,7 @@
     "model": "Wan 2.7 for story scenes; Seedance 2.0 fast for opening ride",
     "durationSeconds": 4.966667,
     "quotedCreditsTotal": 71.5,
-    "format": "2K H.264 High, yuv420p, silent, faststart; hero CRF17 and story CRF18, 60fps",
+    "format": "2K H.264 High, yuv420p, silent, faststart; CRF18,60fps",
     "sourcePolicy": "Original respective image supplied as both start and end reference, fixed composition, consistent 2D anatomy.",
     "previousHero720p": {
       "provider": "Higgsfield",
@@ -39,8 +39,8 @@
     "train-2k60.mp4": "Head/shoulder bob, weight shift and passing scenery. 960x960, 725805 bytes.",
     "laptop-2k60.mp4": "Sigh, close eyelids, head droop and recover. 960x960, 507868 bytes.",
     "skate-2k60.mp4": "Chip bite, hand motion, nod and blink. 960x960, 547089 bytes.",
-    "hero-ride-fluid-2k60.mp4": {
-      "status": "completed_and_passed_cadence_seam_anatomy_review_with_minor_interpolation_softness",
+    "previousHero2k60": {
+      "status": "historical source; replaced by independently moving world",
       "file": "hero-ride-fluid-2k60.mp4",
       "sha256": "9e31d4d6a8b804967c99242becf214849593208ecb0382fd1bb2733694ef5c5c",
       "final": {
@@ -128,6 +128,516 @@
         "encoding": "H.264, libx264 slow CRF17, yuv420p, faststart, no audio"
       },
       "browser_delivery": "Four identical continuous action cycles in one4s stream reduce browserdecoder resets; action remains1s and1.5x faster than old1.5s cycle."
+    },
+    "hero-ride-world-2k60.mp4": {
+      "schema_version": 1,
+      "asset": "hero-ride-world-2k60.mp4",
+      "poster": "hero-world-2k.webp",
+      "status": "completed_and_passed_decode_seam_anatomy_motion_and_browser_review",
+      "render": {
+        "dimensions": [
+          2560,
+          1440
+        ],
+        "fps": 60,
+        "duration_seconds": 16,
+        "frames": 960,
+        "implementation": {
+          "file": "compose.py",
+          "sha256": "36a0e260200eca9d78f0b5e0ce279514200c5ef1f70ada3a2d8fdff18c6bfca4",
+          "command": "python compose.py --final",
+          "frame_source": "raw RGB24 piped to ffmpeg"
+        },
+        "encoding": {
+          "codec": "H.264/libx264",
+          "preset": "slow",
+          "crf": 18,
+          "pixel_format": "yuv420p",
+          "gop_max_frames": 240,
+          "mp4_faststart": true,
+          "audio": false,
+          "alpha": false
+        },
+        "runtime": "All layers are baked into one opaque MP4; no browser-time canvas compositing is required.",
+        "poster_encoding": {
+          "frame": 0,
+          "format": "WebP",
+          "quality": 94,
+          "method": 6
+        }
+      },
+      "layers": {
+        "sky": {
+          "file": "sky.png",
+          "source_dimensions": [
+            1983,
+            793
+          ],
+          "normalized_dimensions": [
+            2560,
+            1440
+          ],
+          "resampling": "Pillow LANCZOS direct resize",
+          "motion": "stationary",
+          "contents": "Sun and clouds remain fixed while the park and pavement move."
+        },
+        "world": {
+          "file": "world.png",
+          "source_dimensions": [
+            1983,
+            793
+          ],
+          "normalized_dimensions": [
+            2560,
+            1440
+          ],
+          "resampling": "Pillow LANCZOS direct RGBA resize",
+          "construction": "A tile followed by its horizontal reflection; the mirrored pair is repeated to provide a continuous sample window. Camera travel remains leftward throughout.",
+          "period_pixels": 5120,
+          "period_seconds": 16,
+          "speed_pixels_per_second": 320,
+          "formula": "midpos = n * (2 * W / N)",
+          "fractional_sampling": "Linear cv2.addWeighted blend between adjacent pixel-column windows",
+          "alpha": "Source world RGBA alpha separates scenery from the stationary sky."
+        },
+        "pavement": {
+          "file": "background.png",
+          "normalized_dimensions": [
+            2560,
+            1440
+          ],
+          "construction": "Same mirrored tile-pair construction as the world",
+          "period_pixels": 5120,
+          "period_seconds": 8,
+          "periods_per_output": 2,
+          "speed_pixels_per_second": 640,
+          "formula": "groundpos = n * (4 * W / N)",
+          "direction": "leftward, linear",
+          "blend": {
+            "start_normalized_y": 0.825,
+            "end_normalized_y": 0.86,
+            "formula": "clip((y - H * .825) / (H * .035), 0, 1)",
+            "purpose": "Feather from park speed to the faster bare-pavement layer below all park obstacles."
+          }
+        },
+        "contact_shadow": {
+          "motion": "anchored under the rider; does not travel with the pavement",
+          "method": "Two elliptical Gaussian darkening terms clipped to .30 opacity",
+          "reference_scale": [
+            1280,
+            720
+          ],
+          "ellipse_centers": [
+            [
+              975,
+              658
+            ],
+            [
+              975,
+              662
+            ]
+          ],
+          "ellipse_radii": [
+            [
+              151,
+              9
+            ],
+            [
+              165,
+              17
+            ]
+          ],
+          "weights": [
+            0.23,
+            0.09
+          ]
+        },
+        "rider": {
+          "frame_directory": "../hero-loop-v3/rife/output-frames",
+          "range_inclusive": [
+            1,
+            60
+          ],
+          "source_dimensions": [
+            1280,
+            720
+          ],
+          "source_cycle_frames": 60,
+          "source_cycle_seconds": 1,
+          "cycle_repetitions": 16,
+          "formula": "poses[n % 60]",
+          "mask_directory": "foreground-mask",
+          "crop": "Per-frame nonzero mask bounds with 2-pixel padding, preserving source location",
+          "rgb_scaling": "OpenCV INTER_LANCZOS4; 2x for final output",
+          "mask_scaling": "OpenCV INTER_LINEAR; 8-bit grayscale divided by 255",
+          "compositing": "Straight alpha onto the shadowed background",
+          "quality_limit": "Rider neural interpolation was computed at 1280x720. Final rider pixels are scaled to 2560x1440; they are not native 2K neural inference."
+        }
+      },
+      "provenance": {
+        "background_generation": {
+          "asset": "background.png",
+          "width": 1983,
+          "height": 793,
+          "generator": "OpenAI built-in imagegen",
+          "mode": "built-in",
+          "use_case": "illustration-story",
+          "reference": "C:/Users/akki/Documents/Codex/2026-10-18/hocu-da-napravim-x20/work/zoomer-publish/dist/assets/hero-2k.webp",
+          "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-53b22dcd-383a-459a-b5a6-4cd72935f90c.png",
+          "prompts": [
+            {
+              "stage": "initial_generate",
+              "prompt": "Use case: illustration-story\nAsset type: Seamless horizontally repeating 2D background clean plate for an animated skateboard website hero.\nInput image 1 is a STYLE AND PALETTE reference only: match its exact hand-drawn black outline comic style, sunset palette, matte cel colours, shallow side-view perspective and low horizon. Generate a fresh scenery plate with NO character, skateboard, drink, person, cast shadow, text, logos, or vehicles.\nScene: a long empty city skatepark panorama at golden sunset. Warm apricot and persimmon sky with muted mauve simple horizontal cloud bands and a small low warm sun. Far purple city skyline, muted sage and deep olive trees, continuous fine black metal railing. Shallow concrete ramps and low ledges are in the middle distance; the lower 25 percent is unobstructed flat warm concrete pavement with a few fine surface lines. No large close half-pipes and no tall objects obstructing the foreground.\nComposition: WIDE horizontal full scene, ideally 2:1 or 16:9, high resolution, 2K detail. Top 55 percent is open sunset sky. Tallest skyline and foliage begin around 45 percent of canvas height. Park base is around 78 percent. Ground is a continuous horizontal plane, seen from the same low side view as the reference. This background will scroll to the left behind a stationary animated skateboard rider.\nCRITICAL TILE CONSTRAINT: design this as a seamless horizontal repeating panorama: left and right canvas edges must join invisibly when repeated side by side. The horizon, rail, pavement height, sky colours and cloud bands continue cleanly across both edges. Keep edge geometry simple and exactly aligned, not large cropped side ramps. No fade to white, no border, no vignette. Clean crisp irregular black linework and flat cel colouring, finely drawn yet matte, absolutely 2D and never 3D or photorealistic.",
+              "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-9af01976-e1bd-47ab-b6ba-6b46ce755409.png"
+            },
+            {
+              "stage": "horizontal_edge_correction",
+              "prompt": "Use case: precise-object-edit\nAsset type: horizontally repeatable 2D skateboard game background clean plate.\nInput image 1 is the EDIT TARGET. Preserve this exact full hand-drawn sunset skatepark artwork, no people, matte warm orange sky, purple skyline, olive trees, continuous rail and concrete ground. Make only the changes needed to turn it into a SEAMLESS HORIZONTAL TILE.\nCritical: when the finished rectangle is repeated left to right, the left and right edges must join invisibly. The top sky, cloud bands, horizon, railings, tree mass and all pavement lines need exactly matching colours and heights at both sides. Keep the narrow left and right edge zones simple: identical empty coral sky with NO clouds touching the edges in the upper half, low level olive trees and horizontal black rail at the SAME y-coordinate on both edges, matching flat warm concrete from rail base down. Remove the raised corner ramps currently cut off on the sides and replace them with matching low concrete ledges of exactly the same height at left and right. The central composition and low sunset sun can remain. The lower 25 percent stays open flat pavement. No fade, border or vignette. No new character, objects, text, logos or 3D. This is a wide 2.5:1 panoramic side-scrolling background. Output crisp high resolution around 2560 pixels wide.",
+              "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-53b22dcd-383a-459a-b5a6-4cd72935f90c.png"
+            }
+          ],
+          "verification": "No people, rider, board, drink or cast shadow. Crisp flat 2D linework. Corrected version keeps clouds away from both side edges and matches rail/lowledge heights; use mirrored tile pairs if perfect numerical edge continuity is required."
+        },
+        "sky_edit": {
+          "asset": "sky.png",
+          "generator": "OpenAI built-in imagegen",
+          "mode": "built-in",
+          "use_case": "precise-object-edit",
+          "reference": "C:/Users/akki/Documents/Codex/2026-10-18/hocu-da-napravim-x20/work/media/moving-world/background.png",
+          "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-5e3bca30-bfa0-4a85-9865-a719d50860ee.png",
+          "prompt": "Use case: precise-object-edit\nAsset type: sky-only clean plate behind a moving illustrated skatepark.\nInput image 1 is the edit target. Preserve the EXACT existing warm apricot sunset sky gradient, its colours, every mauve and gold cloud shape, and the low central sun at precisely the SAME normalized position and SAME scale. Keep the existing wide 2.5:1 panoramic framing.\nChange only the scenery below the sky: completely remove ALL city skyline buildings, trees, plants, fences, railings, concrete ramps, ledges and pavement. Replace their area by a seamless downward extension of the same orange apricot sunset sky. Restore the unobstructed complete circular sun and existing horizontal sunset cloud bands in the lower center, preserving its original center around x51%, y63% and its original diameter around 6.3% of image width. The sun and upper cloud shapes must not move or grow.\nThe full image is sky only, from edge to edge, with absolutely no ground, water, silhouettes, horizon objects, character, skateboard, vehicle, people, new props or text. Match the original exactly: flat matte 2D comic painted sky, clean edges, no3D, no photorealism, no glow bloom. Preserve all existing upper sky and clouds pixel-composition as faithfully as possible. Lower image remains the same saturated warm orange sky rather than pale fog. This is a separate static sky layer for the existing image. Output wide horizontal high resolution.",
+          "verification": "Sky-only. Existing cloud shapes and sun normalized location retained, no scenery silhouettes remain. No people or props."
+        },
+        "world_segmentation": {
+          "input": "work/media/moving-world/background.png",
+          "output": "work/media/moving-world/world.png",
+          "dimensions": [
+            1983,
+            793
+          ],
+          "method": "Connected warm-sunset color matte with top-connected flood labels; no box clipping through skyline; preserve all cool mauve buildings and dark foliage outlines; fully transparent above390; force opaque below580; no rescale or RGB changes.",
+          "warm_sky_rule": "R>145 and R-G>32 and R-B>48; labels connected to top390rows only",
+          "top_alpha_max": 0,
+          "bottom_alpha_min": 255,
+          "opaque_pixels": 634508,
+          "transparent_pixels": 938011,
+          "sha256": "83229d7b99416fd74ddb4ba24e7e1131c7dc7b8c537f01df1b8458a05bddb9b8"
+        },
+        "foreground_segmentation": {
+          "source_frames": "work/media/hero-loop-v3/rife/output-frames/%08d.png",
+          "source_frame_range": [
+            1,
+            60
+          ],
+          "source_fps": 60,
+          "mask_directory": "work/media/moving-world/foreground-mask",
+          "mask_dimensions": [
+            1280,
+            720
+          ],
+          "format": "8-bit grayscale PNG;0transparent;255foreground",
+          "method": "MobileSAM ONNX local CPU, separateperson+skateboard prompts, union oflogits>0; no dilation/morphology/feather",
+          "model_sources": [
+            "https://huggingface.co/Acly/MobileSAM/resolve/main/mobile_sam_image_encoder.onnx",
+            "https://huggingface.co/Acly/MobileSAM/resolve/main/sam_mask_decoder_multi.onnx"
+          ],
+          "encoder_input": [
+            1024,
+            576
+          ],
+          "person_prompt": {
+            "box": [
+              660,
+              65,
+              1115,
+              630
+            ],
+            "positive_points": [
+              [
+                920,
+                284
+              ],
+              [
+                955,
+                580
+              ],
+              [
+                1090,
+                265
+              ]
+            ]
+          },
+          "board_prompt": {
+            "box": [
+              794,
+              585,
+              1138,
+              670
+            ],
+            "positive_points": [
+              [
+                970,
+                623
+              ],
+              [
+                850,
+                643
+              ],
+              [
+                1035,
+                651
+              ]
+            ]
+          },
+          "qa": "12posecontactsheet inspected; retainoriginalanatomy, cup, backpack, board andbothvisiblewheels; underarmandleggapstransparent. Groundcastshadowexcluded; compositean anchoredsoftshadowseparately."
+        },
+        "foreground_manifest": {
+          "record": {
+            "path": "moving-world/audit/foreground-provenance.json",
+            "sha256": "0f827ce9e4d7153c72671c3b40cf376e1f8d6939d58a7d9f72836e49508a0505"
+          },
+          "frames_recorded": 60,
+          "contents": "Per-frame area, connected-component sizes and SHA-256 for all 60 masks; source mask files remain unchanged."
+        },
+        "approved_rider_original_audit": {
+          "record": {
+            "path": "hero-loop-v3/rife/delivery.json",
+            "sha256": "569606a48113be8bef05032a714dbd17ad1d18dccda326a8f8824b1c08775404"
+          },
+          "details": {
+            "status": "completed_and_passed_cadence_seam_anatomy_review_with_minor_interpolation_softness",
+            "file": "hero-fluid-rife-candidate.mp4",
+            "sha256": "4967927300DA8C484FB78F54EC307801FD744E6B64DBC25657C5AF0126ED5EE7",
+            "final": {
+              "width": 2560,
+              "height": 1440,
+              "fps": 60,
+              "frames": 60,
+              "duration_seconds": 1,
+              "bytes": 1397862,
+              "encoding": "H.264, libx264 slow CRF17, yuv420p, faststart, no audio"
+            },
+            "speed": {
+              "previous_cycle_seconds": 1.5,
+              "new_cycle_seconds": 1,
+              "relative_speed": 1.5
+            },
+            "source": {
+              "file": "../hero-upscaled-source.mp4",
+              "source_type": "AI-upscaled sharp 4K cloud master from approved original Seedance skating cycle",
+              "width": 3840,
+              "height": 2160,
+              "fps": 60,
+              "sampled_frame_indices": [
+                120,
+                125,
+                130,
+                135,
+                140,
+                145,
+                150,
+                155,
+                160,
+                165,
+                170,
+                175
+              ],
+              "sampled_pose_count": 12,
+              "source_near_duplicate_holds_removed": true,
+              "pose_extraction": "ffmpeg select=between(n,120,175)*not(mod(n-120,5)),scale=1280:720:flags=lanczos; fps_mode=passthrough"
+            },
+            "interpolation": {
+              "implementation": "RIFE ncnn Vulkan portable Windows official release20221029",
+              "model": "rife-v4.6",
+              "license": "MIT",
+              "official_source": "https://github.com/nihui/rife-ncnn-vulkan",
+              "release_asset": "https://github.com/nihui/rife-ncnn-vulkan/releases/download/20221029/rife-ncnn-vulkan-20221029-windows.zip",
+              "inference_width": 1280,
+              "inference_height": 720,
+              "inference_device": "CPU -g -1",
+              "temporal_tta": true,
+              "spatial_tta": false,
+              "cyclic_input": "13 PNGs: 12 distinct poses followed by an exact copy of the first pose",
+              "command": "rife-ncnn-vulkan.exe -i ../input-poses -o ../output-frames -n 65 -m ./rife-v4.6 -g -1 -j 1:4:2 -f %08d.png -z",
+              "sampling": "Each source pair contributes t=0,.2,.4,.6,.8. Output frames 00000001..00000060 retained; final five clamped duplicates discarded.",
+              "export_scaling": "Neural inference at 1280x720; final 2560x1440 is a Lanczos upscale of neural output, not native 2K inference.",
+              "no_reverse_pingpong_crossfade_or_held_tail": true,
+              "runtime_note": "Portable CPU run emits vkCreateInstance failed-9 because host has noVulkan GPU, but CPU inference completes correctly and emits validPNGs. No global softwareinstall."
+            },
+            "qa": {
+              "metrics_file": "final-metrics.json",
+              "near_duplicate_adjacent_pairs_under_roi_mae_0_1": 0,
+              "cloud_master_near_duplicate_pairs": 14,
+              "mean_adjacent_roi_mae": 2.1636107725364457,
+              "max_adjacent_roi_mae": 4.746885434244067,
+              "cloud_master_max_adjacent_roi_mae": 11.985387570459196,
+              "seam_roi_mae": 0.4640792733278282,
+              "visual_review": "Reviewed full push phases 32..43, circular wrap 56..63 and face/body phases. Single rear shoe/leg remains coherent, planted front foot stable, no foot swaps, stable eyes/glasses/cup. Continuous intermediate motion and clean loop wrap.",
+              "material_limit": "Minor neural interpolation softness/occlusion fleck around rear shoe/rear wheel crossing at frames 37..38; no large ghost limbs or doubled shoes. Root handles final browser playback and dropped-frame verification.",
+              "evidence": [
+                "rife-push-detail.jpg",
+                "rife-wrap-detail.jpg",
+                "rife-face-phases.jpg",
+                "kick-tests-comparison.png"
+              ]
+            }
+          },
+          "metrics_record": {
+            "path": "hero-loop-v3/rife/final-metrics.json",
+            "sha256": "2a3df293dfaeff9d3fe5378b24e1a140c87df2e71415740e75ce09d59ff01a47"
+          },
+          "metrics_summary": {
+            "frames": 60,
+            "mean_adjacent": 2.1636107725364457,
+            "max_adjacent": 4.746885434244067,
+            "seam": 0.4640792733278282,
+            "low_motion_pairs_under_0_1": []
+          },
+          "scope": "This audit describes the approved one-second rider source, not a new final composite encode."
+        }
+      },
+      "preview_review": {
+        "file": "preview.mp4",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "fps": 60,
+        "duration_seconds": 16,
+        "frames": 960,
+        "encoding": "H.264/libx264 fast CRF20, yuv420p, faststart, no audio",
+        "metrics_record": {
+          "path": "moving-world/audit/preview-review-metrics.json",
+          "sha256": "4dc290882d279fb98c6f8cd587062e14c034a2296e458f8b67616e1d9d0c5fe1"
+        },
+        "method": {
+          "script": "audit/review_preview.py",
+          "pixel_differences": "Mean absolute 8-bit per-channel differences between decoded preview frames within fixed regions; not a perceptual quality score.",
+          "optical_flow": "OpenCV Farneback; median displacement among pixels with vector magnitude greater than .5 pixels. Units are preview pixels per frame.",
+          "regions_xyxy": {
+            "sky": [
+              0,
+              0,
+              650,
+              330
+            ],
+            "world": [
+              0,
+              370,
+              650,
+              580
+            ],
+            "pavement": [
+              0,
+              625,
+              650,
+              720
+            ],
+            "rider": [
+              670,
+              60,
+              1145,
+              675
+            ]
+          }
+        },
+        "measurements": {
+          "adjacent_0_1": {
+            "sky": 0.0136,
+            "world": 8.3761,
+            "pavement": 3.6926,
+            "rider": 3.4551
+          },
+          "before_wrap_958_959": {
+            "sky": 0.0,
+            "world": 8.1216,
+            "pavement": 3.722,
+            "rider": 2.9621
+          },
+          "wrap_959_0": {
+            "sky": 0.648,
+            "world": 8.8507,
+            "pavement": 3.8592,
+            "rider": 4.5299
+          },
+          "rider_cycle_59_60": {
+            "sky": 0.0,
+            "world": 7.4841,
+            "pavement": 3.5451,
+            "rider": 2.4296
+          },
+          "flow_start": {
+            "world": {
+              "median_dx": -2.724,
+              "median_dy": 0.0,
+              "moving_pixels": 113243
+            },
+            "pavement": {
+              "median_dx": -4.79,
+              "median_dy": 0.0,
+              "moving_pixels": 52722
+            }
+          },
+          "flow_wrap": {
+            "world": {
+              "median_dx": -2.716,
+              "median_dy": -0.002,
+              "moving_pixels": 113553
+            },
+            "pavement": {
+              "median_dx": -4.646,
+              "median_dy": 0.007,
+              "moving_pixels": 52448
+            }
+          }
+        },
+        "interpretation": "Measured world and pavement optical flow remains leftward at the start and across wrap. Encoded-frame sky differences may reflect compression despite a mathematically stationary sky layer. These are preview measurements; they do not establish final-file decoding or browser playback."
+      },
+      "delivery_checks": {
+        "final_file_bytes": 16834041,
+        "final_file_sha256": "36a5e2ec2491fad3ede1631e434286a6cc071cac90d40cd58baa2aa6bf5cb14d",
+        "ffprobe": {
+          "codec_name": "h264",
+          "width": 2560,
+          "height": 1440,
+          "r_frame_rate": "60/1",
+          "duration": "16.000000",
+          "nb_read_frames": "960"
+        },
+        "decode": "All960frames decoded with ffmpeg; exit0, no diagnostics",
+        "browser": {
+          "desktop": {
+            "viewport": [
+              1440,
+              900
+            ],
+            "decoded_frames": 1046,
+            "dropped_frames": 0,
+            "observed_callbacks": 996,
+            "native_container_wraps": 1,
+            "observation_seconds": 17.5,
+            "playing": true,
+            "title_and_nav_stable": true,
+            "overflow": false
+          },
+          "mobile": {
+            "viewport": [
+              390,
+              844
+            ],
+            "playing_2k": true,
+            "overflow": false
+          },
+          "offscreen_pause": true,
+          "resume": true,
+          "reduced_motion": {
+            "video_src": null,
+            "poster_2k_ready": true
+          },
+          "page_errors": [],
+          "scope": "Local Chromium on this Windows VM; device-specific results, not a universal zero-drop guarantee."
+        }
+      }
     }
   },
   "fonts": {
@@ -195,7 +705,7 @@
   },
   "renditions2k": {
     "stills": {
-      "description": "Eight2K resampled original illustrations and a2Kposter from AI-enhanced animation",
+      "description": "Eight2K resampled original illustrations and the matching2K moving-world poster",
       "no_generative_processing": false,
       "assets": [
         {
@@ -291,29 +801,6 @@
           "aspect_note": "Original square aspect retained; no crop"
         },
         {
-          "name": "hero",
-          "input": "hero-upscaled-source.mp4 frame120",
-          "input_native_dimensions": {
-            "width": 3840,
-            "height": 2160
-          },
-          "output": "hero-2k.webp",
-          "dimensions": {
-            "width": 2560,
-            "height": 1440
-          },
-          "bytes": 258974,
-          "sha256": "11b2d46fe2a70f7a878e04b6a1fec7ac507692a61b2d77e3461c864668081488",
-          "processing": "Poster extracted from ByteDance AIGC-enhanced approved animation frame120, downsampled with Lanczos to2560x1440. No new scene generated.",
-          "resampling": "FFmpeg Lanczos, entire source frame, no crop or sharpening",
-          "format": "WebP quality 92",
-          "comparison_bytes": {
-            "quality92": 279010,
-            "lossless": 2386098
-          },
-          "aspect_note": "1672x941 source resampled to 2560x1440; 0.053% aspect adjustment, no crop"
-        },
-        {
           "name": "mood-caffeinated",
           "input": "caffeinated.png",
           "input_native_dimensions": {
@@ -404,6 +891,19 @@
             "lossless": 3667848
           },
           "aspect_note": "Original square aspect retained; no crop"
+        },
+        {
+          "name": "hero",
+          "input": "moving-world composite frame0",
+          "output": "hero-world-2k.webp",
+          "dimensions": {
+            "width": 2560,
+            "height": 1440
+          },
+          "bytes": 387390,
+          "sha256": "50d3412244b53f2e6683e263b8b47b9a48add8d49b49a9813406ca0a94f1f896",
+          "processing": "Poster matches first rendered moving-world frame; source detail and resampling documented in hero provenance",
+          "format": "WebP quality94 method6"
         }
       ],
       "total_bytes": 3665806,
@@ -959,99 +1459,513 @@
       ]
     },
     "hero": {
-      "status": "completed_and_passed_cadence_seam_anatomy_review_with_minor_interpolation_softness",
-      "file": "hero-ride-fluid-2k60.mp4",
-      "sha256": "9e31d4d6a8b804967c99242becf214849593208ecb0382fd1bb2733694ef5c5c",
-      "final": {
-        "width": 2560,
-        "height": 1440,
-        "fps": 60,
-        "frames": 240,
-        "duration_seconds": 4,
-        "bytes": 5089908,
-        "encoding": "H.264 CRF17 slow, yuv420p, 60fps, closedGOP240, silent, faststart",
-        "cycles_per_container": 4,
-        "cycle_duration_seconds": 1
-      },
-      "speed": {
-        "previous_cycle_seconds": 1.5,
-        "new_cycle_seconds": 1,
-        "relative_speed": 1.5
-      },
-      "source": {
-        "file": "../hero-upscaled-source.mp4",
-        "source_type": "AI-upscaled sharp 4K cloud master from approved original Seedance skating cycle",
-        "width": 3840,
-        "height": 2160,
-        "fps": 60,
-        "sampled_frame_indices": [
-          120,
-          125,
-          130,
-          135,
-          140,
-          145,
-          150,
-          155,
-          160,
-          165,
-          170,
-          175
+      "schema_version": 1,
+      "asset": "hero-ride-world-2k60.mp4",
+      "poster": "hero-world-2k.webp",
+      "status": "completed_and_passed_decode_seam_anatomy_motion_and_browser_review",
+      "render": {
+        "dimensions": [
+          2560,
+          1440
         ],
-        "sampled_pose_count": 12,
-        "source_near_duplicate_holds_removed": true,
-        "pose_extraction": "ffmpeg select=between(n,120,175)*not(mod(n-120,5)),scale=1280:720:flags=lanczos; fps_mode=passthrough"
-      },
-      "interpolation": {
-        "implementation": "RIFE ncnn Vulkan portable Windows official release20221029",
-        "model": "rife-v4.6",
-        "license": "MIT",
-        "official_source": "https://github.com/nihui/rife-ncnn-vulkan",
-        "release_asset": "https://github.com/nihui/rife-ncnn-vulkan/releases/download/20221029/rife-ncnn-vulkan-20221029-windows.zip",
-        "inference_width": 1280,
-        "inference_height": 720,
-        "inference_device": "CPU -g -1",
-        "temporal_tta": true,
-        "spatial_tta": false,
-        "cyclic_input": "13 PNGs: 12 distinct poses followed by an exact copy of the first pose",
-        "command": "rife-ncnn-vulkan.exe -i ../input-poses -o ../output-frames -n 65 -m ./rife-v4.6 -g -1 -j 1:4:2 -f %08d.png -z",
-        "sampling": "Each source pair contributes t=0,.2,.4,.6,.8. Output frames 00000001..00000060 retained; final five clamped duplicates discarded.",
-        "export_scaling": "Neural inference at 1280x720; final 2560x1440 is a Lanczos upscale of neural output, not native 2K inference.",
-        "no_reverse_pingpong_crossfade_or_held_tail": true,
-        "runtime_note": "Portable CPU run emits vkCreateInstance failed-9 because host has noVulkan GPU, but CPU inference completes correctly and emits validPNGs. No global softwareinstall."
-      },
-      "qa": {
-        "metrics_file": "final-metrics.json",
-        "near_duplicate_adjacent_pairs_under_roi_mae_0_1": 0,
-        "cloud_master_near_duplicate_pairs": 14,
-        "mean_adjacent_roi_mae": 2.1636107725364457,
-        "max_adjacent_roi_mae": 4.746885434244067,
-        "cloud_master_max_adjacent_roi_mae": 11.985387570459196,
-        "seam_roi_mae": 0.4640792733278282,
-        "visual_review": "Reviewed full push phases 32..43, circular wrap 56..63 and face/body phases. Single rear shoe/leg remains coherent, planted front foot stable, no foot swaps, stable eyes/glasses/cup. Continuous intermediate motion and clean loop wrap.",
-        "material_limit": "Minor neural interpolation softness/occlusion fleck around rear shoe/rear wheel crossing at frames 37..38; no large ghost limbs or doubled shoes. Root handles final browser playback and dropped-frame verification.",
-        "evidence": [
-          "rife-push-detail.jpg",
-          "rife-wrap-detail.jpg",
-          "rife-face-phases.jpg",
-          "kick-tests-comparison.png"
-        ]
-      },
-      "oneCycleRender": {
-        "width": 2560,
-        "height": 1440,
         "fps": 60,
-        "frames": 60,
-        "duration_seconds": 1,
-        "bytes": 1397862,
-        "encoding": "H.264, libx264 slow CRF17, yuv420p, faststart, no audio"
+        "duration_seconds": 16,
+        "frames": 960,
+        "implementation": {
+          "file": "compose.py",
+          "sha256": "36a0e260200eca9d78f0b5e0ce279514200c5ef1f70ada3a2d8fdff18c6bfca4",
+          "command": "python compose.py --final",
+          "frame_source": "raw RGB24 piped to ffmpeg"
+        },
+        "encoding": {
+          "codec": "H.264/libx264",
+          "preset": "slow",
+          "crf": 18,
+          "pixel_format": "yuv420p",
+          "gop_max_frames": 240,
+          "mp4_faststart": true,
+          "audio": false,
+          "alpha": false
+        },
+        "runtime": "All layers are baked into one opaque MP4; no browser-time canvas compositing is required.",
+        "poster_encoding": {
+          "frame": 0,
+          "format": "WebP",
+          "quality": 94,
+          "method": 6
+        }
       },
-      "browser_delivery": "Four identical continuous action cycles in one4s stream reduce browserdecoder resets; action remains1s and1.5x faster than old1.5s cycle.",
-      "browserVerification": {
-        "test": "Chromium1440x900,12continuous1sactions across3native4scontainerwraps",
-        "decoded_frames": 688,
-        "dropped_frames": 3,
-        "limit": "Virtual-machine browser; timing varies by device. No universal zero-drop claim."
+      "layers": {
+        "sky": {
+          "file": "sky.png",
+          "source_dimensions": [
+            1983,
+            793
+          ],
+          "normalized_dimensions": [
+            2560,
+            1440
+          ],
+          "resampling": "Pillow LANCZOS direct resize",
+          "motion": "stationary",
+          "contents": "Sun and clouds remain fixed while the park and pavement move."
+        },
+        "world": {
+          "file": "world.png",
+          "source_dimensions": [
+            1983,
+            793
+          ],
+          "normalized_dimensions": [
+            2560,
+            1440
+          ],
+          "resampling": "Pillow LANCZOS direct RGBA resize",
+          "construction": "A tile followed by its horizontal reflection; the mirrored pair is repeated to provide a continuous sample window. Camera travel remains leftward throughout.",
+          "period_pixels": 5120,
+          "period_seconds": 16,
+          "speed_pixels_per_second": 320,
+          "formula": "midpos = n * (2 * W / N)",
+          "fractional_sampling": "Linear cv2.addWeighted blend between adjacent pixel-column windows",
+          "alpha": "Source world RGBA alpha separates scenery from the stationary sky."
+        },
+        "pavement": {
+          "file": "background.png",
+          "normalized_dimensions": [
+            2560,
+            1440
+          ],
+          "construction": "Same mirrored tile-pair construction as the world",
+          "period_pixels": 5120,
+          "period_seconds": 8,
+          "periods_per_output": 2,
+          "speed_pixels_per_second": 640,
+          "formula": "groundpos = n * (4 * W / N)",
+          "direction": "leftward, linear",
+          "blend": {
+            "start_normalized_y": 0.825,
+            "end_normalized_y": 0.86,
+            "formula": "clip((y - H * .825) / (H * .035), 0, 1)",
+            "purpose": "Feather from park speed to the faster bare-pavement layer below all park obstacles."
+          }
+        },
+        "contact_shadow": {
+          "motion": "anchored under the rider; does not travel with the pavement",
+          "method": "Two elliptical Gaussian darkening terms clipped to .30 opacity",
+          "reference_scale": [
+            1280,
+            720
+          ],
+          "ellipse_centers": [
+            [
+              975,
+              658
+            ],
+            [
+              975,
+              662
+            ]
+          ],
+          "ellipse_radii": [
+            [
+              151,
+              9
+            ],
+            [
+              165,
+              17
+            ]
+          ],
+          "weights": [
+            0.23,
+            0.09
+          ]
+        },
+        "rider": {
+          "frame_directory": "../hero-loop-v3/rife/output-frames",
+          "range_inclusive": [
+            1,
+            60
+          ],
+          "source_dimensions": [
+            1280,
+            720
+          ],
+          "source_cycle_frames": 60,
+          "source_cycle_seconds": 1,
+          "cycle_repetitions": 16,
+          "formula": "poses[n % 60]",
+          "mask_directory": "foreground-mask",
+          "crop": "Per-frame nonzero mask bounds with 2-pixel padding, preserving source location",
+          "rgb_scaling": "OpenCV INTER_LANCZOS4; 2x for final output",
+          "mask_scaling": "OpenCV INTER_LINEAR; 8-bit grayscale divided by 255",
+          "compositing": "Straight alpha onto the shadowed background",
+          "quality_limit": "Rider neural interpolation was computed at 1280x720. Final rider pixels are scaled to 2560x1440; they are not native 2K neural inference."
+        }
+      },
+      "provenance": {
+        "background_generation": {
+          "asset": "background.png",
+          "width": 1983,
+          "height": 793,
+          "generator": "OpenAI built-in imagegen",
+          "mode": "built-in",
+          "use_case": "illustration-story",
+          "reference": "C:/Users/akki/Documents/Codex/2026-10-18/hocu-da-napravim-x20/work/zoomer-publish/dist/assets/hero-2k.webp",
+          "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-53b22dcd-383a-459a-b5a6-4cd72935f90c.png",
+          "prompts": [
+            {
+              "stage": "initial_generate",
+              "prompt": "Use case: illustration-story\nAsset type: Seamless horizontally repeating 2D background clean plate for an animated skateboard website hero.\nInput image 1 is a STYLE AND PALETTE reference only: match its exact hand-drawn black outline comic style, sunset palette, matte cel colours, shallow side-view perspective and low horizon. Generate a fresh scenery plate with NO character, skateboard, drink, person, cast shadow, text, logos, or vehicles.\nScene: a long empty city skatepark panorama at golden sunset. Warm apricot and persimmon sky with muted mauve simple horizontal cloud bands and a small low warm sun. Far purple city skyline, muted sage and deep olive trees, continuous fine black metal railing. Shallow concrete ramps and low ledges are in the middle distance; the lower 25 percent is unobstructed flat warm concrete pavement with a few fine surface lines. No large close half-pipes and no tall objects obstructing the foreground.\nComposition: WIDE horizontal full scene, ideally 2:1 or 16:9, high resolution, 2K detail. Top 55 percent is open sunset sky. Tallest skyline and foliage begin around 45 percent of canvas height. Park base is around 78 percent. Ground is a continuous horizontal plane, seen from the same low side view as the reference. This background will scroll to the left behind a stationary animated skateboard rider.\nCRITICAL TILE CONSTRAINT: design this as a seamless horizontal repeating panorama: left and right canvas edges must join invisibly when repeated side by side. The horizon, rail, pavement height, sky colours and cloud bands continue cleanly across both edges. Keep edge geometry simple and exactly aligned, not large cropped side ramps. No fade to white, no border, no vignette. Clean crisp irregular black linework and flat cel colouring, finely drawn yet matte, absolutely 2D and never 3D or photorealistic.",
+              "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-9af01976-e1bd-47ab-b6ba-6b46ce755409.png"
+            },
+            {
+              "stage": "horizontal_edge_correction",
+              "prompt": "Use case: precise-object-edit\nAsset type: horizontally repeatable 2D skateboard game background clean plate.\nInput image 1 is the EDIT TARGET. Preserve this exact full hand-drawn sunset skatepark artwork, no people, matte warm orange sky, purple skyline, olive trees, continuous rail and concrete ground. Make only the changes needed to turn it into a SEAMLESS HORIZONTAL TILE.\nCritical: when the finished rectangle is repeated left to right, the left and right edges must join invisibly. The top sky, cloud bands, horizon, railings, tree mass and all pavement lines need exactly matching colours and heights at both sides. Keep the narrow left and right edge zones simple: identical empty coral sky with NO clouds touching the edges in the upper half, low level olive trees and horizontal black rail at the SAME y-coordinate on both edges, matching flat warm concrete from rail base down. Remove the raised corner ramps currently cut off on the sides and replace them with matching low concrete ledges of exactly the same height at left and right. The central composition and low sunset sun can remain. The lower 25 percent stays open flat pavement. No fade, border or vignette. No new character, objects, text, logos or 3D. This is a wide 2.5:1 panoramic side-scrolling background. Output crisp high resolution around 2560 pixels wide.",
+              "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-53b22dcd-383a-459a-b5a6-4cd72935f90c.png"
+            }
+          ],
+          "verification": "No people, rider, board, drink or cast shadow. Crisp flat 2D linework. Corrected version keeps clouds away from both side edges and matches rail/lowledge heights; use mirrored tile pairs if perfect numerical edge continuity is required."
+        },
+        "sky_edit": {
+          "asset": "sky.png",
+          "generator": "OpenAI built-in imagegen",
+          "mode": "built-in",
+          "use_case": "precise-object-edit",
+          "reference": "C:/Users/akki/Documents/Codex/2026-10-18/hocu-da-napravim-x20/work/media/moving-world/background.png",
+          "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-5e3bca30-bfa0-4a85-9865-a719d50860ee.png",
+          "prompt": "Use case: precise-object-edit\nAsset type: sky-only clean plate behind a moving illustrated skatepark.\nInput image 1 is the edit target. Preserve the EXACT existing warm apricot sunset sky gradient, its colours, every mauve and gold cloud shape, and the low central sun at precisely the SAME normalized position and SAME scale. Keep the existing wide 2.5:1 panoramic framing.\nChange only the scenery below the sky: completely remove ALL city skyline buildings, trees, plants, fences, railings, concrete ramps, ledges and pavement. Replace their area by a seamless downward extension of the same orange apricot sunset sky. Restore the unobstructed complete circular sun and existing horizontal sunset cloud bands in the lower center, preserving its original center around x51%, y63% and its original diameter around 6.3% of image width. The sun and upper cloud shapes must not move or grow.\nThe full image is sky only, from edge to edge, with absolutely no ground, water, silhouettes, horizon objects, character, skateboard, vehicle, people, new props or text. Match the original exactly: flat matte 2D comic painted sky, clean edges, no3D, no photorealism, no glow bloom. Preserve all existing upper sky and clouds pixel-composition as faithfully as possible. Lower image remains the same saturated warm orange sky rather than pale fog. This is a separate static sky layer for the existing image. Output wide horizontal high resolution.",
+          "verification": "Sky-only. Existing cloud shapes and sun normalized location retained, no scenery silhouettes remain. No people or props."
+        },
+        "world_segmentation": {
+          "input": "work/media/moving-world/background.png",
+          "output": "work/media/moving-world/world.png",
+          "dimensions": [
+            1983,
+            793
+          ],
+          "method": "Connected warm-sunset color matte with top-connected flood labels; no box clipping through skyline; preserve all cool mauve buildings and dark foliage outlines; fully transparent above390; force opaque below580; no rescale or RGB changes.",
+          "warm_sky_rule": "R>145 and R-G>32 and R-B>48; labels connected to top390rows only",
+          "top_alpha_max": 0,
+          "bottom_alpha_min": 255,
+          "opaque_pixels": 634508,
+          "transparent_pixels": 938011,
+          "sha256": "83229d7b99416fd74ddb4ba24e7e1131c7dc7b8c537f01df1b8458a05bddb9b8"
+        },
+        "foreground_segmentation": {
+          "source_frames": "work/media/hero-loop-v3/rife/output-frames/%08d.png",
+          "source_frame_range": [
+            1,
+            60
+          ],
+          "source_fps": 60,
+          "mask_directory": "work/media/moving-world/foreground-mask",
+          "mask_dimensions": [
+            1280,
+            720
+          ],
+          "format": "8-bit grayscale PNG;0transparent;255foreground",
+          "method": "MobileSAM ONNX local CPU, separateperson+skateboard prompts, union oflogits>0; no dilation/morphology/feather",
+          "model_sources": [
+            "https://huggingface.co/Acly/MobileSAM/resolve/main/mobile_sam_image_encoder.onnx",
+            "https://huggingface.co/Acly/MobileSAM/resolve/main/sam_mask_decoder_multi.onnx"
+          ],
+          "encoder_input": [
+            1024,
+            576
+          ],
+          "person_prompt": {
+            "box": [
+              660,
+              65,
+              1115,
+              630
+            ],
+            "positive_points": [
+              [
+                920,
+                284
+              ],
+              [
+                955,
+                580
+              ],
+              [
+                1090,
+                265
+              ]
+            ]
+          },
+          "board_prompt": {
+            "box": [
+              794,
+              585,
+              1138,
+              670
+            ],
+            "positive_points": [
+              [
+                970,
+                623
+              ],
+              [
+                850,
+                643
+              ],
+              [
+                1035,
+                651
+              ]
+            ]
+          },
+          "qa": "12posecontactsheet inspected; retainoriginalanatomy, cup, backpack, board andbothvisiblewheels; underarmandleggapstransparent. Groundcastshadowexcluded; compositean anchoredsoftshadowseparately."
+        },
+        "foreground_manifest": {
+          "record": {
+            "path": "moving-world/audit/foreground-provenance.json",
+            "sha256": "0f827ce9e4d7153c72671c3b40cf376e1f8d6939d58a7d9f72836e49508a0505"
+          },
+          "frames_recorded": 60,
+          "contents": "Per-frame area, connected-component sizes and SHA-256 for all 60 masks; source mask files remain unchanged."
+        },
+        "approved_rider_original_audit": {
+          "record": {
+            "path": "hero-loop-v3/rife/delivery.json",
+            "sha256": "569606a48113be8bef05032a714dbd17ad1d18dccda326a8f8824b1c08775404"
+          },
+          "details": {
+            "status": "completed_and_passed_cadence_seam_anatomy_review_with_minor_interpolation_softness",
+            "file": "hero-fluid-rife-candidate.mp4",
+            "sha256": "4967927300DA8C484FB78F54EC307801FD744E6B64DBC25657C5AF0126ED5EE7",
+            "final": {
+              "width": 2560,
+              "height": 1440,
+              "fps": 60,
+              "frames": 60,
+              "duration_seconds": 1,
+              "bytes": 1397862,
+              "encoding": "H.264, libx264 slow CRF17, yuv420p, faststart, no audio"
+            },
+            "speed": {
+              "previous_cycle_seconds": 1.5,
+              "new_cycle_seconds": 1,
+              "relative_speed": 1.5
+            },
+            "source": {
+              "file": "../hero-upscaled-source.mp4",
+              "source_type": "AI-upscaled sharp 4K cloud master from approved original Seedance skating cycle",
+              "width": 3840,
+              "height": 2160,
+              "fps": 60,
+              "sampled_frame_indices": [
+                120,
+                125,
+                130,
+                135,
+                140,
+                145,
+                150,
+                155,
+                160,
+                165,
+                170,
+                175
+              ],
+              "sampled_pose_count": 12,
+              "source_near_duplicate_holds_removed": true,
+              "pose_extraction": "ffmpeg select=between(n,120,175)*not(mod(n-120,5)),scale=1280:720:flags=lanczos; fps_mode=passthrough"
+            },
+            "interpolation": {
+              "implementation": "RIFE ncnn Vulkan portable Windows official release20221029",
+              "model": "rife-v4.6",
+              "license": "MIT",
+              "official_source": "https://github.com/nihui/rife-ncnn-vulkan",
+              "release_asset": "https://github.com/nihui/rife-ncnn-vulkan/releases/download/20221029/rife-ncnn-vulkan-20221029-windows.zip",
+              "inference_width": 1280,
+              "inference_height": 720,
+              "inference_device": "CPU -g -1",
+              "temporal_tta": true,
+              "spatial_tta": false,
+              "cyclic_input": "13 PNGs: 12 distinct poses followed by an exact copy of the first pose",
+              "command": "rife-ncnn-vulkan.exe -i ../input-poses -o ../output-frames -n 65 -m ./rife-v4.6 -g -1 -j 1:4:2 -f %08d.png -z",
+              "sampling": "Each source pair contributes t=0,.2,.4,.6,.8. Output frames 00000001..00000060 retained; final five clamped duplicates discarded.",
+              "export_scaling": "Neural inference at 1280x720; final 2560x1440 is a Lanczos upscale of neural output, not native 2K inference.",
+              "no_reverse_pingpong_crossfade_or_held_tail": true,
+              "runtime_note": "Portable CPU run emits vkCreateInstance failed-9 because host has noVulkan GPU, but CPU inference completes correctly and emits validPNGs. No global softwareinstall."
+            },
+            "qa": {
+              "metrics_file": "final-metrics.json",
+              "near_duplicate_adjacent_pairs_under_roi_mae_0_1": 0,
+              "cloud_master_near_duplicate_pairs": 14,
+              "mean_adjacent_roi_mae": 2.1636107725364457,
+              "max_adjacent_roi_mae": 4.746885434244067,
+              "cloud_master_max_adjacent_roi_mae": 11.985387570459196,
+              "seam_roi_mae": 0.4640792733278282,
+              "visual_review": "Reviewed full push phases 32..43, circular wrap 56..63 and face/body phases. Single rear shoe/leg remains coherent, planted front foot stable, no foot swaps, stable eyes/glasses/cup. Continuous intermediate motion and clean loop wrap.",
+              "material_limit": "Minor neural interpolation softness/occlusion fleck around rear shoe/rear wheel crossing at frames 37..38; no large ghost limbs or doubled shoes. Root handles final browser playback and dropped-frame verification.",
+              "evidence": [
+                "rife-push-detail.jpg",
+                "rife-wrap-detail.jpg",
+                "rife-face-phases.jpg",
+                "kick-tests-comparison.png"
+              ]
+            }
+          },
+          "metrics_record": {
+            "path": "hero-loop-v3/rife/final-metrics.json",
+            "sha256": "2a3df293dfaeff9d3fe5378b24e1a140c87df2e71415740e75ce09d59ff01a47"
+          },
+          "metrics_summary": {
+            "frames": 60,
+            "mean_adjacent": 2.1636107725364457,
+            "max_adjacent": 4.746885434244067,
+            "seam": 0.4640792733278282,
+            "low_motion_pairs_under_0_1": []
+          },
+          "scope": "This audit describes the approved one-second rider source, not a new final composite encode."
+        }
+      },
+      "preview_review": {
+        "file": "preview.mp4",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "fps": 60,
+        "duration_seconds": 16,
+        "frames": 960,
+        "encoding": "H.264/libx264 fast CRF20, yuv420p, faststart, no audio",
+        "metrics_record": {
+          "path": "moving-world/audit/preview-review-metrics.json",
+          "sha256": "4dc290882d279fb98c6f8cd587062e14c034a2296e458f8b67616e1d9d0c5fe1"
+        },
+        "method": {
+          "script": "audit/review_preview.py",
+          "pixel_differences": "Mean absolute 8-bit per-channel differences between decoded preview frames within fixed regions; not a perceptual quality score.",
+          "optical_flow": "OpenCV Farneback; median displacement among pixels with vector magnitude greater than .5 pixels. Units are preview pixels per frame.",
+          "regions_xyxy": {
+            "sky": [
+              0,
+              0,
+              650,
+              330
+            ],
+            "world": [
+              0,
+              370,
+              650,
+              580
+            ],
+            "pavement": [
+              0,
+              625,
+              650,
+              720
+            ],
+            "rider": [
+              670,
+              60,
+              1145,
+              675
+            ]
+          }
+        },
+        "measurements": {
+          "adjacent_0_1": {
+            "sky": 0.0136,
+            "world": 8.3761,
+            "pavement": 3.6926,
+            "rider": 3.4551
+          },
+          "before_wrap_958_959": {
+            "sky": 0.0,
+            "world": 8.1216,
+            "pavement": 3.722,
+            "rider": 2.9621
+          },
+          "wrap_959_0": {
+            "sky": 0.648,
+            "world": 8.8507,
+            "pavement": 3.8592,
+            "rider": 4.5299
+          },
+          "rider_cycle_59_60": {
+            "sky": 0.0,
+            "world": 7.4841,
+            "pavement": 3.5451,
+            "rider": 2.4296
+          },
+          "flow_start": {
+            "world": {
+              "median_dx": -2.724,
+              "median_dy": 0.0,
+              "moving_pixels": 113243
+            },
+            "pavement": {
+              "median_dx": -4.79,
+              "median_dy": 0.0,
+              "moving_pixels": 52722
+            }
+          },
+          "flow_wrap": {
+            "world": {
+              "median_dx": -2.716,
+              "median_dy": -0.002,
+              "moving_pixels": 113553
+            },
+            "pavement": {
+              "median_dx": -4.646,
+              "median_dy": 0.007,
+              "moving_pixels": 52448
+            }
+          }
+        },
+        "interpretation": "Measured world and pavement optical flow remains leftward at the start and across wrap. Encoded-frame sky differences may reflect compression despite a mathematically stationary sky layer. These are preview measurements; they do not establish final-file decoding or browser playback."
+      },
+      "delivery_checks": {
+        "final_file_bytes": 16834041,
+        "final_file_sha256": "36a5e2ec2491fad3ede1631e434286a6cc071cac90d40cd58baa2aa6bf5cb14d",
+        "ffprobe": {
+          "codec_name": "h264",
+          "width": 2560,
+          "height": 1440,
+          "r_frame_rate": "60/1",
+          "duration": "16.000000",
+          "nb_read_frames": "960"
+        },
+        "decode": "All960frames decoded with ffmpeg; exit0, no diagnostics",
+        "browser": {
+          "desktop": {
+            "viewport": [
+              1440,
+              900
+            ],
+            "decoded_frames": 1046,
+            "dropped_frames": 0,
+            "observed_callbacks": 996,
+            "native_container_wraps": 1,
+            "observation_seconds": 17.5,
+            "playing": true,
+            "title_and_nav_stable": true,
+            "overflow": false
+          },
+          "mobile": {
+            "viewport": [
+              390,
+              844
+            ],
+            "playing_2k": true,
+            "overflow": false
+          },
+          "offscreen_pause": true,
+          "resume": true,
+          "reduced_motion": {
+            "video_src": null,
+            "poster_2k_ready": true
+          },
+          "page_errors": [],
+          "scope": "Local Chromium on this Windows VM; device-specific results, not a universal zero-drop guarantee."
+        }
       }
     },
     "cloudJobs": [
@@ -1103,10 +2017,18 @@
     ],
     "policy": "Final delivery 2560x1440 for wide hero and 2048x2048 for square artwork/video. Higher-resolution intermediate processing masters are excluded from deployment. Only referenced files ship."
   },
-  "hero-2k.webp": {
+  "previousHeroArtwork": {
     "provider": "Built-in image_gen",
     "source": "exec-1ea74337-e370-4d3d-af86-2105be04c354.png",
     "reference": "User-supplied skatepark character image",
     "prompt": "Use case: illustration-story. Create a premium wide 16:9 hand-drawn 2D editorial illustration for the opening of a playful website about ZOOMER. Use supplied image as strict CHARACTER IDENTITY and illustration-style reference. Same exact white-skinned elongated wojak face, rectangular tall head, short orange combed-up hair with black strokes and shaved sides, thin oval black glasses, small smirk, gray t-shirt, charcoal baggy trousers, black backpack, green camouflage high-top canvas sneakers with white rubber soles. SCENE: Zoomer is riding his skateboard toward the right through a quiet concrete city skatepark at warm late-afternoon sunset, holding an iced pale-green matcha drink carefully upright. His entire body and board are visible, his back foot rests on the board and front leg pushes off the ground; coherent anatomy with two arms and two legs. He occupies the right 45% of the landscape frame. Plenty of beautiful open apricot sky in the top half and left 45% for live HTML typography that will be added later. Low drawn skyline, sloping skatepark ramps and sparse distant trees, warm terracotta peach sky, buttery-yellow low sun, muted sage foliage and warm concrete. Medium-weight irregular clean black ink contour lines, flat matte cel color, tactile subtle paper, sharp legible character features. No 3D, no rendered gradients, no photo texture, no text, no lettering, no watermark, no logo. Art direction should feel like a high-end independent animated comic. This is an original scene of the exact supplied character, not a new design."
+  },
+  "hero-world-2k.webp": {
+    "source": "First uncompressed frame of moving-world composite",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 387390,
+    "encoding": "WebP quality94 method6",
+    "matches_video_opening": true
   }
 }
