@@ -1,0 +1,112 @@
+{
+  "character": "Zoomer",
+  "originals": {
+    "cafe.webp": "User-supplied codex-clipboard-41876463-be5d-404d-8d10-d095a986492d.png; optimized to WebP, no visual edits.",
+    "skate.webp": "User-supplied codex-clipboard-e4d1b499-9c61-40dd-94d6-336c5903bd6b.png; optimized to WebP, no visual edits.",
+    "train.webp": "User-supplied codex-clipboard-eed52f85-b22e-4b90-848e-25292990080d.png; optimized to WebP, no visual edits.",
+    "laptop.webp": "User-supplied codex-clipboard-6b971500-adf4-4629-acb8-c78dfcb998fd.png; optimized to WebP, no visual edits."
+  },
+  "hero.webp": {
+    "provider": "Built-in image_gen",
+    "source": "exec-1ea74337-e370-4d3d-af86-2105be04c354.png",
+    "reference": "User-supplied skatepark character image",
+    "prompt": "Use case: illustration-story. Create a premium wide 16:9 hand-drawn 2D editorial illustration for the opening of a playful website about ZOOMER. Use supplied image as strict CHARACTER IDENTITY and illustration-style reference. Same exact white-skinned elongated wojak face, rectangular tall head, short orange combed-up hair with black strokes and shaved sides, thin oval black glasses, small smirk, gray t-shirt, charcoal baggy trousers, black backpack, green camouflage high-top canvas sneakers with white rubber soles. SCENE: Zoomer is riding his skateboard toward the right through a quiet concrete city skatepark at warm late-afternoon sunset, holding an iced pale-green matcha drink carefully upright. His entire body and board are visible, his back foot rests on the board and front leg pushes off the ground; coherent anatomy with two arms and two legs. He occupies the right 45% of the landscape frame. Plenty of beautiful open apricot sky in the top half and left 45% for live HTML typography that will be added later. Low drawn skyline, sloping skatepark ramps and sparse distant trees, warm terracotta peach sky, buttery-yellow low sun, muted sage foliage and warm concrete. Medium-weight irregular clean black ink contour lines, flat matte cel color, tactile subtle paper, sharp legible character features. No 3D, no rendered gradients, no photo texture, no text, no lettering, no watermark, no logo. Art direction should feel like a high-end independent animated comic. This is an original scene of the exact supplied character, not a new design."
+  },
+  "animations": {
+    "provider": "Higgsfield",
+    "model": "Wan 2.7 for story scenes; Seedance 2.0 fast for opening ride",
+    "durationSeconds": 5,
+    "quotedCreditsTotal": 71.5,
+    "format": "H.264, yuv420p, silent, faststart, CRF 25",
+    "sourcePolicy": "Original respective image supplied as both start and end reference, fixed composition, consistent 2D anatomy.",
+    "cafe.mp4": "Raise cup, sip, lower cup and blink. 960x960, 461013 bytes.",
+    "train.mp4": "Head/shoulder bob, weight shift and passing scenery. 960x960, 725805 bytes.",
+    "laptop.mp4": "Sigh, close eyelids, head droop and recover. 960x960, 507868 bytes.",
+    "skate.mp4": "Chip bite, hand motion, nod and blink. 960x960, 547089 bytes.",
+    "hero-ride-loop.mp4": {
+      "provider": "Higgsfield",
+      "model": "Seedance 2.0 fast",
+      "jobId": "5f36ca37-f7ec-484d-8af8-5e5fffa0ab7e",
+      "sourceImage": "Approved hero-skate.png (unchanged hero.webp fallback)",
+      "prompt": "Create a clean hand-drawn 2D skateboard-pushing animation cycle from this exact image. Camera and all background artwork remain perfectly static. Keep Zoomer, skateboard and cup in their exact original right-side screen position, preserving the open sunset sky on the left for website text. Preserve the original flat colors, crisp black outlines, face, orange hair, glasses, clothing, backpack, camo shoes, cup and board. No motion blur, ghosting, transparent doubles, morphing, 3D, zooms or cuts.\n\nAnimate ONE specific motion continuously for eight seconds: a calm repeating skateboard push cycle about every two seconds. The FRONT FOOT is the shoe already resting on the skateboard, at the RIGHT of the image. That shoe must remain completely planted at the same spot on the deck for every frame, with the sole always touching the deck. It never lifts, slides, changes shape or switches with the other foot. The REAR FOOT is the shoe that starts raised behind him, on the LEFT of his body. ONLY that rear foot moves: swing down beside the board, contact the pavement, push backward against the pavement, lift behind the body, then swing forward through the air and repeat. Clear foot-ground contact, a small supporting-knee bend and gentle torso balance. This is skateboarding, with one foot always fixed on the deck; never walking, running, hopping or swapping feet. The board itself remains stable in the exact same position; wheels rotate.\n\nBoth arms hold the ORIGINAL pose throughout: the cup stays upright at the original height in the original single hand, while the free arm stays down behind the hip. No arm swing across the body, no reaching for the drink, no grip changes, no sipping, waving or looking around. Two arms, two legs, one rider. The rhythmic rear-leg push repeats naturally at least four times from the very first frame through the final frame without any pause, glide hold, stop, final pose or reset. Movement is already ongoing at the beginning and continues beyond the end. Silent.\n",
+      "sourceDurationSeconds": 8,
+      "sourceFrames": [
+        151,
+        174
+      ],
+      "durationSeconds": 1.5,
+      "frames": 36,
+      "fps": 24,
+      "width": 1280,
+      "height": 720,
+      "bytes": 200711,
+      "processing": "Select one full interior push; slow to 0.667x; chronological only; no reverse, crossfade, blending or interpolation. H.264, silent, faststart.",
+      "verification": "Independent frame audit: supporting foot remains on deck; rear foot reaches pavement then extends and recovers; stable cup and identity; no ghosting or frozen tail. Encoded seam ROI difference 1.805/255 versus normal nonduplicate median 2.284/255.",
+      "revisionQuotedCredits": 34,
+      "rejectedTake": "Kling 3.0 Pro take rejected for foot swapping and ghosting; not shipped."
+    }
+  },
+  "fonts": {
+    "barlow-heavy.ttf": "Barlow Condensed 900, Google Fonts distribution, SIL Open Font License.",
+    "manrope-regular.ttf": "Manrope 400, Google Fonts distribution, SIL Open Font License.",
+    "manrope-bold.ttf": "Manrope 700, Google Fonts distribution, SIL Open Font License."
+  },
+  "moodIllustrations": {
+    "provider": "Built-in image_gen",
+    "policy": "Four original new scenes. User image is identity/style reference only; no supplied scene reused in the mood chooser.",
+    "assets": [
+      {
+        "mood": "Caffeinated",
+        "provider": "Built-in image_gen",
+        "source": "exec-56e8d180-6cef-4232-b155-65752d40df2d.png",
+        "reference": "codex-clipboard-e4d1b499-9c61-40dd-94d6-336c5903bd6b.png",
+        "output": "work/mood-art/caffeinated.png",
+        "prompt": "Use case: illustration-story. Asset type: original square mood illustration for Zoomer character website, Caffeinated mood. Input image is REFERENCE ONLY for character identity and hand-drawn 2D style; invent an entirely new scene, do not recreate its skatepark scene. Scene: Zoomer as an overenthusiastic home-brew alchemist at his small apartment kitchen counter in warm morning sunlight, carefully pouring emerald-green matcha from a little bamboo-whisk bowl into a comically tiny cup. An elaborate improvised but charming cold-brew apparatus with curved glass tubes and green bubbly liquid stands behind him, a houseplant reaching toward window and open sketchbook of scribbles on counter; focused excited tiny smirk. Character prominent from knees up, head central upper half, face and hands fully clear, both hands correctly engaged with bowl and tiny cup; black backpack hooked on chair behind. Preserve Zoomer's long white wojak face and tall head, short orange swept-up hair with black strokes and shaved sides, thin black oval glasses, gray tee, charcoal pants, small relaxed smirk. Style: matte 2D editorial comic, crisp slightly irregular black linework, flat cel colors and restrained subtle paper texture. Palette warm butter yellow and sage green with orange hair. Full-bleed square composition with dominant character in central75 percent, face safely away from corners for an arched website crop. Coherent anatomy exactly two arms, two hands, no extra fingers or limbs. No text, no logos, no borders, no 3D, no photorealism. The humor is in the over-engineered green tea machine and tiny cup, refined clear readable shapes, expressive original setting.",
+        "website_asset": "assets/mood-caffeinated.webp",
+        "processing": "Resized to 1000x1000 and encoded WebP quality 86; no creative pixel edits.",
+        "bytes": 210858
+      },
+      {
+        "mood": "tuned-out",
+        "provider": "built-in image_gen",
+        "mode": "generate",
+        "prompt": "Use case: illustration-story\nAsset type: a new original square 2D illustration for the Tuned out mood on Zoomer's website.\nInput image: CHARACTER IDENTITY AND DRAWING STYLE REFERENCE ONLY. Do not reproduce the reference scene, chips, skatepark, pose, or composition.\nPrimary request: Zoomer is comfortably lounging on a large crescent moon shaped subtly like a worn skate ramp, floating above sleepy city rooftops at indigo dusk. He wears oversized black over-ear headphones and thin oval black glasses, quietly smiling, gazing off with relaxed eyes, totally lost in music. A few playful curved hand-drawn sound rings orbit nearby. This is an imaginative calm music dream.\nSubject identity: match the reference's distinctive elongated white wojak face and tall rectangular head, short orange swept-up hair with irregular black strokes and shaved dotted sides, small smirk, thin black oval glasses. Gray T-shirt, charcoal trousers, black backpack, green camouflage high-top sneakers with white soles. Precisely two arms and two legs; natural anatomy. One arm rests behind his head, the other loosely on his lap; legs rest comfortably on the curved moon. Do not add phones or other hand-held props.\nStyle/medium: matte 2D hand-drawn editorial comic; irregular crisp black ink outlines, simple flat restrained cel colors and slight paper texture, identical face design language to the reference. No 3D or photorealism.\nComposition/framing: square full-bleed scene. Zoomer is dominant, fills most of central frame. Keep face in central upper half and all major anatomy safely inside central 75 percent for an arched website image mask. Crescent moon supports the whole body; distant roofs low in frame. Clean readable silhouette, generous dusk sky.\nColor palette: lavender and indigo dusk with muted coral highlights, pale warm cream moon; warm orange hair and neutral outfit.\nConstraints: fresh scene entirely different from supplied photo; no train, no café, no laptop, no charts, no original reference composition. No text, no logos, no watermark, no border, no panels.",
+        "referenceRole": "Identity and drawing style only; entirely new scene and composition",
+        "referencePath": "codex-clipboard-e4d1b499-9c61-40dd-94d6-336c5903bd6b.png",
+        "generatedSourcePath": "exec-90e94a28-d3bc-4e20-94b9-96c59f3c01c6.png",
+        "outputPath": "tuned-out.png",
+        "inspection": "Passed: distinctive orange hair, oval glasses, elongated white face, gray shirt, backpack, camouflage sneakers retained; two arms/two legs. Fresh crescent-moon lounge scene, face in central upper half, useful full-bleed square composition.",
+        "website_asset": "assets/mood-tuned-out.webp",
+        "processing": "Resized to 1000x1000 and encoded WebP quality 86; no creative pixel edits.",
+        "bytes": 128216
+      },
+      {
+        "mood": "down-bad",
+        "provider": "built-in image_gen",
+        "intent": "New illustration; source image used only for character identity and illustration style.",
+        "prompt": "Use case: illustration-story.\nAsset type: an original square full-bleed mood illustration for the Zoomer website.\nInput image: reference for Zoomer's CHARACTER IDENTITY and flat illustrated art style ONLY. Create a completely new scene and pose; do not reuse the reference setting or composition.\nPrimary request: Zoomer is sitting on a low curb outside a closed little arcade at blue twilight, with a tiny cartoon raincloud floating just above his head raining ONLY over him. He holds an empty upside-down wallet in one hand, checking it with a wry disappointed expression. His black backpack and skateboard rest beside the curb. A small puddle on the pavement reflects the arcade's warm orange light. Funny and sympathetic, a playful visual metaphor for the mood \"Down bad\", not miserable.\nCharacter invariants: exactly the same distinctive long white wojak face and tall rectangular head, short orange hair swept upward with black strokes and shaved sides, thin black oval eyeglasses and half-lidded eyes, gray T-shirt, charcoal trousers, green camouflage high-top sneakers with white rubber soles and laces. Adult proportions matching the reference. Coherent anatomy, exactly two arms and two legs, hands clearly attached to their arms. White skin rendered flat, not glowing.\nStyle/medium: matte 2D hand-drawn editorial comic illustration, crisp slightly irregular black outlines, simple flat restrained colors and modest cel shadows, subtle organic paper character. Blue/slate twilight with controlled warm orange arcade lighting. Same character world as the reference, no photorealism or 3D.\nComposition: square full bleed, a dominant centrally placed seated character, face in the upper-middle and all essential character details safely inside the central 75 percent for an arched website crop. Keep the raincloud fully visible, no edge clipping of his face. Rich but uncluttered complete scene.\nConstraints: no laptop, charts, café, train, or skatepark; no added characters, no text, logos, signs with lettering, captions, UI, border, watermark, 3D, extra limbs or distorted glasses. The arcade can read through a shuttered entrance and glowing game-machine silhouettes, without lettering.",
+        "reference_path": "codex-clipboard-e4d1b499-9c61-40dd-94d6-336c5903bd6b.png",
+        "original_generated_path": "exec-34c4755a-c9f6-4f14-b783-212a0d8f7d99.png",
+        "final_path": "down-bad.png",
+        "inspection": "Confirmed same orange hair, shaved side, long white face, oval glasses, gray tee, charcoal trousers and camo high-tops. Two coherent arms and legs; empty wallet clearly readable; localized raincloud and warm arcade backdrop. New setting and props; no original supplied scene reused.",
+        "website_asset": "assets/mood-down-bad.webp",
+        "processing": "Resized to 1000x1000 and encoded WebP quality 86; no creative pixel edits.",
+        "bytes": 188804
+      },
+      {
+        "mood": "unbothered",
+        "provider": "built-in image_gen",
+        "intent": "generate",
+        "source_generated_path": "exec-b5912ad0-dd83-440b-b00d-71cd8fefeb57.png",
+        "reference_path": "codex-clipboard-e4d1b499-9c61-40dd-94d6-336c5903bd6b.png",
+        "reference_role": "Character identity and drawing style only; new rooftop hammock scene and composition.",
+        "final_path": "unbothered.png",
+        "prompt": "Use case: illustration-story.\nAsset type: one original square full-bleed illustration for the Unbothered mood on the Zoomer character website.\nInput image: identity and drawing-style reference ONLY; create a completely new scene and composition, do not recreate the seated skatepark in the reference.\nScene: a whimsical urban rooftop garden in a warm golden afternoon. Zoomer is happily reclining diagonally in a cream-and-sage striped hammock tied securely between two oversized potted tropical plants. The skyline is distant and busy but the rooftop is serene. A small scruffy pigeon stands on his skateboard on the rooftop floor below. His black backpack rests nearby. A little bowl of potato chips rests naturally on his belly.\nSubject: preserve this exact recognizable character identity from the reference: long white wojak face and tall rectangular head, short orange swept-up hair drawn with black strokes and shaved sides, thin black oval eyeglasses, small eyes, tiny calm smile, gray short-sleeved T-shirt, charcoal trousers, green camouflage high-top sneakers with white soles and white laces. His eyes are open behind his glasses, relaxed and content. Two anatomically coherent arms and two legs. One hand rests behind his head, the other lazily holds a chip beside the bowl. His torso and both legs visibly rest inside the hammock.\nStyle: matte 2D hand-drawn editorial comic, crisp irregular black outlines, restrained flat cel colors, subtle paper texture, same face and inking language as the reference. Sage foliage, warm cream hammock, muted coral roof and soft pale gold sky. No 3D or photographic rendering.\nComposition: square full bleed; Zoomer is the clearly dominant subject, large enough to read at 400px display size. Keep his face near the upper central half, safely within the central 75% of the image for an arched website crop. Show the entire reclining character, hammock curve, both potted plants and pigeon/skateboard without clutter. Friendly clever art direction, cinematic layered rooftop foreground and distant city background.\nConstraints: only one Zoomer; exactly two arms and two legs, coherent hands, preserved orange hair and oval glasses; no extra limbs, no face distortion. No text, typography, logos, watermarks, frame or border.",
+        "qa": "Inspected generated PNG. Consistent orange hair, long white face, thin oval glasses, gray T-shirt, charcoal trousers and camouflage sneakers. Two coherent arms and legs; bowl and hands read cleanly. New rooftop hammock setting, pigeon/skateboard. Face safely near x36% y24% within central crop.",
+        "website_asset": "assets/mood-unbothered.webp",
+        "processing": "Resized to 1000x1000 and encoded WebP quality 86; no creative pixel edits.",
+        "bytes": 197558
+      }
+    ]
+  }
+}

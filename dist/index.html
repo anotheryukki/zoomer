@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ee865e">
+  <meta name="description" content="Meet Zoomer. Matcha in hand, headphones on, making his way outside the feed. A little 2D adventure.">
+  <title>ZOOMER — Outside the feed</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/barlow-heavy.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/manrope-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/hero.webp" as="image" fetchpriority="high">
+  <script>document.documentElement.classList.add('js','is-loading');history.scrollRestoration='manual';window.__zoomerInitialHash=location.hash;if(location.hash)history.replaceState(null,'',location.pathname+location.search);</script>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#day">Skip to Zoomer's day</a>
+  <div class="loader" role="status"><span class="loader-word">ZOOMER<span>.</span></span><span>Heading outside…</span><span class="loader-line"></span></div>
+  <header class="header">
+    <a class="brand" href="#home" aria-label="Zoomer, back to top">zoomer<span class="brand-dot">*</span></a>
+    <nav class="main-nav" aria-label="Main navigation"><a href="#day">His day</a><a href="#mood">Mood check</a></nav>
+    <a class="nav-cta" href="#golden-hour">Touch grass <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
+  </header>
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-art"><img class="hero-poster" src="assets/hero.webp" alt="Zoomer skateboarding through a sunset skatepark with an iced matcha in hand" width="1672" height="941" fetchpriority="high"><video class="hero-video" data-src="assets/hero-ride-loop.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+      <div class="hero-content"><h1 id="hero-title">ZOOMER<span class="title-star" aria-hidden="true">*</span></h1></div>
+    </section>
+    <section class="intro" aria-labelledby="intro-title"><div class="intro-copy"><h2 id="intro-title">A LOT ON HIS MIND.<br><span>NOT MUCH ON HIS CALENDAR.</span></h2><p>Meet Zoomer. Professional overthinker, amateur skateboarder. Just trying to make it through the day with his playlist, his people, and a little less screen time.</p></div><a href="#morning" class="text-link">Let's head out <span aria-hidden="true">↘</span></a></section>
+    <div class="story" id="day">
+      <div class="story-stage">
+        <section class="scene scene-cafe active" data-scene="morning" id="morning" aria-labelledby="cafe-title">
+          <div class="scene-copy"><h2 id="cafe-title">BUT FIRST,<br><span>MATCHA.</span></h2><p>The group chat can wait. <br>Some things need a little stirring.</p><button class="action" id="matcha-button">Secure the matcha <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></button><p class="interaction-note" id="matcha-note" role="status">One small win to start the day.</p></div>
+          <div class="scene-media"><img src="assets/cafe.webp" alt="Zoomer at his local café with an iced matcha and his phone" width="1000" height="1000" loading="lazy"><video data-src="assets/cafe.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><div class="matcha-stamp" aria-hidden="true">MATCHA<br>SECURED <span>✓</span></div></div>
+        </section>
+        <section class="scene scene-train" data-scene="on-the-way" id="on-the-way" aria-labelledby="train-title">
+          <div class="scene-copy"><h2 id="train-title">HEADPHONES ON.<br><span>WORLD OFF.</span></h2><p>Same commute. Different soundtrack. <br>For a few stops, he's the main character.</p><button class="action" id="track-button">Change the track <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 10 7-10 7z"/></svg></button><div class="track"><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span id="track-label" role="status">Lo-fi for looking out the window</span></div></div>
+          <div class="scene-media"><img src="assets/train.webp" alt="Zoomer wearing headphones on a busy city train" width="1000" height="1000" loading="lazy"><video data-src="assets/train.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        </section>
+        <section class="scene scene-laptop" data-scene="the-dip" id="the-dip" aria-labelledby="laptop-title">
+          <div class="scene-copy"><h2 id="laptop-title">IT WAS GOING<br><span>SO WELL.</span></h2><p>He checked the chart. <br>The chart checked him.</p><button class="action" id="close-chart">Okay, that's enough internet <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><p class="interaction-note">Maybe the next move is going outside.</p></div>
+          <div class="scene-media"><img src="assets/laptop.webp" alt="Zoomer reacting to a failed fictional meme coin on his laptop" width="1000" height="1000" loading="lazy"><video data-src="assets/laptop.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><div class="offline-stamp" aria-hidden="true">LOGGING<br>OFF.</div></div>
+        </section>
+        <section class="scene scene-skate" data-scene="golden-hour" id="golden-hour" aria-labelledby="skate-title">
+          <div class="scene-copy"><h2 id="skate-title">LESS CHARTS.<br><span>MORE CHIPS.</span></h2><p>The sun's still out. The board still rolls. <br>Turns out, life's pretty good in 2D.</p><button class="action" id="snack-button">Pass him a snack <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><p class="interaction-note" id="snack-note" role="status">A little crunch. A little perspective.</p></div>
+          <div class="scene-media"><img src="assets/skate.webp" alt="Zoomer eating chips beside his skateboard at sunset" width="1000" height="1000" loading="lazy"><video data-src="assets/skate.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><div class="snack-particles" aria-hidden="true"></div></div>
+        </section>
+        <div class="story-progress" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+    <section class="mood" id="mood" aria-labelledby="mood-title"><div class="mood-heading"><h2 id="mood-title">WHERE'S YOUR<br><span>HEAD AT?</span></h2><p>Everyone's got a Zoomer kind of day.<br>Pick your current state of mind.</p></div><div class="mood-picker" role="group" aria-label="Choose your mood"><button data-mood="caffeinated" aria-pressed="true">Caffeinated</button><button data-mood="tuned-out" aria-pressed="false">Tuned out</button><button data-mood="down-bad" aria-pressed="false">Down bad</button><button data-mood="unbothered" aria-pressed="false">Unbothered</button></div><div class="mood-result"><div class="mood-portrait"><img id="mood-image" src="assets/mood-caffeinated.webp" width="1000" height="1000" alt="Zoomer brewing a tiny cup of matcha beside an elaborate green-tea apparatus in his kitchen" loading="lazy"></div><div class="mood-response" aria-live="polite"><h3 id="mood-response-title">Small cup.<br>Big plans.</h3><p id="mood-response-copy">Start with something green. See where the day takes you.</p></div></div></section>
+    <footer class="footer"><div class="footer-top"><p>The internet will be here tomorrow.</p></div><div class="footer-scene"><p>GO GET <br>SOME AIR.</p><div class="footer-art"><img src="assets/skate.webp" alt="Zoomer sitting beside his skateboard at sunset, with his whole figure visible" width="1000" height="1000" loading="lazy"><video class="footer-video" data-src="assets/skate.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div></div><a class="footer-word" href="#home" aria-label="Zoomer, back to the beginning">ZOOMER<span>*</span></a></footer>
+  </main>
+</body>
+</html>
+
+
+
+
