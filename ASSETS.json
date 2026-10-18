@@ -8,7 +8,7 @@
   },
   "animations": {
     "provider": "Higgsfield",
-    "model": "Wan 2.7 for story scenes; Seedance 2.0 fast for opening ride",
+    "model": "Wan2.7 story scenes; controlled2D rear-leg rig over AI-enhanced original opening artwork",
     "durationSeconds": 4.966667,
     "quotedCreditsTotal": 71.5,
     "format": "2K H.264 High, yuv420p, silent, faststart; CRF18,60fps",
@@ -129,11 +129,11 @@
       },
       "browser_delivery": "Four identical continuous action cycles in one4s stream reduce browserdecoder resets; action remains1s and1.5x faster than old1.5s cycle."
     },
-    "hero-ride-world-2k60.mp4": {
+    "previousMovingWorldHero": {
       "schema_version": 1,
       "asset": "hero-ride-world-2k60.mp4",
       "poster": "hero-world-2k.webp",
-      "status": "completed_and_passed_decode_seam_anatomy_motion_and_browser_review",
+      "status": "historical; superseded after rear-leg trajectory and shoe interpolation defects were found",
       "render": {
         "dimensions": [
           2560,
@@ -638,6 +638,1432 @@
           "scope": "Local Chromium on this Windows VM; device-specific results, not a universal zero-drop guarantee."
         }
       }
+    },
+    "hero-ride-clean-push-2k60.mp4": {
+      "schema_version": 2,
+      "asset": "hero-ride-clean-push-2k60.mp4",
+      "poster": "hero-clean-push-2k.webp",
+      "status": "completed_and_passed_rear_leg_geometry_contact_decode_loop_and_browser_review",
+      "change": {
+        "problem": {
+          "frames": [
+            37,
+            38
+          ],
+          "recurrence_seconds": 1,
+          "diagnosis": "Rear shoe morphs/ghosts in original RGB around 37-38; source trajectory also moves rear foot onto/behind deck in frames16-36 instead of pressing pavement. Matte includes small background contamination near ankle around13-15 and44. Repairing only masks or deleting37-38 does not correct physical contact."
+        },
+        "repair": "Replace the temporal rear-limb source with deterministic articulated 2D trousers and one rigid original shoe; retain the original static torso, face, cup, backpack, planted front foot and skateboard.",
+        "active_hero_uses_RIFE_temporal_interpolation": false,
+        "historical_audit_scope": "The source shoe morph at frames37-38 and rear-foot path onto or behind the deck during16-36 describe the replaced temporal source. The active rear shoe is one unchanged raster transformed rigidly; it cannot inherit that frame-by-frame shoe shape morph."
+      },
+      "render": {
+        "dimensions": [
+          2560,
+          1440
+        ],
+        "fps": 60,
+        "duration_seconds": 16,
+        "frames": 960,
+        "encoding": {
+          "codec": "H.264/libx264",
+          "preset": "slow",
+          "crf": 18,
+          "pixel_format": "yuv420p",
+          "gop_max_frames": 240,
+          "mp4_faststart": true,
+          "audio": false,
+          "alpha": false
+        },
+        "composition": {
+          "implementation": {
+            "path": "moving-world/compose.py",
+            "sha256": "df0b0a781ec20661fab03c6231ca3643a44c1ef8b58fb470f6f87e2599946647"
+          },
+          "rider_directory": "../rear-leg-fix/vector-frames-2k",
+          "rider_frame_range_inclusive": [
+            1,
+            60
+          ],
+          "rider_cycle_seconds": 1,
+          "rider_cycle_repetitions": 16,
+          "rider_sampling": "poses[n % 60]",
+          "input_rider_dimensions": [
+            2560,
+            1440
+          ],
+          "rider_scale_at_composition": 1,
+          "method": "Prebaked RGB24 composite passed to ffmpeg; one opaque video rather than browser-time compositing."
+        },
+        "poster_encoding": {
+          "frame": 0,
+          "format": "WebP",
+          "quality": 94,
+          "method": 6
+        }
+      },
+      "rider": {
+        "implementation": {
+          "path": "rear-leg-fix/vector_cycle.py",
+          "sha256": "1565371cb39c32dfa4a807ab132da9812f91c519aac501c6d3e65381eaa2b3bc"
+        },
+        "metadata": {
+          "path": "rear-leg-fix/vector-cycle-2k.json",
+          "sha256": "9bcfb11d96b2b244e39f84650a3f07bfa91462662faa71de320a33846939acf6"
+        },
+        "source": {
+          "provenance": {
+            "source": "work/media/hero-loop-v3/hero-upscaled-source.mp4",
+            "zero_based_frame": 120,
+            "dimensions": [
+              3840,
+              2160
+            ],
+            "coordinate_basis": [
+              1280,
+              720
+            ],
+            "asset_scale": 3,
+            "source_frame1_downsample_mean_absolute_difference": 0.895265480324074,
+            "clean_cuff_boundary_xy": [
+              [
+                731.5,
+                460.0
+              ],
+              [
+                731.5,
+                467.0
+              ],
+              [
+                731.7999877929688,
+                475.0
+              ],
+              [
+                734.0,
+                483.0
+              ],
+              [
+                739.0,
+                491.0
+              ],
+              [
+                745.5,
+                497.0
+              ],
+              [
+                750.0,
+                500.0
+              ],
+              [
+                752.0,
+                503.0
+              ],
+              [
+                752.0,
+                600.0
+              ]
+            ],
+            "parts": {
+              "body": {
+                "bytes": 1047604,
+                "dimensions": [
+                  3840,
+                  2160
+                ]
+              },
+              "thigh": {
+                "bytes": 91823,
+                "dimensions": [
+                  3840,
+                  2160
+                ]
+              },
+              "shin": {
+                "bytes": 98690,
+                "dimensions": [
+                  3840,
+                  2160
+                ]
+              },
+              "shoe": {
+                "bytes": 133273,
+                "dimensions": [
+                  3840,
+                  2160
+                ]
+              }
+            }
+          },
+          "rig_record": {
+            "path": "rear-leg-fix/hi-res/rig.json",
+            "sha256": "db2dbcb9f03b10e6974536900385a598b2d0de23110ded2edb0a19bb862b75c1"
+          },
+          "frame": 120,
+          "frame_indexing": "zero based",
+          "master_dimensions": [
+            3840,
+            2160
+          ],
+          "coordinate_basis": [
+            1280,
+            720
+          ],
+          "asset_scale": 3,
+          "parts_used": {
+            "body": {
+              "record": {
+                "path": "rear-leg-fix/hi-res/body.png",
+                "sha256": "d2cdaf8a8e87278f6015dbd7d9775a340282adf009aa08110feb2207558abbc6"
+              },
+              "dimensions": [
+                3840,
+                2160
+              ]
+            },
+            "shoe": {
+              "record": {
+                "path": "rear-leg-fix/hi-res/shoe.png",
+                "sha256": "dcc8141873eb5c657c7d754e08729da9f422e33b3c60169051e4b8553bc1dad5"
+              },
+              "dimensions": [
+                3840,
+                2160
+              ]
+            }
+          },
+          "quality_qualification": "The 3840x2160 master is the existing AI-upscaled hero source, not newly generated native 4K artwork. Its static body and shoe are directly resampled to the final2K canvas. No temporal neural interpolation is used for the active hero."
+        },
+        "matte": {
+          "source": "../moving-world/foreground-mask/00000001.png",
+          "method": "4K sourceRGB fromexactframe120. Existing1280×720SAMalpha scaled3×Lanczos; source-frame alignment matches pose1. Bodyrearlegcut sameasbase. Realcuff boundary tracedat4K: shincontainsgraycloth/blackcuffedgeonly, shoecontainscamo+whitecollar andsubpixelblackseamoverlap, noremnantpantsliver. Thigh/shin internaloverlap retainsrealclothtexture. Noanatomyredrawn.",
+          "selection_polygon_basis_720p": [
+            [
+              842,
+              377
+            ],
+            [
+              850,
+              391
+            ],
+            [
+              876,
+              411
+            ],
+            [
+              911,
+              430
+            ],
+            [
+              899,
+              456
+            ],
+            [
+              899,
+              590
+            ],
+            [
+              660,
+              590
+            ],
+            [
+              660,
+              420
+            ],
+            [
+              810,
+              420
+            ],
+            [
+              831,
+              388
+            ]
+          ],
+          "note": "The original pose1 SAM contour is resized3x for the4K source. Rear limb is excluded from the fixed body; only the separated original shoe raster is used from the rear-limb extraction."
+        },
+        "articulation": {
+          "coordinate_basis": [
+            1280,
+            720
+          ],
+          "final_scale": 2,
+          "geometry": {
+            "method": "Continuous vector trouser silhouette and folds, original4K rigid shoe and fixed body",
+            "hip": [
+              869.0,
+              401.0
+            ],
+            "bones": [
+              115.0,
+              110.0
+            ],
+            "shoe_anchor": [
+              740.0,
+              484.0
+            ],
+            "stance_y": 586.9672085359531,
+            "sole_offset": 70.03279146404694,
+            "ground_y": 657,
+            "contact_velocity": [
+              -320,
+              0
+            ],
+            "shoe_release_rotation": {
+              "hold_degrees": -81,
+              "hold_through_seconds": 0.27,
+              "rotate_to_degrees": -15,
+              "rotation_end_seconds": 0.42,
+              "curve": "smoothstep C1"
+            },
+            "knots": [
+              [
+                0,
+                [
+                  850,
+                  586.9672085359531
+                ],
+                [
+                  -320,
+                  0
+                ],
+                -81
+              ],
+              [
+                0.2,
+                [
+                  786,
+                  586.9672085359531
+                ],
+                [
+                  -320,
+                  0
+                ],
+                -81
+              ],
+              [
+                0.42,
+                [
+                  724,
+                  540
+                ],
+                [
+                  0,
+                  -250
+                ],
+                -15
+              ],
+              [
+                0.62,
+                [
+                  772,
+                  520
+                ],
+                [
+                  350,
+                  80
+                ],
+                -30
+              ],
+              [
+                0.86,
+                [
+                  873,
+                  577
+                ],
+                [
+                  100,
+                  180
+                ],
+                -80
+              ],
+              [
+                1,
+                [
+                  850,
+                  586.9672085359531
+                ],
+                [
+                  -320,
+                  0
+                ],
+                -81
+              ]
+            ],
+            "dimensions": [
+              2560,
+              1440
+            ]
+          },
+          "path": "Piecewise cubic Hermite ankle path using knot positions and velocities; matching endpoint position/velocity gives C1 periodic continuity. Sample at f/60 for f0..59.",
+          "knee": "Two-bone inverse kinematics with fixed lengths115 and110; negative-cross knee branch retained.",
+          "cloth": "Fill thigh and calf polygons plus a knee disc into one union silhouette before outlining; this avoids independently rotating raster seams and fold-over outlines. Smooth silhouette with Gaussian sigma1.8*S and threshold127. Add sparse curved folds and a single hip attachment hidden beneath the fixed body.",
+          "cloth_color_rgba": [
+            65,
+            69,
+            70,
+            255
+          ],
+          "outline_color_rgba": [
+            18,
+            20,
+            18,
+            255
+          ],
+          "outline_width_basis_px": 2.2,
+          "shoe": "Original4K shoe is a rigid affine rotation and translation with uniform output scaling; no shear, mesh deformation or frame-to-frame shape generation.",
+          "draw_order": [
+            "rigid shoe behind trouser cuff",
+            "continuous trouser silhouette",
+            "fixed body/front thigh above hip"
+          ],
+          "shoe_angle": "Hold -81deg through0.27s, then C1 smoothstep to-15deg by0.42s; later angle knots are recorded in geometry.knots.",
+          "stance": {
+            "interval_seconds": [
+              0,
+              0.2
+            ],
+            "ankle_x_basis": [
+              850,
+              786
+            ],
+            "ankle_y_basis": 586.9672085359531,
+            "velocity_basis_pixels_per_second": [
+              -320,
+              0
+            ],
+            "velocity_final_pixels_per_second": [
+              -640,
+              0
+            ],
+            "pavement_velocity_final_pixels_per_second": [
+              -640,
+              0
+            ],
+            "opaque_sole_y_basis": 657,
+            "opaque_sole_y_final": 1314,
+            "foot_sliding_relative_to_surface": "Zero during the planted segment by matching horizontal velocities."
+          }
+        },
+        "fixed_elements": [
+          "head and torso",
+          "arms and cup",
+          "backpack",
+          "front leg and planted front shoe",
+          "skateboard"
+        ],
+        "resolution": "Vector cloth is drawn directly at2560x1440. Static body and original rigid shoe are sampled from the3840x2160 master. The active rider is not an upscale of the prior720p RIFE output frames."
+      },
+      "background": {
+        "source_delivery": {
+          "path": "moving-world/DELIVERY.json",
+          "sha256": "3957bdcf6e47618a9f735431fe8e64d458afe23c70f15849288c5ddfdead46cb"
+        },
+        "scope": "Background art, stationary sky, mirrored leftward world travel, faster pavement, feather blend and anchored shadow are unchanged from the moving-world delivery. Its old temporal rider provenance is historical and does not describe this active rider.",
+        "layers": {
+          "sky": {
+            "file": "sky.png",
+            "source_dimensions": [
+              1983,
+              793
+            ],
+            "normalized_dimensions": [
+              2560,
+              1440
+            ],
+            "resampling": "Pillow LANCZOS direct resize",
+            "motion": "stationary",
+            "contents": "Sun and clouds remain fixed while the park and pavement move."
+          },
+          "world": {
+            "file": "world.png",
+            "source_dimensions": [
+              1983,
+              793
+            ],
+            "normalized_dimensions": [
+              2560,
+              1440
+            ],
+            "resampling": "Pillow LANCZOS direct RGBA resize",
+            "construction": "A tile followed by its horizontal reflection; the mirrored pair is repeated to provide a continuous sample window. Camera travel remains leftward throughout.",
+            "period_pixels": 5120,
+            "period_seconds": 16,
+            "speed_pixels_per_second": 320,
+            "formula": "midpos = n * (2 * W / N)",
+            "fractional_sampling": "Linear cv2.addWeighted blend between adjacent pixel-column windows",
+            "alpha": "Source world RGBA alpha separates scenery from the stationary sky."
+          },
+          "pavement": {
+            "file": "background.png",
+            "normalized_dimensions": [
+              2560,
+              1440
+            ],
+            "construction": "Same mirrored tile-pair construction as the world",
+            "period_pixels": 5120,
+            "period_seconds": 8,
+            "periods_per_output": 2,
+            "speed_pixels_per_second": 640,
+            "formula": "groundpos = n * (4 * W / N)",
+            "direction": "leftward, linear",
+            "blend": {
+              "start_normalized_y": 0.825,
+              "end_normalized_y": 0.86,
+              "formula": "clip((y - H * .825) / (H * .035), 0, 1)",
+              "purpose": "Feather from park speed to the faster bare-pavement layer below all park obstacles."
+            }
+          },
+          "contact_shadow": {
+            "motion": "anchored under the rider; does not travel with the pavement",
+            "method": "Two elliptical Gaussian darkening terms clipped to .30 opacity",
+            "reference_scale": [
+              1280,
+              720
+            ],
+            "ellipse_centers": [
+              [
+                975,
+                658
+              ],
+              [
+                975,
+                662
+              ]
+            ],
+            "ellipse_radii": [
+              [
+                151,
+                9
+              ],
+              [
+                165,
+                17
+              ]
+            ],
+            "weights": [
+              0.23,
+              0.09
+            ]
+          }
+        },
+        "provenance": {
+          "background_generation": {
+            "asset": "background.png",
+            "width": 1983,
+            "height": 793,
+            "generator": "OpenAI built-in imagegen",
+            "mode": "built-in",
+            "use_case": "illustration-story",
+            "reference": "C:/Users/akki/Documents/Codex/2026-10-18/hocu-da-napravim-x20/work/zoomer-publish/dist/assets/hero-2k.webp",
+            "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-53b22dcd-383a-459a-b5a6-4cd72935f90c.png",
+            "prompts": [
+              {
+                "stage": "initial_generate",
+                "prompt": "Use case: illustration-story\nAsset type: Seamless horizontally repeating 2D background clean plate for an animated skateboard website hero.\nInput image 1 is a STYLE AND PALETTE reference only: match its exact hand-drawn black outline comic style, sunset palette, matte cel colours, shallow side-view perspective and low horizon. Generate a fresh scenery plate with NO character, skateboard, drink, person, cast shadow, text, logos, or vehicles.\nScene: a long empty city skatepark panorama at golden sunset. Warm apricot and persimmon sky with muted mauve simple horizontal cloud bands and a small low warm sun. Far purple city skyline, muted sage and deep olive trees, continuous fine black metal railing. Shallow concrete ramps and low ledges are in the middle distance; the lower 25 percent is unobstructed flat warm concrete pavement with a few fine surface lines. No large close half-pipes and no tall objects obstructing the foreground.\nComposition: WIDE horizontal full scene, ideally 2:1 or 16:9, high resolution, 2K detail. Top 55 percent is open sunset sky. Tallest skyline and foliage begin around 45 percent of canvas height. Park base is around 78 percent. Ground is a continuous horizontal plane, seen from the same low side view as the reference. This background will scroll to the left behind a stationary animated skateboard rider.\nCRITICAL TILE CONSTRAINT: design this as a seamless horizontal repeating panorama: left and right canvas edges must join invisibly when repeated side by side. The horizon, rail, pavement height, sky colours and cloud bands continue cleanly across both edges. Keep edge geometry simple and exactly aligned, not large cropped side ramps. No fade to white, no border, no vignette. Clean crisp irregular black linework and flat cel colouring, finely drawn yet matte, absolutely 2D and never 3D or photorealistic.",
+                "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-9af01976-e1bd-47ab-b6ba-6b46ce755409.png"
+              },
+              {
+                "stage": "horizontal_edge_correction",
+                "prompt": "Use case: precise-object-edit\nAsset type: horizontally repeatable 2D skateboard game background clean plate.\nInput image 1 is the EDIT TARGET. Preserve this exact full hand-drawn sunset skatepark artwork, no people, matte warm orange sky, purple skyline, olive trees, continuous rail and concrete ground. Make only the changes needed to turn it into a SEAMLESS HORIZONTAL TILE.\nCritical: when the finished rectangle is repeated left to right, the left and right edges must join invisibly. The top sky, cloud bands, horizon, railings, tree mass and all pavement lines need exactly matching colours and heights at both sides. Keep the narrow left and right edge zones simple: identical empty coral sky with NO clouds touching the edges in the upper half, low level olive trees and horizontal black rail at the SAME y-coordinate on both edges, matching flat warm concrete from rail base down. Remove the raised corner ramps currently cut off on the sides and replace them with matching low concrete ledges of exactly the same height at left and right. The central composition and low sunset sun can remain. The lower 25 percent stays open flat pavement. No fade, border or vignette. No new character, objects, text, logos or 3D. This is a wide 2.5:1 panoramic side-scrolling background. Output crisp high resolution around 2560 pixels wide.",
+                "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-53b22dcd-383a-459a-b5a6-4cd72935f90c.png"
+              }
+            ],
+            "verification": "No people, rider, board, drink or cast shadow. Crisp flat 2D linework. Corrected version keeps clouds away from both side edges and matches rail/lowledge heights; use mirrored tile pairs if perfect numerical edge continuity is required."
+          },
+          "sky_edit": {
+            "asset": "sky.png",
+            "generator": "OpenAI built-in imagegen",
+            "mode": "built-in",
+            "use_case": "precise-object-edit",
+            "reference": "C:/Users/akki/Documents/Codex/2026-10-18/hocu-da-napravim-x20/work/media/moving-world/background.png",
+            "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-5e3bca30-bfa0-4a85-9865-a719d50860ee.png",
+            "prompt": "Use case: precise-object-edit\nAsset type: sky-only clean plate behind a moving illustrated skatepark.\nInput image 1 is the edit target. Preserve the EXACT existing warm apricot sunset sky gradient, its colours, every mauve and gold cloud shape, and the low central sun at precisely the SAME normalized position and SAME scale. Keep the existing wide 2.5:1 panoramic framing.\nChange only the scenery below the sky: completely remove ALL city skyline buildings, trees, plants, fences, railings, concrete ramps, ledges and pavement. Replace their area by a seamless downward extension of the same orange apricot sunset sky. Restore the unobstructed complete circular sun and existing horizontal sunset cloud bands in the lower center, preserving its original center around x51%, y63% and its original diameter around 6.3% of image width. The sun and upper cloud shapes must not move or grow.\nThe full image is sky only, from edge to edge, with absolutely no ground, water, silhouettes, horizon objects, character, skateboard, vehicle, people, new props or text. Match the original exactly: flat matte 2D comic painted sky, clean edges, no3D, no photorealism, no glow bloom. Preserve all existing upper sky and clouds pixel-composition as faithfully as possible. Lower image remains the same saturated warm orange sky rather than pale fog. This is a separate static sky layer for the existing image. Output wide horizontal high resolution.",
+            "verification": "Sky-only. Existing cloud shapes and sun normalized location retained, no scenery silhouettes remain. No people or props."
+          },
+          "world_segmentation": {
+            "input": "work/media/moving-world/background.png",
+            "output": "work/media/moving-world/world.png",
+            "dimensions": [
+              1983,
+              793
+            ],
+            "method": "Connected warm-sunset color matte with top-connected flood labels; no box clipping through skyline; preserve all cool mauve buildings and dark foliage outlines; fully transparent above390; force opaque below580; no rescale or RGB changes.",
+            "warm_sky_rule": "R>145 and R-G>32 and R-B>48; labels connected to top390rows only",
+            "top_alpha_max": 0,
+            "bottom_alpha_min": 255,
+            "opaque_pixels": 634508,
+            "transparent_pixels": 938011,
+            "sha256": "83229d7b99416fd74ddb4ba24e7e1131c7dc7b8c537f01df1b8458a05bddb9b8"
+          }
+        },
+        "speeds_final_pixels_per_second": {
+          "world": 320,
+          "pavement": 640
+        },
+        "mirrored_pair_period_pixels": 5120,
+        "world_period_seconds": 16,
+        "pavement_period_seconds": 8,
+        "direction": "Linear leftward; mirrored artwork provides repeating edge continuity without reversing camera travel."
+      },
+      "contact_audit": {
+        "record": {
+          "path": "rear-leg-fix/finalcontact-audit.json",
+          "sha256": "dc9f755f121ff2247e062270026135b26d35186c8d7dd9fdcb4f16b3f23a057a"
+        },
+        "result": {
+          "active_candidate_passes": true,
+          "solid_sole_max_y": 657.0000169119036,
+          "solid_sole_release_max_y": 655.1035633326937,
+          "ground_y": 657,
+          "active_curve": "Applied delayed release -81deg through0.27s, then smoothstep to-15deg by0.42s; original ankle Hermite curve retained.",
+          "historical_curve_result_key": "historical_unfixed_curve"
+        },
+        "applied_reverification": {
+          "passes": true,
+          "evaluated_at_utc": "2026-10-18T14:18:01.572887+00:00",
+          "candidate": "work/media/rear-leg-fix/vector-cycle.json",
+          "candidate_sha256": "49d153b567e32a22b263fda4d0f6d54937f1d969a2c40b41435e30f2a8e4dfde",
+          "implementation_sha256": "1565371cb39c32dfa4a807ab132da9812f91c519aac501c6d3e65381eaa2b3bc",
+          "shoe_sha256": "dcc8141873eb5c657c7d754e08729da9f422e33b3c60169051e4b8553bc1dad5",
+          "metadata_release_rotation": {
+            "hold_degrees": -81,
+            "hold_through_seconds": 0.27,
+            "rotate_to_degrees": -15,
+            "rotation_end_seconds": 0.42,
+            "curve": "smoothstep C1"
+          },
+          "stored_candidate_frames_checked": 60,
+          "max_recomputed_vs_stored_frame_errors": {
+            "ankle_position_px": 0.0,
+            "shoe_angle_degrees": 1.4210854715202004e-14,
+            "knee_position_px": 0.0,
+            "hip_position_px": 0.0
+          },
+          "wrap_errors": {
+            "position_px": 0.0,
+            "velocity_px_per_second": 0.0,
+            "angle_degrees": 0.0,
+            "angular_velocity_degrees_per_second": 0.0
+          },
+          "sampling": [
+            {
+              "samples": 60,
+              "includes_t1": false,
+              "all_ankles_reachable": true,
+              "ankle_radius_min_max": [
+                146.35330234869195,
+                209.22441949385075
+              ],
+              "outer_reach_margin_min": 15.775580506149254,
+              "contact_velocity_error": 3.410605131648481e-13,
+              "full_rigid_shoe_outline": [
+                {
+                  "alpha_threshold_exclusive": 1,
+                  "max_bottom_y": 659.6859634846971,
+                  "max_penetration_px": 2.6859634846971403,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 657.304748563661,
+                  "max_bottom_during_release_time": 0.35,
+                  "frames_exceeding_ground_plus_1px": 18
+                },
+                {
+                  "alpha_threshold_exclusive": 32,
+                  "max_bottom_y": 657.7105868035069,
+                  "max_penetration_px": 0.7105868035068852,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.6633670570001,
+                  "max_bottom_during_release_time": 0.35,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 128,
+                  "max_bottom_y": 657.3292262641978,
+                  "max_penetration_px": 0.3292262641978141,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.191997561079,
+                  "max_bottom_during_release_time": 0.35,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 204,
+                  "max_bottom_y": 657.0000169119035,
+                  "max_penetration_px": 1.6911903458094457e-05,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 654.9550554901568,
+                  "max_bottom_during_release_time": 0.35,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 254,
+                  "max_bottom_y": 657.0000169119035,
+                  "max_penetration_px": 1.6911903458094457e-05,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 654.9550554901568,
+                  "max_bottom_during_release_time": 0.35,
+                  "frames_exceeding_ground_plus_1px": 0
+                }
+              ]
+            },
+            {
+              "samples": 600,
+              "includes_t1": false,
+              "all_ankles_reachable": true,
+              "ankle_radius_min_max": [
+                146.30900233380626,
+                209.22549574878892
+              ],
+              "outer_reach_margin_min": 15.774504251211084,
+              "contact_velocity_error": 6.252776074688882e-13,
+              "full_rigid_shoe_outline": [
+                {
+                  "alpha_threshold_exclusive": 1,
+                  "max_bottom_y": 659.6859634846971,
+                  "max_penetration_px": 2.6859634846971403,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 657.3918878319987,
+                  "max_bottom_during_release_time": 0.3466666666666667,
+                  "frames_exceeding_ground_plus_1px": 184
+                },
+                {
+                  "alpha_threshold_exclusive": 32,
+                  "max_bottom_y": 657.7105868035069,
+                  "max_penetration_px": 0.7105868035068852,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.821970341211,
+                  "max_bottom_during_release_time": 0.34500000000000003,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 128,
+                  "max_bottom_y": 657.3292262641978,
+                  "max_penetration_px": 0.3292262641978141,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.3511997562583,
+                  "max_bottom_during_release_time": 0.34500000000000003,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 204,
+                  "max_bottom_y": 657.0000169119035,
+                  "max_penetration_px": 1.6911903458094457e-05,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.1034999337527,
+                  "max_bottom_during_release_time": 0.34500000000000003,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 254,
+                  "max_bottom_y": 657.0000169119035,
+                  "max_penetration_px": 1.6911903458094457e-05,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.1034999337527,
+                  "max_bottom_during_release_time": 0.34500000000000003,
+                  "frames_exceeding_ground_plus_1px": 0
+                }
+              ]
+            },
+            {
+              "samples": 6001,
+              "includes_t1": false,
+              "all_ankles_reachable": true,
+              "ankle_radius_min_max": [
+                146.308939411409,
+                209.22549899825026
+              ],
+              "outer_reach_margin_min": 15.77450100174974,
+              "contact_velocity_error": 1.2505552149377763e-12,
+              "full_rigid_shoe_outline": [
+                {
+                  "alpha_threshold_exclusive": 1,
+                  "max_bottom_y": 659.6859634846973,
+                  "max_penetration_px": 2.685963484697254,
+                  "max_bottom_time": 0.0003332777870354941,
+                  "max_bottom_during_release_y": 657.393180004495,
+                  "max_bottom_during_release_time": 0.3462756207298784,
+                  "frames_exceeding_ground_plus_1px": 1841
+                },
+                {
+                  "alpha_threshold_exclusive": 32,
+                  "max_bottom_y": 657.7105868035069,
+                  "max_penetration_px": 0.7105868035068852,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.8224867584809,
+                  "max_bottom_during_release_time": 0.34477587068821863,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 128,
+                  "max_bottom_y": 657.3292262641978,
+                  "max_penetration_px": 0.3292262641978141,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.3517944074463,
+                  "max_bottom_during_release_time": 0.34460923179470093,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 204,
+                  "max_bottom_y": 657.0000169119036,
+                  "max_penetration_px": 1.6911903571781295e-05,
+                  "max_bottom_time": 0.0003332777870354941,
+                  "max_bottom_during_release_y": 655.1035633326937,
+                  "max_bottom_during_release_time": 0.3449425095817364,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 254,
+                  "max_bottom_y": 657.0000169119036,
+                  "max_penetration_px": 1.6911903571781295e-05,
+                  "max_bottom_time": 0.0003332777870354941,
+                  "max_bottom_during_release_y": 655.1035633326937,
+                  "max_bottom_during_release_time": 0.3449425095817364,
+                  "frames_exceeding_ground_plus_1px": 0
+                }
+              ]
+            }
+          ],
+          "pass_criteria": {
+            "opaque_alpha_gt_204_ground_penetration_px_max": 0.001,
+            "antialias_alpha_gt_32_ground_penetration_px_max": 1,
+            "reachability": "All sampled ankle radii strictly within the two-bone reach interval.",
+            "contact_velocity": "Every planted sample matches moving pavement -320px/s horizontally and0 vertically.",
+            "periodic_continuity": "Position, velocity, angle and angular velocity match at t0 andt1."
+          },
+          "fringe_qualification": "Very low-opacity alpha>1 fringe retains the same static2.686px extent beyond the opaque sole. Alpha>32 remains within0.711px; the visible8px motion penetration is removed."
+        },
+        "coordinate_basis": [
+          1280,
+          720
+        ],
+        "scope": "Audit verifies stored720p-basis geometry. All60 hip/knee/ankle/angle records in vector-cycle-2k.json were checked equal to the audited vector-cycle.json records; rendering dimensions differ only by2x scale.",
+        "summary": {
+          "samples_dense": 6001,
+          "all_ankles_reachable": true,
+          "minimum_outer_reach_margin_basis_px": 15.77450100174974,
+          "periodic_continuity": {
+            "position_px": 0.0,
+            "velocity_px_per_second": 0.0,
+            "angle_degrees": 0.0,
+            "angular_velocity_degrees_per_second": 0.0
+          },
+          "opaque_sole_alpha_gt_204_max_y_basis": 657.0000169119036,
+          "opaque_sole_alpha_gt_204_release_max_y_basis": 655.1035633326937,
+          "antialias_alpha_gt_32_max_y_basis": 657.7105868035069
+        },
+        "limitations": [
+          "Projection extrema use convex hulls of all shoe pixels above each stated alpha threshold, equivalent to testing the full rigid rotated mask for y extent.",
+          "The source raster is resampled by warpAffine during rendering. Raster antialiasing can add a subpixel fringe beyond projected pixel centers.",
+          "This verifies ground clearance and continuity mathematically; rendering still needs visual inspection for clothing silhouette, cuff overlap, and animation appeal."
+        ],
+        "fringe_qualification": "Very low-opacity alpha>1 fringe retains the same static2.686px extent beyond the opaque sole. Alpha>32 remains within0.711px; the visible8px motion penetration is removed.",
+        "final_render_scope": "These are geometric and stored-candidate checks; they do not substitute for final video decoding or visual/browser review."
+      },
+      "delivery_checks": {
+        "final_file_bytes": 8939628,
+        "final_file_sha256": "35ca4bc636c9a7ba4062c9f6cff7dd1148917fb4a36bd1e9196803c665a73f94",
+        "ffprobe": {
+          "codec_name": "h264",
+          "width": 2560,
+          "height": 1440,
+          "r_frame_rate": "60/1",
+          "duration": "16.000000",
+          "nb_read_frames": "960"
+        },
+        "decode": "All960frames decoded with ffmpeg; exit0, no diagnostics",
+        "browser": {
+          "desktop": {
+            "viewport": [
+              1440,
+              900
+            ],
+            "video_dimensions": [
+              2560,
+              1440
+            ],
+            "duration_seconds": 16,
+            "playing": true,
+            "native_wraps": 1,
+            "observation_seconds": 17.5,
+            "decoded": 1047,
+            "dropped": 0,
+            "callbacks": 986,
+            "title_stable": true,
+            "overflow": false
+          },
+          "mobile": {
+            "viewport": [
+              390,
+              844
+            ],
+            "playing": true,
+            "overflow": false
+          },
+          "reduced_motion": {
+            "video_src": null,
+            "paused": true,
+            "matching_2k_poster_ready": true
+          },
+          "page_errors": [],
+          "scope": "Local Chromium on this Windows VM; results vary by device."
+        }
+      },
+      "final_geometry_review": {
+        "status": "passed_bounded_final_leg_review",
+        "reviewed_frames": 60,
+        "composed_preview": "work/media/moving-world/clean-push-preview.mp4",
+        "preview_dimensions": [
+          1280,
+          720
+        ],
+        "preview_duration": 4,
+        "source_frames_dimensions": [
+          2560,
+          1440
+        ],
+        "preview_sha256": "3859bba4fa9858297a7113ce68d46730c4f7ade799cb9eb6b7c8a3f1bba6d7ac",
+        "contact_ground_y_720_basis": 657,
+        "sole_measurement": "Every pixel with alpha above 0.8 in the unchanged source shoe is rigidly rotated and translated using the updated 2K cycle metadata; positions are normalized to the 1280 x 720 coordinate basis.",
+        "disconnected_components_over4px": [],
+        "sole_ground_penetrations_over_0_5px": [],
+        "min_ground_clearance": 0.0,
+        "max_ground_clearance": 40.25656882048054,
+        "contact_phase_frames1_13_clearance": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "visual_review": {
+          "evidence": [
+            "final-composed-leg-phases.jpg",
+            "final-ankles15-30.jpg"
+          ],
+          "composed_phases_reviewed": [
+            1,
+            6,
+            11,
+            16,
+            21,
+            26,
+            31,
+            36,
+            41,
+            46,
+            51,
+            56
+          ],
+          "angular_update_ankle_closeups_reviewed": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "findings": "The sole stays on the pavement through 13 contact frames. The foot lifts before rotating downward, clears the ground, recovers forward and lands. Every reviewed cuff remains closed. Shoe texture and shape remain rigid. No extra foot, broken ankle, detached cuff or reversing knee bend was observed. The simpler cloth styling is deliberate.",
+          "blockers": [],
+          "scope_limit": "The four-second preview does not wrap. This review does not approve the 16-second world seam, production browser playback or deployment."
+        },
+        "frames": [
+          {
+            "frame": 1,
+            "components_over_4px": [
+              392269
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 2,
+            "components_over_4px": [
+              393396
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 3,
+            "components_over_4px": [
+              394348
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 4,
+            "components_over_4px": [
+              395507
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 5,
+            "components_over_4px": [
+              396465
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 6,
+            "components_over_4px": [
+              397789
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 7,
+            "components_over_4px": [
+              399038
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 8,
+            "components_over_4px": [
+              400661
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 9,
+            "components_over_4px": [
+              402282
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 10,
+            "components_over_4px": [
+              403811
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 11,
+            "components_over_4px": [
+              405325
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 12,
+            "components_over_4px": [
+              407112
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 13,
+            "components_over_4px": [
+              408724
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 14,
+            "components_over_4px": [
+              410580
+            ],
+            "shoe_lowest_opaque_y_720_basis": 656.5239207497879,
+            "ground_clearance_720_basis": 0.4760792502121376
+          },
+          {
+            "frame": 15,
+            "components_over_4px": [
+              412177
+            ],
+            "shoe_lowest_opaque_y_720_basis": 655.1633959709353,
+            "ground_clearance_720_basis": 1.836604029064688
+          },
+          {
+            "frame": 16,
+            "components_over_4px": [
+              413572
+            ],
+            "shoe_lowest_opaque_y_720_basis": 653.0199951211181,
+            "ground_clearance_720_basis": 3.980004878881914
+          },
+          {
+            "frame": 17,
+            "components_over_4px": [
+              414995
+            ],
+            "shoe_lowest_opaque_y_720_basis": 650.1952876580118,
+            "ground_clearance_720_basis": 6.804712341988193
+          },
+          {
+            "frame": 18,
+            "components_over_4px": [
+              416049
+            ],
+            "shoe_lowest_opaque_y_720_basis": 648.1069095228232,
+            "ground_clearance_720_basis": 8.89309047717677
+          },
+          {
+            "frame": 19,
+            "components_over_4px": [
+              416486
+            ],
+            "shoe_lowest_opaque_y_720_basis": 649.0803534534491,
+            "ground_clearance_720_basis": 7.919646546550894
+          },
+          {
+            "frame": 20,
+            "components_over_4px": [
+              417006
+            ],
+            "shoe_lowest_opaque_y_720_basis": 651.7707606793912,
+            "ground_clearance_720_basis": 5.229239320608826
+          },
+          {
+            "frame": 21,
+            "components_over_4px": [
+              417505
+            ],
+            "shoe_lowest_opaque_y_720_basis": 654.2893794070251,
+            "ground_clearance_720_basis": 2.7106205929749194
+          },
+          {
+            "frame": 22,
+            "components_over_4px": [
+              417853
+            ],
+            "shoe_lowest_opaque_y_720_basis": 654.9550556383523,
+            "ground_clearance_720_basis": 2.0449443616477083
+          },
+          {
+            "frame": 23,
+            "components_over_4px": [
+              418037
+            ],
+            "shoe_lowest_opaque_y_720_basis": 652.8337028620342,
+            "ground_clearance_720_basis": 4.166297137965785
+          },
+          {
+            "frame": 24,
+            "components_over_4px": [
+              418092
+            ],
+            "shoe_lowest_opaque_y_720_basis": 647.8015855093846,
+            "ground_clearance_720_basis": 9.198414490615392
+          },
+          {
+            "frame": 25,
+            "components_over_4px": [
+              418131
+            ],
+            "shoe_lowest_opaque_y_720_basis": 641.818171372615,
+            "ground_clearance_720_basis": 15.181828627385016
+          },
+          {
+            "frame": 26,
+            "components_over_4px": [
+              418252
+            ],
+            "shoe_lowest_opaque_y_720_basis": 636.3481935966345,
+            "ground_clearance_720_basis": 20.651806403365526
+          },
+          {
+            "frame": 27,
+            "components_over_4px": [
+              417981
+            ],
+            "shoe_lowest_opaque_y_720_basis": 632.3202207519196,
+            "ground_clearance_720_basis": 24.679779248080422
+          },
+          {
+            "frame": 28,
+            "components_over_4px": [
+              417863
+            ],
+            "shoe_lowest_opaque_y_720_basis": 628.8795131421938,
+            "ground_clearance_720_basis": 28.120486857806213
+          },
+          {
+            "frame": 29,
+            "components_over_4px": [
+              417650
+            ],
+            "shoe_lowest_opaque_y_720_basis": 625.9444515118506,
+            "ground_clearance_720_basis": 31.055548488149384
+          },
+          {
+            "frame": 30,
+            "components_over_4px": [
+              417197
+            ],
+            "shoe_lowest_opaque_y_720_basis": 623.46091727461,
+            "ground_clearance_720_basis": 33.53908272539002
+          },
+          {
+            "frame": 31,
+            "components_over_4px": [
+              416869
+            ],
+            "shoe_lowest_opaque_y_720_basis": 621.3805798015194,
+            "ground_clearance_720_basis": 35.61942019848061
+          },
+          {
+            "frame": 32,
+            "components_over_4px": [
+              416369
+            ],
+            "shoe_lowest_opaque_y_720_basis": 619.6696200821095,
+            "ground_clearance_720_basis": 37.33037991789047
+          },
+          {
+            "frame": 33,
+            "components_over_4px": [
+              415965
+            ],
+            "shoe_lowest_opaque_y_720_basis": 618.3144115670261,
+            "ground_clearance_720_basis": 38.68558843297387
+          },
+          {
+            "frame": 34,
+            "components_over_4px": [
+              415320
+            ],
+            "shoe_lowest_opaque_y_720_basis": 617.3240107994114,
+            "ground_clearance_720_basis": 39.67598920058856
+          },
+          {
+            "frame": 35,
+            "components_over_4px": [
+              414756
+            ],
+            "shoe_lowest_opaque_y_720_basis": 616.7920760616664,
+            "ground_clearance_720_basis": 40.20792393833358
+          },
+          {
+            "frame": 36,
+            "components_over_4px": [
+              414103
+            ],
+            "shoe_lowest_opaque_y_720_basis": 616.7434311795195,
+            "ground_clearance_720_basis": 40.25656882048054
+          },
+          {
+            "frame": 37,
+            "components_over_4px": [
+              413493
+            ],
+            "shoe_lowest_opaque_y_720_basis": 617.1669503512085,
+            "ground_clearance_720_basis": 39.83304964879153
+          },
+          {
+            "frame": 38,
+            "components_over_4px": [
+              412730
+            ],
+            "shoe_lowest_opaque_y_720_basis": 618.112742978305,
+            "ground_clearance_720_basis": 38.88725702169495
+          },
+          {
+            "frame": 39,
+            "components_over_4px": [
+              412055
+            ],
+            "shoe_lowest_opaque_y_720_basis": 619.7122299988,
+            "ground_clearance_720_basis": 37.28777000119999
+          },
+          {
+            "frame": 40,
+            "components_over_4px": [
+              411344
+            ],
+            "shoe_lowest_opaque_y_720_basis": 622.0592676843381,
+            "ground_clearance_720_basis": 34.940732315661876
+          },
+          {
+            "frame": 41,
+            "components_over_4px": [
+              409177
+            ],
+            "shoe_lowest_opaque_y_720_basis": 624.8847028989424,
+            "ground_clearance_720_basis": 32.11529710105765
+          },
+          {
+            "frame": 42,
+            "components_over_4px": [
+              405935
+            ],
+            "shoe_lowest_opaque_y_720_basis": 627.8603359259431,
+            "ground_clearance_720_basis": 29.139664074056896
+          },
+          {
+            "frame": 43,
+            "components_over_4px": [
+              402105
+            ],
+            "shoe_lowest_opaque_y_720_basis": 630.66750687438,
+            "ground_clearance_720_basis": 26.332493125619976
+          },
+          {
+            "frame": 44,
+            "components_over_4px": [
+              397662
+            ],
+            "shoe_lowest_opaque_y_720_basis": 633.2547019847478,
+            "ground_clearance_720_basis": 23.74529801525216
+          },
+          {
+            "frame": 45,
+            "components_over_4px": [
+              393889
+            ],
+            "shoe_lowest_opaque_y_720_basis": 635.4226118084812,
+            "ground_clearance_720_basis": 21.57738819151882
+          },
+          {
+            "frame": 46,
+            "components_over_4px": [
+              390800
+            ],
+            "shoe_lowest_opaque_y_720_basis": 637.0718568984116,
+            "ground_clearance_720_basis": 19.928143101588375
+          },
+          {
+            "frame": 47,
+            "components_over_4px": [
+              388316
+            ],
+            "shoe_lowest_opaque_y_720_basis": 638.353055222284,
+            "ground_clearance_720_basis": 18.646944777716044
+          },
+          {
+            "frame": 48,
+            "components_over_4px": [
+              387074
+            ],
+            "shoe_lowest_opaque_y_720_basis": 639.7365608866024,
+            "ground_clearance_720_basis": 17.263439113397567
+          },
+          {
+            "frame": 49,
+            "components_over_4px": [
+              386234
+            ],
+            "shoe_lowest_opaque_y_720_basis": 640.9000788795341,
+            "ground_clearance_720_basis": 16.099921120465865
+          },
+          {
+            "frame": 50,
+            "components_over_4px": [
+              385633
+            ],
+            "shoe_lowest_opaque_y_720_basis": 642.0882381683746,
+            "ground_clearance_720_basis": 14.911761831625427
+          },
+          {
+            "frame": 51,
+            "components_over_4px": [
+              385455
+            ],
+            "shoe_lowest_opaque_y_720_basis": 643.9285251233981,
+            "ground_clearance_720_basis": 13.071474876601883
+          },
+          {
+            "frame": 52,
+            "components_over_4px": [
+              385568
+            ],
+            "shoe_lowest_opaque_y_720_basis": 646.2392783677487,
+            "ground_clearance_720_basis": 10.760721632251261
+          },
+          {
+            "frame": 53,
+            "components_over_4px": [
+              385846
+            ],
+            "shoe_lowest_opaque_y_720_basis": 649.0643839386304,
+            "ground_clearance_720_basis": 7.935616061369615
+          },
+          {
+            "frame": 54,
+            "components_over_4px": [
+              386492
+            ],
+            "shoe_lowest_opaque_y_720_basis": 651.5029996268952,
+            "ground_clearance_720_basis": 5.497000373104811
+          },
+          {
+            "frame": 55,
+            "components_over_4px": [
+              387311
+            ],
+            "shoe_lowest_opaque_y_720_basis": 653.382652877098,
+            "ground_clearance_720_basis": 3.617347122901947
+          },
+          {
+            "frame": 56,
+            "components_over_4px": [
+              387906
+            ],
+            "shoe_lowest_opaque_y_720_basis": 654.7750190834973,
+            "ground_clearance_720_basis": 2.224980916502659
+          },
+          {
+            "frame": 57,
+            "components_over_4px": [
+              388831
+            ],
+            "shoe_lowest_opaque_y_720_basis": 655.7519284961662,
+            "ground_clearance_720_basis": 1.2480715038337848
+          },
+          {
+            "frame": 58,
+            "components_over_4px": [
+              389431
+            ],
+            "shoe_lowest_opaque_y_720_basis": 656.4036104665813,
+            "ground_clearance_720_basis": 0.5963895334186873
+          },
+          {
+            "frame": 59,
+            "components_over_4px": [
+              390352
+            ],
+            "shoe_lowest_opaque_y_720_basis": 656.7819590959408,
+            "ground_clearance_720_basis": 0.21804090405919396
+          },
+          {
+            "frame": 60,
+            "components_over_4px": [
+              391103
+            ],
+            "shoe_lowest_opaque_y_720_basis": 656.9572370854441,
+            "ground_clearance_720_basis": 0.04276291455585124
+          }
+        ]
+      }
     }
   },
   "fonts": {
@@ -705,7 +2131,7 @@
   },
   "renditions2k": {
     "stills": {
-      "description": "Eight2K resampled original illustrations and the matching2K moving-world poster",
+      "description": "Eight2K resampled original illustrations and the matching2K corrected-push poster",
       "no_generative_processing": false,
       "assets": [
         {
@@ -894,15 +2320,15 @@
         },
         {
           "name": "hero",
-          "input": "moving-world composite frame0",
-          "output": "hero-world-2k.webp",
+          "input": "Corrected2D push composite frame0",
+          "output": "hero-clean-push-2k.webp",
           "dimensions": {
             "width": 2560,
             "height": 1440
           },
-          "bytes": 387390,
-          "sha256": "50d3412244b53f2e6683e263b8b47b9a48add8d49b49a9813406ca0a94f1f896",
-          "processing": "Poster matches first rendered moving-world frame; source detail and resampling documented in hero provenance",
+          "bytes": 393168,
+          "sha256": "dbeb1c74742a95674d99a87cfd8fa65b4fad78cca126179e5f965f9d2b9d4afb",
+          "processing": "Poster matches first frame; controlled2D limb and4K original source artwork documented in active hero provenance",
           "format": "WebP quality94 method6"
         }
       ],
@@ -1459,10 +2885,23 @@
       ]
     },
     "hero": {
-      "schema_version": 1,
-      "asset": "hero-ride-world-2k60.mp4",
-      "poster": "hero-world-2k.webp",
-      "status": "completed_and_passed_decode_seam_anatomy_motion_and_browser_review",
+      "schema_version": 2,
+      "asset": "hero-ride-clean-push-2k60.mp4",
+      "poster": "hero-clean-push-2k.webp",
+      "status": "completed_and_passed_rear_leg_geometry_contact_decode_loop_and_browser_review",
+      "change": {
+        "problem": {
+          "frames": [
+            37,
+            38
+          ],
+          "recurrence_seconds": 1,
+          "diagnosis": "Rear shoe morphs/ghosts in original RGB around 37-38; source trajectory also moves rear foot onto/behind deck in frames16-36 instead of pressing pavement. Matte includes small background contamination near ankle around13-15 and44. Repairing only masks or deleting37-38 does not correct physical contact."
+        },
+        "repair": "Replace the temporal rear-limb source with deterministic articulated 2D trousers and one rigid original shoe; retain the original static torso, face, cup, backpack, planted front foot and skateboard.",
+        "active_hero_uses_RIFE_temporal_interpolation": false,
+        "historical_audit_scope": "The source shoe morph at frames37-38 and rear-foot path onto or behind the deck during16-36 describe the replaced temporal source. The active rear shoe is one unchanged raster transformed rigidly; it cannot inherit that frame-by-frame shoe shape morph."
+      },
       "render": {
         "dimensions": [
           2560,
@@ -1471,12 +2910,6 @@
         "fps": 60,
         "duration_seconds": 16,
         "frames": 960,
-        "implementation": {
-          "file": "compose.py",
-          "sha256": "36a0e260200eca9d78f0b5e0ce279514200c5ef1f70ada3a2d8fdff18c6bfca4",
-          "command": "python compose.py --final",
-          "frame_source": "raw RGB24 piped to ffmpeg"
-        },
         "encoding": {
           "codec": "H.264/libx264",
           "preset": "slow",
@@ -1487,7 +2920,26 @@
           "audio": false,
           "alpha": false
         },
-        "runtime": "All layers are baked into one opaque MP4; no browser-time canvas compositing is required.",
+        "composition": {
+          "implementation": {
+            "path": "moving-world/compose.py",
+            "sha256": "df0b0a781ec20661fab03c6231ca3643a44c1ef8b58fb470f6f87e2599946647"
+          },
+          "rider_directory": "../rear-leg-fix/vector-frames-2k",
+          "rider_frame_range_inclusive": [
+            1,
+            60
+          ],
+          "rider_cycle_seconds": 1,
+          "rider_cycle_repetitions": 16,
+          "rider_sampling": "poses[n % 60]",
+          "input_rider_dimensions": [
+            2560,
+            1440
+          ],
+          "rider_scale_at_composition": 1,
+          "method": "Prebaked RGB24 composite passed to ffmpeg; one opaque video rather than browser-time compositing."
+        },
         "poster_encoding": {
           "frame": 0,
           "format": "WebP",
@@ -1495,436 +2947,763 @@
           "method": 6
         }
       },
-      "layers": {
-        "sky": {
-          "file": "sky.png",
-          "source_dimensions": [
-            1983,
-            793
-          ],
-          "normalized_dimensions": [
-            2560,
-            1440
-          ],
-          "resampling": "Pillow LANCZOS direct resize",
-          "motion": "stationary",
-          "contents": "Sun and clouds remain fixed while the park and pavement move."
+      "rider": {
+        "implementation": {
+          "path": "rear-leg-fix/vector_cycle.py",
+          "sha256": "1565371cb39c32dfa4a807ab132da9812f91c519aac501c6d3e65381eaa2b3bc"
         },
-        "world": {
-          "file": "world.png",
-          "source_dimensions": [
-            1983,
-            793
-          ],
-          "normalized_dimensions": [
-            2560,
-            1440
-          ],
-          "resampling": "Pillow LANCZOS direct RGBA resize",
-          "construction": "A tile followed by its horizontal reflection; the mirrored pair is repeated to provide a continuous sample window. Camera travel remains leftward throughout.",
-          "period_pixels": 5120,
-          "period_seconds": 16,
-          "speed_pixels_per_second": 320,
-          "formula": "midpos = n * (2 * W / N)",
-          "fractional_sampling": "Linear cv2.addWeighted blend between adjacent pixel-column windows",
-          "alpha": "Source world RGBA alpha separates scenery from the stationary sky."
+        "metadata": {
+          "path": "rear-leg-fix/vector-cycle-2k.json",
+          "sha256": "9bcfb11d96b2b244e39f84650a3f07bfa91462662faa71de320a33846939acf6"
         },
-        "pavement": {
-          "file": "background.png",
-          "normalized_dimensions": [
-            2560,
-            1440
+        "source": {
+          "provenance": {
+            "source": "work/media/hero-loop-v3/hero-upscaled-source.mp4",
+            "zero_based_frame": 120,
+            "dimensions": [
+              3840,
+              2160
+            ],
+            "coordinate_basis": [
+              1280,
+              720
+            ],
+            "asset_scale": 3,
+            "source_frame1_downsample_mean_absolute_difference": 0.895265480324074,
+            "clean_cuff_boundary_xy": [
+              [
+                731.5,
+                460.0
+              ],
+              [
+                731.5,
+                467.0
+              ],
+              [
+                731.7999877929688,
+                475.0
+              ],
+              [
+                734.0,
+                483.0
+              ],
+              [
+                739.0,
+                491.0
+              ],
+              [
+                745.5,
+                497.0
+              ],
+              [
+                750.0,
+                500.0
+              ],
+              [
+                752.0,
+                503.0
+              ],
+              [
+                752.0,
+                600.0
+              ]
+            ],
+            "parts": {
+              "body": {
+                "bytes": 1047604,
+                "dimensions": [
+                  3840,
+                  2160
+                ]
+              },
+              "thigh": {
+                "bytes": 91823,
+                "dimensions": [
+                  3840,
+                  2160
+                ]
+              },
+              "shin": {
+                "bytes": 98690,
+                "dimensions": [
+                  3840,
+                  2160
+                ]
+              },
+              "shoe": {
+                "bytes": 133273,
+                "dimensions": [
+                  3840,
+                  2160
+                ]
+              }
+            }
+          },
+          "rig_record": {
+            "path": "rear-leg-fix/hi-res/rig.json",
+            "sha256": "db2dbcb9f03b10e6974536900385a598b2d0de23110ded2edb0a19bb862b75c1"
+          },
+          "frame": 120,
+          "frame_indexing": "zero based",
+          "master_dimensions": [
+            3840,
+            2160
           ],
-          "construction": "Same mirrored tile-pair construction as the world",
-          "period_pixels": 5120,
-          "period_seconds": 8,
-          "periods_per_output": 2,
-          "speed_pixels_per_second": 640,
-          "formula": "groundpos = n * (4 * W / N)",
-          "direction": "leftward, linear",
-          "blend": {
-            "start_normalized_y": 0.825,
-            "end_normalized_y": 0.86,
-            "formula": "clip((y - H * .825) / (H * .035), 0, 1)",
-            "purpose": "Feather from park speed to the faster bare-pavement layer below all park obstacles."
+          "coordinate_basis": [
+            1280,
+            720
+          ],
+          "asset_scale": 3,
+          "parts_used": {
+            "body": {
+              "record": {
+                "path": "rear-leg-fix/hi-res/body.png",
+                "sha256": "d2cdaf8a8e87278f6015dbd7d9775a340282adf009aa08110feb2207558abbc6"
+              },
+              "dimensions": [
+                3840,
+                2160
+              ]
+            },
+            "shoe": {
+              "record": {
+                "path": "rear-leg-fix/hi-res/shoe.png",
+                "sha256": "dcc8141873eb5c657c7d754e08729da9f422e33b3c60169051e4b8553bc1dad5"
+              },
+              "dimensions": [
+                3840,
+                2160
+              ]
+            }
+          },
+          "quality_qualification": "The 3840x2160 master is the existing AI-upscaled hero source, not newly generated native 4K artwork. Its static body and shoe are directly resampled to the final2K canvas. No temporal neural interpolation is used for the active hero."
+        },
+        "matte": {
+          "source": "../moving-world/foreground-mask/00000001.png",
+          "method": "4K sourceRGB fromexactframe120. Existing1280×720SAMalpha scaled3×Lanczos; source-frame alignment matches pose1. Bodyrearlegcut sameasbase. Realcuff boundary tracedat4K: shincontainsgraycloth/blackcuffedgeonly, shoecontainscamo+whitecollar andsubpixelblackseamoverlap, noremnantpantsliver. Thigh/shin internaloverlap retainsrealclothtexture. Noanatomyredrawn.",
+          "selection_polygon_basis_720p": [
+            [
+              842,
+              377
+            ],
+            [
+              850,
+              391
+            ],
+            [
+              876,
+              411
+            ],
+            [
+              911,
+              430
+            ],
+            [
+              899,
+              456
+            ],
+            [
+              899,
+              590
+            ],
+            [
+              660,
+              590
+            ],
+            [
+              660,
+              420
+            ],
+            [
+              810,
+              420
+            ],
+            [
+              831,
+              388
+            ]
+          ],
+          "note": "The original pose1 SAM contour is resized3x for the4K source. Rear limb is excluded from the fixed body; only the separated original shoe raster is used from the rear-limb extraction."
+        },
+        "articulation": {
+          "coordinate_basis": [
+            1280,
+            720
+          ],
+          "final_scale": 2,
+          "geometry": {
+            "method": "Continuous vector trouser silhouette and folds, original4K rigid shoe and fixed body",
+            "hip": [
+              869.0,
+              401.0
+            ],
+            "bones": [
+              115.0,
+              110.0
+            ],
+            "shoe_anchor": [
+              740.0,
+              484.0
+            ],
+            "stance_y": 586.9672085359531,
+            "sole_offset": 70.03279146404694,
+            "ground_y": 657,
+            "contact_velocity": [
+              -320,
+              0
+            ],
+            "shoe_release_rotation": {
+              "hold_degrees": -81,
+              "hold_through_seconds": 0.27,
+              "rotate_to_degrees": -15,
+              "rotation_end_seconds": 0.42,
+              "curve": "smoothstep C1"
+            },
+            "knots": [
+              [
+                0,
+                [
+                  850,
+                  586.9672085359531
+                ],
+                [
+                  -320,
+                  0
+                ],
+                -81
+              ],
+              [
+                0.2,
+                [
+                  786,
+                  586.9672085359531
+                ],
+                [
+                  -320,
+                  0
+                ],
+                -81
+              ],
+              [
+                0.42,
+                [
+                  724,
+                  540
+                ],
+                [
+                  0,
+                  -250
+                ],
+                -15
+              ],
+              [
+                0.62,
+                [
+                  772,
+                  520
+                ],
+                [
+                  350,
+                  80
+                ],
+                -30
+              ],
+              [
+                0.86,
+                [
+                  873,
+                  577
+                ],
+                [
+                  100,
+                  180
+                ],
+                -80
+              ],
+              [
+                1,
+                [
+                  850,
+                  586.9672085359531
+                ],
+                [
+                  -320,
+                  0
+                ],
+                -81
+              ]
+            ],
+            "dimensions": [
+              2560,
+              1440
+            ]
+          },
+          "path": "Piecewise cubic Hermite ankle path using knot positions and velocities; matching endpoint position/velocity gives C1 periodic continuity. Sample at f/60 for f0..59.",
+          "knee": "Two-bone inverse kinematics with fixed lengths115 and110; negative-cross knee branch retained.",
+          "cloth": "Fill thigh and calf polygons plus a knee disc into one union silhouette before outlining; this avoids independently rotating raster seams and fold-over outlines. Smooth silhouette with Gaussian sigma1.8*S and threshold127. Add sparse curved folds and a single hip attachment hidden beneath the fixed body.",
+          "cloth_color_rgba": [
+            65,
+            69,
+            70,
+            255
+          ],
+          "outline_color_rgba": [
+            18,
+            20,
+            18,
+            255
+          ],
+          "outline_width_basis_px": 2.2,
+          "shoe": "Original4K shoe is a rigid affine rotation and translation with uniform output scaling; no shear, mesh deformation or frame-to-frame shape generation.",
+          "draw_order": [
+            "rigid shoe behind trouser cuff",
+            "continuous trouser silhouette",
+            "fixed body/front thigh above hip"
+          ],
+          "shoe_angle": "Hold -81deg through0.27s, then C1 smoothstep to-15deg by0.42s; later angle knots are recorded in geometry.knots.",
+          "stance": {
+            "interval_seconds": [
+              0,
+              0.2
+            ],
+            "ankle_x_basis": [
+              850,
+              786
+            ],
+            "ankle_y_basis": 586.9672085359531,
+            "velocity_basis_pixels_per_second": [
+              -320,
+              0
+            ],
+            "velocity_final_pixels_per_second": [
+              -640,
+              0
+            ],
+            "pavement_velocity_final_pixels_per_second": [
+              -640,
+              0
+            ],
+            "opaque_sole_y_basis": 657,
+            "opaque_sole_y_final": 1314,
+            "foot_sliding_relative_to_surface": "Zero during the planted segment by matching horizontal velocities."
           }
         },
-        "contact_shadow": {
-          "motion": "anchored under the rider; does not travel with the pavement",
-          "method": "Two elliptical Gaussian darkening terms clipped to .30 opacity",
-          "reference_scale": [
-            1280,
-            720
-          ],
-          "ellipse_centers": [
-            [
-              975,
-              658
-            ],
-            [
-              975,
-              662
-            ]
-          ],
-          "ellipse_radii": [
-            [
-              151,
-              9
-            ],
-            [
-              165,
-              17
-            ]
-          ],
-          "weights": [
-            0.23,
-            0.09
-          ]
-        },
-        "rider": {
-          "frame_directory": "../hero-loop-v3/rife/output-frames",
-          "range_inclusive": [
-            1,
-            60
-          ],
-          "source_dimensions": [
-            1280,
-            720
-          ],
-          "source_cycle_frames": 60,
-          "source_cycle_seconds": 1,
-          "cycle_repetitions": 16,
-          "formula": "poses[n % 60]",
-          "mask_directory": "foreground-mask",
-          "crop": "Per-frame nonzero mask bounds with 2-pixel padding, preserving source location",
-          "rgb_scaling": "OpenCV INTER_LANCZOS4; 2x for final output",
-          "mask_scaling": "OpenCV INTER_LINEAR; 8-bit grayscale divided by 255",
-          "compositing": "Straight alpha onto the shadowed background",
-          "quality_limit": "Rider neural interpolation was computed at 1280x720. Final rider pixels are scaled to 2560x1440; they are not native 2K neural inference."
-        }
+        "fixed_elements": [
+          "head and torso",
+          "arms and cup",
+          "backpack",
+          "front leg and planted front shoe",
+          "skateboard"
+        ],
+        "resolution": "Vector cloth is drawn directly at2560x1440. Static body and original rigid shoe are sampled from the3840x2160 master. The active rider is not an upscale of the prior720p RIFE output frames."
       },
-      "provenance": {
-        "background_generation": {
-          "asset": "background.png",
-          "width": 1983,
-          "height": 793,
-          "generator": "OpenAI built-in imagegen",
-          "mode": "built-in",
-          "use_case": "illustration-story",
-          "reference": "C:/Users/akki/Documents/Codex/2026-10-18/hocu-da-napravim-x20/work/zoomer-publish/dist/assets/hero-2k.webp",
-          "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-53b22dcd-383a-459a-b5a6-4cd72935f90c.png",
-          "prompts": [
-            {
-              "stage": "initial_generate",
-              "prompt": "Use case: illustration-story\nAsset type: Seamless horizontally repeating 2D background clean plate for an animated skateboard website hero.\nInput image 1 is a STYLE AND PALETTE reference only: match its exact hand-drawn black outline comic style, sunset palette, matte cel colours, shallow side-view perspective and low horizon. Generate a fresh scenery plate with NO character, skateboard, drink, person, cast shadow, text, logos, or vehicles.\nScene: a long empty city skatepark panorama at golden sunset. Warm apricot and persimmon sky with muted mauve simple horizontal cloud bands and a small low warm sun. Far purple city skyline, muted sage and deep olive trees, continuous fine black metal railing. Shallow concrete ramps and low ledges are in the middle distance; the lower 25 percent is unobstructed flat warm concrete pavement with a few fine surface lines. No large close half-pipes and no tall objects obstructing the foreground.\nComposition: WIDE horizontal full scene, ideally 2:1 or 16:9, high resolution, 2K detail. Top 55 percent is open sunset sky. Tallest skyline and foliage begin around 45 percent of canvas height. Park base is around 78 percent. Ground is a continuous horizontal plane, seen from the same low side view as the reference. This background will scroll to the left behind a stationary animated skateboard rider.\nCRITICAL TILE CONSTRAINT: design this as a seamless horizontal repeating panorama: left and right canvas edges must join invisibly when repeated side by side. The horizon, rail, pavement height, sky colours and cloud bands continue cleanly across both edges. Keep edge geometry simple and exactly aligned, not large cropped side ramps. No fade to white, no border, no vignette. Clean crisp irregular black linework and flat cel colouring, finely drawn yet matte, absolutely 2D and never 3D or photorealistic.",
-              "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-9af01976-e1bd-47ab-b6ba-6b46ce755409.png"
-            },
-            {
-              "stage": "horizontal_edge_correction",
-              "prompt": "Use case: precise-object-edit\nAsset type: horizontally repeatable 2D skateboard game background clean plate.\nInput image 1 is the EDIT TARGET. Preserve this exact full hand-drawn sunset skatepark artwork, no people, matte warm orange sky, purple skyline, olive trees, continuous rail and concrete ground. Make only the changes needed to turn it into a SEAMLESS HORIZONTAL TILE.\nCritical: when the finished rectangle is repeated left to right, the left and right edges must join invisibly. The top sky, cloud bands, horizon, railings, tree mass and all pavement lines need exactly matching colours and heights at both sides. Keep the narrow left and right edge zones simple: identical empty coral sky with NO clouds touching the edges in the upper half, low level olive trees and horizontal black rail at the SAME y-coordinate on both edges, matching flat warm concrete from rail base down. Remove the raised corner ramps currently cut off on the sides and replace them with matching low concrete ledges of exactly the same height at left and right. The central composition and low sunset sun can remain. The lower 25 percent stays open flat pavement. No fade, border or vignette. No new character, objects, text, logos or 3D. This is a wide 2.5:1 panoramic side-scrolling background. Output crisp high resolution around 2560 pixels wide.",
-              "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-53b22dcd-383a-459a-b5a6-4cd72935f90c.png"
+      "background": {
+        "source_delivery": {
+          "path": "moving-world/DELIVERY.json",
+          "sha256": "3957bdcf6e47618a9f735431fe8e64d458afe23c70f15849288c5ddfdead46cb"
+        },
+        "scope": "Background art, stationary sky, mirrored leftward world travel, faster pavement, feather blend and anchored shadow are unchanged from the moving-world delivery. Its old temporal rider provenance is historical and does not describe this active rider.",
+        "layers": {
+          "sky": {
+            "file": "sky.png",
+            "source_dimensions": [
+              1983,
+              793
+            ],
+            "normalized_dimensions": [
+              2560,
+              1440
+            ],
+            "resampling": "Pillow LANCZOS direct resize",
+            "motion": "stationary",
+            "contents": "Sun and clouds remain fixed while the park and pavement move."
+          },
+          "world": {
+            "file": "world.png",
+            "source_dimensions": [
+              1983,
+              793
+            ],
+            "normalized_dimensions": [
+              2560,
+              1440
+            ],
+            "resampling": "Pillow LANCZOS direct RGBA resize",
+            "construction": "A tile followed by its horizontal reflection; the mirrored pair is repeated to provide a continuous sample window. Camera travel remains leftward throughout.",
+            "period_pixels": 5120,
+            "period_seconds": 16,
+            "speed_pixels_per_second": 320,
+            "formula": "midpos = n * (2 * W / N)",
+            "fractional_sampling": "Linear cv2.addWeighted blend between adjacent pixel-column windows",
+            "alpha": "Source world RGBA alpha separates scenery from the stationary sky."
+          },
+          "pavement": {
+            "file": "background.png",
+            "normalized_dimensions": [
+              2560,
+              1440
+            ],
+            "construction": "Same mirrored tile-pair construction as the world",
+            "period_pixels": 5120,
+            "period_seconds": 8,
+            "periods_per_output": 2,
+            "speed_pixels_per_second": 640,
+            "formula": "groundpos = n * (4 * W / N)",
+            "direction": "leftward, linear",
+            "blend": {
+              "start_normalized_y": 0.825,
+              "end_normalized_y": 0.86,
+              "formula": "clip((y - H * .825) / (H * .035), 0, 1)",
+              "purpose": "Feather from park speed to the faster bare-pavement layer below all park obstacles."
             }
-          ],
-          "verification": "No people, rider, board, drink or cast shadow. Crisp flat 2D linework. Corrected version keeps clouds away from both side edges and matches rail/lowledge heights; use mirrored tile pairs if perfect numerical edge continuity is required."
-        },
-        "sky_edit": {
-          "asset": "sky.png",
-          "generator": "OpenAI built-in imagegen",
-          "mode": "built-in",
-          "use_case": "precise-object-edit",
-          "reference": "C:/Users/akki/Documents/Codex/2026-10-18/hocu-da-napravim-x20/work/media/moving-world/background.png",
-          "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-5e3bca30-bfa0-4a85-9865-a719d50860ee.png",
-          "prompt": "Use case: precise-object-edit\nAsset type: sky-only clean plate behind a moving illustrated skatepark.\nInput image 1 is the edit target. Preserve the EXACT existing warm apricot sunset sky gradient, its colours, every mauve and gold cloud shape, and the low central sun at precisely the SAME normalized position and SAME scale. Keep the existing wide 2.5:1 panoramic framing.\nChange only the scenery below the sky: completely remove ALL city skyline buildings, trees, plants, fences, railings, concrete ramps, ledges and pavement. Replace their area by a seamless downward extension of the same orange apricot sunset sky. Restore the unobstructed complete circular sun and existing horizontal sunset cloud bands in the lower center, preserving its original center around x51%, y63% and its original diameter around 6.3% of image width. The sun and upper cloud shapes must not move or grow.\nThe full image is sky only, from edge to edge, with absolutely no ground, water, silhouettes, horizon objects, character, skateboard, vehicle, people, new props or text. Match the original exactly: flat matte 2D comic painted sky, clean edges, no3D, no photorealism, no glow bloom. Preserve all existing upper sky and clouds pixel-composition as faithfully as possible. Lower image remains the same saturated warm orange sky rather than pale fog. This is a separate static sky layer for the existing image. Output wide horizontal high resolution.",
-          "verification": "Sky-only. Existing cloud shapes and sun normalized location retained, no scenery silhouettes remain. No people or props."
-        },
-        "world_segmentation": {
-          "input": "work/media/moving-world/background.png",
-          "output": "work/media/moving-world/world.png",
-          "dimensions": [
-            1983,
-            793
-          ],
-          "method": "Connected warm-sunset color matte with top-connected flood labels; no box clipping through skyline; preserve all cool mauve buildings and dark foliage outlines; fully transparent above390; force opaque below580; no rescale or RGB changes.",
-          "warm_sky_rule": "R>145 and R-G>32 and R-B>48; labels connected to top390rows only",
-          "top_alpha_max": 0,
-          "bottom_alpha_min": 255,
-          "opaque_pixels": 634508,
-          "transparent_pixels": 938011,
-          "sha256": "83229d7b99416fd74ddb4ba24e7e1131c7dc7b8c537f01df1b8458a05bddb9b8"
-        },
-        "foreground_segmentation": {
-          "source_frames": "work/media/hero-loop-v3/rife/output-frames/%08d.png",
-          "source_frame_range": [
-            1,
-            60
-          ],
-          "source_fps": 60,
-          "mask_directory": "work/media/moving-world/foreground-mask",
-          "mask_dimensions": [
-            1280,
-            720
-          ],
-          "format": "8-bit grayscale PNG;0transparent;255foreground",
-          "method": "MobileSAM ONNX local CPU, separateperson+skateboard prompts, union oflogits>0; no dilation/morphology/feather",
-          "model_sources": [
-            "https://huggingface.co/Acly/MobileSAM/resolve/main/mobile_sam_image_encoder.onnx",
-            "https://huggingface.co/Acly/MobileSAM/resolve/main/sam_mask_decoder_multi.onnx"
-          ],
-          "encoder_input": [
-            1024,
-            576
-          ],
-          "person_prompt": {
-            "box": [
-              660,
-              65,
-              1115,
-              630
+          },
+          "contact_shadow": {
+            "motion": "anchored under the rider; does not travel with the pavement",
+            "method": "Two elliptical Gaussian darkening terms clipped to .30 opacity",
+            "reference_scale": [
+              1280,
+              720
             ],
-            "positive_points": [
+            "ellipse_centers": [
               [
-                920,
-                284
+                975,
+                658
               ],
               [
-                955,
-                580
-              ],
-              [
-                1090,
-                265
+                975,
+                662
               ]
-            ]
-          },
-          "board_prompt": {
-            "box": [
-              794,
-              585,
-              1138,
-              670
             ],
-            "positive_points": [
+            "ellipse_radii": [
               [
-                970,
-                623
+                151,
+                9
               ],
               [
-                850,
-                643
-              ],
-              [
-                1035,
-                651
-              ]
-            ]
-          },
-          "qa": "12posecontactsheet inspected; retainoriginalanatomy, cup, backpack, board andbothvisiblewheels; underarmandleggapstransparent. Groundcastshadowexcluded; compositean anchoredsoftshadowseparately."
-        },
-        "foreground_manifest": {
-          "record": {
-            "path": "moving-world/audit/foreground-provenance.json",
-            "sha256": "0f827ce9e4d7153c72671c3b40cf376e1f8d6939d58a7d9f72836e49508a0505"
-          },
-          "frames_recorded": 60,
-          "contents": "Per-frame area, connected-component sizes and SHA-256 for all 60 masks; source mask files remain unchanged."
-        },
-        "approved_rider_original_audit": {
-          "record": {
-            "path": "hero-loop-v3/rife/delivery.json",
-            "sha256": "569606a48113be8bef05032a714dbd17ad1d18dccda326a8f8824b1c08775404"
-          },
-          "details": {
-            "status": "completed_and_passed_cadence_seam_anatomy_review_with_minor_interpolation_softness",
-            "file": "hero-fluid-rife-candidate.mp4",
-            "sha256": "4967927300DA8C484FB78F54EC307801FD744E6B64DBC25657C5AF0126ED5EE7",
-            "final": {
-              "width": 2560,
-              "height": 1440,
-              "fps": 60,
-              "frames": 60,
-              "duration_seconds": 1,
-              "bytes": 1397862,
-              "encoding": "H.264, libx264 slow CRF17, yuv420p, faststart, no audio"
-            },
-            "speed": {
-              "previous_cycle_seconds": 1.5,
-              "new_cycle_seconds": 1,
-              "relative_speed": 1.5
-            },
-            "source": {
-              "file": "../hero-upscaled-source.mp4",
-              "source_type": "AI-upscaled sharp 4K cloud master from approved original Seedance skating cycle",
-              "width": 3840,
-              "height": 2160,
-              "fps": 60,
-              "sampled_frame_indices": [
-                120,
-                125,
-                130,
-                135,
-                140,
-                145,
-                150,
-                155,
-                160,
                 165,
-                170,
-                175
+                17
+              ]
+            ],
+            "weights": [
+              0.23,
+              0.09
+            ]
+          }
+        },
+        "provenance": {
+          "background_generation": {
+            "asset": "background.png",
+            "width": 1983,
+            "height": 793,
+            "generator": "OpenAI built-in imagegen",
+            "mode": "built-in",
+            "use_case": "illustration-story",
+            "reference": "C:/Users/akki/Documents/Codex/2026-10-18/hocu-da-napravim-x20/work/zoomer-publish/dist/assets/hero-2k.webp",
+            "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-53b22dcd-383a-459a-b5a6-4cd72935f90c.png",
+            "prompts": [
+              {
+                "stage": "initial_generate",
+                "prompt": "Use case: illustration-story\nAsset type: Seamless horizontally repeating 2D background clean plate for an animated skateboard website hero.\nInput image 1 is a STYLE AND PALETTE reference only: match its exact hand-drawn black outline comic style, sunset palette, matte cel colours, shallow side-view perspective and low horizon. Generate a fresh scenery plate with NO character, skateboard, drink, person, cast shadow, text, logos, or vehicles.\nScene: a long empty city skatepark panorama at golden sunset. Warm apricot and persimmon sky with muted mauve simple horizontal cloud bands and a small low warm sun. Far purple city skyline, muted sage and deep olive trees, continuous fine black metal railing. Shallow concrete ramps and low ledges are in the middle distance; the lower 25 percent is unobstructed flat warm concrete pavement with a few fine surface lines. No large close half-pipes and no tall objects obstructing the foreground.\nComposition: WIDE horizontal full scene, ideally 2:1 or 16:9, high resolution, 2K detail. Top 55 percent is open sunset sky. Tallest skyline and foliage begin around 45 percent of canvas height. Park base is around 78 percent. Ground is a continuous horizontal plane, seen from the same low side view as the reference. This background will scroll to the left behind a stationary animated skateboard rider.\nCRITICAL TILE CONSTRAINT: design this as a seamless horizontal repeating panorama: left and right canvas edges must join invisibly when repeated side by side. The horizon, rail, pavement height, sky colours and cloud bands continue cleanly across both edges. Keep edge geometry simple and exactly aligned, not large cropped side ramps. No fade to white, no border, no vignette. Clean crisp irregular black linework and flat cel colouring, finely drawn yet matte, absolutely 2D and never 3D or photorealistic.",
+                "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-9af01976-e1bd-47ab-b6ba-6b46ce755409.png"
+              },
+              {
+                "stage": "horizontal_edge_correction",
+                "prompt": "Use case: precise-object-edit\nAsset type: horizontally repeatable 2D skateboard game background clean plate.\nInput image 1 is the EDIT TARGET. Preserve this exact full hand-drawn sunset skatepark artwork, no people, matte warm orange sky, purple skyline, olive trees, continuous rail and concrete ground. Make only the changes needed to turn it into a SEAMLESS HORIZONTAL TILE.\nCritical: when the finished rectangle is repeated left to right, the left and right edges must join invisibly. The top sky, cloud bands, horizon, railings, tree mass and all pavement lines need exactly matching colours and heights at both sides. Keep the narrow left and right edge zones simple: identical empty coral sky with NO clouds touching the edges in the upper half, low level olive trees and horizontal black rail at the SAME y-coordinate on both edges, matching flat warm concrete from rail base down. Remove the raised corner ramps currently cut off on the sides and replace them with matching low concrete ledges of exactly the same height at left and right. The central composition and low sunset sun can remain. The lower 25 percent stays open flat pavement. No fade, border or vignette. No new character, objects, text, logos or 3D. This is a wide 2.5:1 panoramic side-scrolling background. Output crisp high resolution around 2560 pixels wide.",
+                "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-53b22dcd-383a-459a-b5a6-4cd72935f90c.png"
+              }
+            ],
+            "verification": "No people, rider, board, drink or cast shadow. Crisp flat 2D linework. Corrected version keeps clouds away from both side edges and matches rail/lowledge heights; use mirrored tile pairs if perfect numerical edge continuity is required."
+          },
+          "sky_edit": {
+            "asset": "sky.png",
+            "generator": "OpenAI built-in imagegen",
+            "mode": "built-in",
+            "use_case": "precise-object-edit",
+            "reference": "C:/Users/akki/Documents/Codex/2026-10-18/hocu-da-napravim-x20/work/media/moving-world/background.png",
+            "source": "C:/Users/akki/.codex/generated_images/01a14f35-71c7-79b2-9af2-b0cb90397ea5/exec-5e3bca30-bfa0-4a85-9865-a719d50860ee.png",
+            "prompt": "Use case: precise-object-edit\nAsset type: sky-only clean plate behind a moving illustrated skatepark.\nInput image 1 is the edit target. Preserve the EXACT existing warm apricot sunset sky gradient, its colours, every mauve and gold cloud shape, and the low central sun at precisely the SAME normalized position and SAME scale. Keep the existing wide 2.5:1 panoramic framing.\nChange only the scenery below the sky: completely remove ALL city skyline buildings, trees, plants, fences, railings, concrete ramps, ledges and pavement. Replace their area by a seamless downward extension of the same orange apricot sunset sky. Restore the unobstructed complete circular sun and existing horizontal sunset cloud bands in the lower center, preserving its original center around x51%, y63% and its original diameter around 6.3% of image width. The sun and upper cloud shapes must not move or grow.\nThe full image is sky only, from edge to edge, with absolutely no ground, water, silhouettes, horizon objects, character, skateboard, vehicle, people, new props or text. Match the original exactly: flat matte 2D comic painted sky, clean edges, no3D, no photorealism, no glow bloom. Preserve all existing upper sky and clouds pixel-composition as faithfully as possible. Lower image remains the same saturated warm orange sky rather than pale fog. This is a separate static sky layer for the existing image. Output wide horizontal high resolution.",
+            "verification": "Sky-only. Existing cloud shapes and sun normalized location retained, no scenery silhouettes remain. No people or props."
+          },
+          "world_segmentation": {
+            "input": "work/media/moving-world/background.png",
+            "output": "work/media/moving-world/world.png",
+            "dimensions": [
+              1983,
+              793
+            ],
+            "method": "Connected warm-sunset color matte with top-connected flood labels; no box clipping through skyline; preserve all cool mauve buildings and dark foliage outlines; fully transparent above390; force opaque below580; no rescale or RGB changes.",
+            "warm_sky_rule": "R>145 and R-G>32 and R-B>48; labels connected to top390rows only",
+            "top_alpha_max": 0,
+            "bottom_alpha_min": 255,
+            "opaque_pixels": 634508,
+            "transparent_pixels": 938011,
+            "sha256": "83229d7b99416fd74ddb4ba24e7e1131c7dc7b8c537f01df1b8458a05bddb9b8"
+          }
+        },
+        "speeds_final_pixels_per_second": {
+          "world": 320,
+          "pavement": 640
+        },
+        "mirrored_pair_period_pixels": 5120,
+        "world_period_seconds": 16,
+        "pavement_period_seconds": 8,
+        "direction": "Linear leftward; mirrored artwork provides repeating edge continuity without reversing camera travel."
+      },
+      "contact_audit": {
+        "record": {
+          "path": "rear-leg-fix/finalcontact-audit.json",
+          "sha256": "dc9f755f121ff2247e062270026135b26d35186c8d7dd9fdcb4f16b3f23a057a"
+        },
+        "result": {
+          "active_candidate_passes": true,
+          "solid_sole_max_y": 657.0000169119036,
+          "solid_sole_release_max_y": 655.1035633326937,
+          "ground_y": 657,
+          "active_curve": "Applied delayed release -81deg through0.27s, then smoothstep to-15deg by0.42s; original ankle Hermite curve retained.",
+          "historical_curve_result_key": "historical_unfixed_curve"
+        },
+        "applied_reverification": {
+          "passes": true,
+          "evaluated_at_utc": "2026-10-18T14:18:01.572887+00:00",
+          "candidate": "work/media/rear-leg-fix/vector-cycle.json",
+          "candidate_sha256": "49d153b567e32a22b263fda4d0f6d54937f1d969a2c40b41435e30f2a8e4dfde",
+          "implementation_sha256": "1565371cb39c32dfa4a807ab132da9812f91c519aac501c6d3e65381eaa2b3bc",
+          "shoe_sha256": "dcc8141873eb5c657c7d754e08729da9f422e33b3c60169051e4b8553bc1dad5",
+          "metadata_release_rotation": {
+            "hold_degrees": -81,
+            "hold_through_seconds": 0.27,
+            "rotate_to_degrees": -15,
+            "rotation_end_seconds": 0.42,
+            "curve": "smoothstep C1"
+          },
+          "stored_candidate_frames_checked": 60,
+          "max_recomputed_vs_stored_frame_errors": {
+            "ankle_position_px": 0.0,
+            "shoe_angle_degrees": 1.4210854715202004e-14,
+            "knee_position_px": 0.0,
+            "hip_position_px": 0.0
+          },
+          "wrap_errors": {
+            "position_px": 0.0,
+            "velocity_px_per_second": 0.0,
+            "angle_degrees": 0.0,
+            "angular_velocity_degrees_per_second": 0.0
+          },
+          "sampling": [
+            {
+              "samples": 60,
+              "includes_t1": false,
+              "all_ankles_reachable": true,
+              "ankle_radius_min_max": [
+                146.35330234869195,
+                209.22441949385075
               ],
-              "sampled_pose_count": 12,
-              "source_near_duplicate_holds_removed": true,
-              "pose_extraction": "ffmpeg select=between(n,120,175)*not(mod(n-120,5)),scale=1280:720:flags=lanczos; fps_mode=passthrough"
+              "outer_reach_margin_min": 15.775580506149254,
+              "contact_velocity_error": 3.410605131648481e-13,
+              "full_rigid_shoe_outline": [
+                {
+                  "alpha_threshold_exclusive": 1,
+                  "max_bottom_y": 659.6859634846971,
+                  "max_penetration_px": 2.6859634846971403,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 657.304748563661,
+                  "max_bottom_during_release_time": 0.35,
+                  "frames_exceeding_ground_plus_1px": 18
+                },
+                {
+                  "alpha_threshold_exclusive": 32,
+                  "max_bottom_y": 657.7105868035069,
+                  "max_penetration_px": 0.7105868035068852,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.6633670570001,
+                  "max_bottom_during_release_time": 0.35,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 128,
+                  "max_bottom_y": 657.3292262641978,
+                  "max_penetration_px": 0.3292262641978141,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.191997561079,
+                  "max_bottom_during_release_time": 0.35,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 204,
+                  "max_bottom_y": 657.0000169119035,
+                  "max_penetration_px": 1.6911903458094457e-05,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 654.9550554901568,
+                  "max_bottom_during_release_time": 0.35,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 254,
+                  "max_bottom_y": 657.0000169119035,
+                  "max_penetration_px": 1.6911903458094457e-05,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 654.9550554901568,
+                  "max_bottom_during_release_time": 0.35,
+                  "frames_exceeding_ground_plus_1px": 0
+                }
+              ]
             },
-            "interpolation": {
-              "implementation": "RIFE ncnn Vulkan portable Windows official release20221029",
-              "model": "rife-v4.6",
-              "license": "MIT",
-              "official_source": "https://github.com/nihui/rife-ncnn-vulkan",
-              "release_asset": "https://github.com/nihui/rife-ncnn-vulkan/releases/download/20221029/rife-ncnn-vulkan-20221029-windows.zip",
-              "inference_width": 1280,
-              "inference_height": 720,
-              "inference_device": "CPU -g -1",
-              "temporal_tta": true,
-              "spatial_tta": false,
-              "cyclic_input": "13 PNGs: 12 distinct poses followed by an exact copy of the first pose",
-              "command": "rife-ncnn-vulkan.exe -i ../input-poses -o ../output-frames -n 65 -m ./rife-v4.6 -g -1 -j 1:4:2 -f %08d.png -z",
-              "sampling": "Each source pair contributes t=0,.2,.4,.6,.8. Output frames 00000001..00000060 retained; final five clamped duplicates discarded.",
-              "export_scaling": "Neural inference at 1280x720; final 2560x1440 is a Lanczos upscale of neural output, not native 2K inference.",
-              "no_reverse_pingpong_crossfade_or_held_tail": true,
-              "runtime_note": "Portable CPU run emits vkCreateInstance failed-9 because host has noVulkan GPU, but CPU inference completes correctly and emits validPNGs. No global softwareinstall."
+            {
+              "samples": 600,
+              "includes_t1": false,
+              "all_ankles_reachable": true,
+              "ankle_radius_min_max": [
+                146.30900233380626,
+                209.22549574878892
+              ],
+              "outer_reach_margin_min": 15.774504251211084,
+              "contact_velocity_error": 6.252776074688882e-13,
+              "full_rigid_shoe_outline": [
+                {
+                  "alpha_threshold_exclusive": 1,
+                  "max_bottom_y": 659.6859634846971,
+                  "max_penetration_px": 2.6859634846971403,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 657.3918878319987,
+                  "max_bottom_during_release_time": 0.3466666666666667,
+                  "frames_exceeding_ground_plus_1px": 184
+                },
+                {
+                  "alpha_threshold_exclusive": 32,
+                  "max_bottom_y": 657.7105868035069,
+                  "max_penetration_px": 0.7105868035068852,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.821970341211,
+                  "max_bottom_during_release_time": 0.34500000000000003,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 128,
+                  "max_bottom_y": 657.3292262641978,
+                  "max_penetration_px": 0.3292262641978141,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.3511997562583,
+                  "max_bottom_during_release_time": 0.34500000000000003,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 204,
+                  "max_bottom_y": 657.0000169119035,
+                  "max_penetration_px": 1.6911903458094457e-05,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.1034999337527,
+                  "max_bottom_during_release_time": 0.34500000000000003,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 254,
+                  "max_bottom_y": 657.0000169119035,
+                  "max_penetration_px": 1.6911903458094457e-05,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.1034999337527,
+                  "max_bottom_during_release_time": 0.34500000000000003,
+                  "frames_exceeding_ground_plus_1px": 0
+                }
+              ]
             },
-            "qa": {
-              "metrics_file": "final-metrics.json",
-              "near_duplicate_adjacent_pairs_under_roi_mae_0_1": 0,
-              "cloud_master_near_duplicate_pairs": 14,
-              "mean_adjacent_roi_mae": 2.1636107725364457,
-              "max_adjacent_roi_mae": 4.746885434244067,
-              "cloud_master_max_adjacent_roi_mae": 11.985387570459196,
-              "seam_roi_mae": 0.4640792733278282,
-              "visual_review": "Reviewed full push phases 32..43, circular wrap 56..63 and face/body phases. Single rear shoe/leg remains coherent, planted front foot stable, no foot swaps, stable eyes/glasses/cup. Continuous intermediate motion and clean loop wrap.",
-              "material_limit": "Minor neural interpolation softness/occlusion fleck around rear shoe/rear wheel crossing at frames 37..38; no large ghost limbs or doubled shoes. Root handles final browser playback and dropped-frame verification.",
-              "evidence": [
-                "rife-push-detail.jpg",
-                "rife-wrap-detail.jpg",
-                "rife-face-phases.jpg",
-                "kick-tests-comparison.png"
+            {
+              "samples": 6001,
+              "includes_t1": false,
+              "all_ankles_reachable": true,
+              "ankle_radius_min_max": [
+                146.308939411409,
+                209.22549899825026
+              ],
+              "outer_reach_margin_min": 15.77450100174974,
+              "contact_velocity_error": 1.2505552149377763e-12,
+              "full_rigid_shoe_outline": [
+                {
+                  "alpha_threshold_exclusive": 1,
+                  "max_bottom_y": 659.6859634846973,
+                  "max_penetration_px": 2.685963484697254,
+                  "max_bottom_time": 0.0003332777870354941,
+                  "max_bottom_during_release_y": 657.393180004495,
+                  "max_bottom_during_release_time": 0.3462756207298784,
+                  "frames_exceeding_ground_plus_1px": 1841
+                },
+                {
+                  "alpha_threshold_exclusive": 32,
+                  "max_bottom_y": 657.7105868035069,
+                  "max_penetration_px": 0.7105868035068852,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.8224867584809,
+                  "max_bottom_during_release_time": 0.34477587068821863,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 128,
+                  "max_bottom_y": 657.3292262641978,
+                  "max_penetration_px": 0.3292262641978141,
+                  "max_bottom_time": 0.0,
+                  "max_bottom_during_release_y": 655.3517944074463,
+                  "max_bottom_during_release_time": 0.34460923179470093,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 204,
+                  "max_bottom_y": 657.0000169119036,
+                  "max_penetration_px": 1.6911903571781295e-05,
+                  "max_bottom_time": 0.0003332777870354941,
+                  "max_bottom_during_release_y": 655.1035633326937,
+                  "max_bottom_during_release_time": 0.3449425095817364,
+                  "frames_exceeding_ground_plus_1px": 0
+                },
+                {
+                  "alpha_threshold_exclusive": 254,
+                  "max_bottom_y": 657.0000169119036,
+                  "max_penetration_px": 1.6911903571781295e-05,
+                  "max_bottom_time": 0.0003332777870354941,
+                  "max_bottom_during_release_y": 655.1035633326937,
+                  "max_bottom_during_release_time": 0.3449425095817364,
+                  "frames_exceeding_ground_plus_1px": 0
+                }
               ]
             }
+          ],
+          "pass_criteria": {
+            "opaque_alpha_gt_204_ground_penetration_px_max": 0.001,
+            "antialias_alpha_gt_32_ground_penetration_px_max": 1,
+            "reachability": "All sampled ankle radii strictly within the two-bone reach interval.",
+            "contact_velocity": "Every planted sample matches moving pavement -320px/s horizontally and0 vertically.",
+            "periodic_continuity": "Position, velocity, angle and angular velocity match at t0 andt1."
           },
-          "metrics_record": {
-            "path": "hero-loop-v3/rife/final-metrics.json",
-            "sha256": "2a3df293dfaeff9d3fe5378b24e1a140c87df2e71415740e75ce09d59ff01a47"
-          },
-          "metrics_summary": {
-            "frames": 60,
-            "mean_adjacent": 2.1636107725364457,
-            "max_adjacent": 4.746885434244067,
-            "seam": 0.4640792733278282,
-            "low_motion_pairs_under_0_1": []
-          },
-          "scope": "This audit describes the approved one-second rider source, not a new final composite encode."
-        }
-      },
-      "preview_review": {
-        "file": "preview.mp4",
-        "dimensions": [
+          "fringe_qualification": "Very low-opacity alpha>1 fringe retains the same static2.686px extent beyond the opaque sole. Alpha>32 remains within0.711px; the visible8px motion penetration is removed."
+        },
+        "coordinate_basis": [
           1280,
           720
         ],
-        "fps": 60,
-        "duration_seconds": 16,
-        "frames": 960,
-        "encoding": "H.264/libx264 fast CRF20, yuv420p, faststart, no audio",
-        "metrics_record": {
-          "path": "moving-world/audit/preview-review-metrics.json",
-          "sha256": "4dc290882d279fb98c6f8cd587062e14c034a2296e458f8b67616e1d9d0c5fe1"
+        "scope": "Audit verifies stored720p-basis geometry. All60 hip/knee/ankle/angle records in vector-cycle-2k.json were checked equal to the audited vector-cycle.json records; rendering dimensions differ only by2x scale.",
+        "summary": {
+          "samples_dense": 6001,
+          "all_ankles_reachable": true,
+          "minimum_outer_reach_margin_basis_px": 15.77450100174974,
+          "periodic_continuity": {
+            "position_px": 0.0,
+            "velocity_px_per_second": 0.0,
+            "angle_degrees": 0.0,
+            "angular_velocity_degrees_per_second": 0.0
+          },
+          "opaque_sole_alpha_gt_204_max_y_basis": 657.0000169119036,
+          "opaque_sole_alpha_gt_204_release_max_y_basis": 655.1035633326937,
+          "antialias_alpha_gt_32_max_y_basis": 657.7105868035069
         },
-        "method": {
-          "script": "audit/review_preview.py",
-          "pixel_differences": "Mean absolute 8-bit per-channel differences between decoded preview frames within fixed regions; not a perceptual quality score.",
-          "optical_flow": "OpenCV Farneback; median displacement among pixels with vector magnitude greater than .5 pixels. Units are preview pixels per frame.",
-          "regions_xyxy": {
-            "sky": [
-              0,
-              0,
-              650,
-              330
-            ],
-            "world": [
-              0,
-              370,
-              650,
-              580
-            ],
-            "pavement": [
-              0,
-              625,
-              650,
-              720
-            ],
-            "rider": [
-              670,
-              60,
-              1145,
-              675
-            ]
-          }
-        },
-        "measurements": {
-          "adjacent_0_1": {
-            "sky": 0.0136,
-            "world": 8.3761,
-            "pavement": 3.6926,
-            "rider": 3.4551
-          },
-          "before_wrap_958_959": {
-            "sky": 0.0,
-            "world": 8.1216,
-            "pavement": 3.722,
-            "rider": 2.9621
-          },
-          "wrap_959_0": {
-            "sky": 0.648,
-            "world": 8.8507,
-            "pavement": 3.8592,
-            "rider": 4.5299
-          },
-          "rider_cycle_59_60": {
-            "sky": 0.0,
-            "world": 7.4841,
-            "pavement": 3.5451,
-            "rider": 2.4296
-          },
-          "flow_start": {
-            "world": {
-              "median_dx": -2.724,
-              "median_dy": 0.0,
-              "moving_pixels": 113243
-            },
-            "pavement": {
-              "median_dx": -4.79,
-              "median_dy": 0.0,
-              "moving_pixels": 52722
-            }
-          },
-          "flow_wrap": {
-            "world": {
-              "median_dx": -2.716,
-              "median_dy": -0.002,
-              "moving_pixels": 113553
-            },
-            "pavement": {
-              "median_dx": -4.646,
-              "median_dy": 0.007,
-              "moving_pixels": 52448
-            }
-          }
-        },
-        "interpretation": "Measured world and pavement optical flow remains leftward at the start and across wrap. Encoded-frame sky differences may reflect compression despite a mathematically stationary sky layer. These are preview measurements; they do not establish final-file decoding or browser playback."
+        "limitations": [
+          "Projection extrema use convex hulls of all shoe pixels above each stated alpha threshold, equivalent to testing the full rigid rotated mask for y extent.",
+          "The source raster is resampled by warpAffine during rendering. Raster antialiasing can add a subpixel fringe beyond projected pixel centers.",
+          "This verifies ground clearance and continuity mathematically; rendering still needs visual inspection for clothing silhouette, cuff overlap, and animation appeal."
+        ],
+        "fringe_qualification": "Very low-opacity alpha>1 fringe retains the same static2.686px extent beyond the opaque sole. Alpha>32 remains within0.711px; the visible8px motion penetration is removed.",
+        "final_render_scope": "These are geometric and stored-candidate checks; they do not substitute for final video decoding or visual/browser review."
       },
       "delivery_checks": {
-        "final_file_bytes": 16834041,
-        "final_file_sha256": "36a5e2ec2491fad3ede1631e434286a6cc071cac90d40cd58baa2aa6bf5cb14d",
+        "final_file_bytes": 8939628,
+        "final_file_sha256": "35ca4bc636c9a7ba4062c9f6cff7dd1148917fb4a36bd1e9196803c665a73f94",
         "ffprobe": {
           "codec_name": "h264",
           "width": 2560,
@@ -1940,13 +3719,18 @@
               1440,
               900
             ],
-            "decoded_frames": 1046,
-            "dropped_frames": 0,
-            "observed_callbacks": 996,
-            "native_container_wraps": 1,
-            "observation_seconds": 17.5,
+            "video_dimensions": [
+              2560,
+              1440
+            ],
+            "duration_seconds": 16,
             "playing": true,
-            "title_and_nav_stable": true,
+            "native_wraps": 1,
+            "observation_seconds": 17.5,
+            "decoded": 1047,
+            "dropped": 0,
+            "callbacks": 986,
+            "title_stable": true,
             "overflow": false
           },
           "mobile": {
@@ -1954,18 +3738,576 @@
               390,
               844
             ],
-            "playing_2k": true,
+            "playing": true,
             "overflow": false
           },
-          "offscreen_pause": true,
-          "resume": true,
           "reduced_motion": {
             "video_src": null,
-            "poster_2k_ready": true
+            "paused": true,
+            "matching_2k_poster_ready": true
           },
           "page_errors": [],
-          "scope": "Local Chromium on this Windows VM; device-specific results, not a universal zero-drop guarantee."
+          "scope": "Local Chromium on this Windows VM; results vary by device."
         }
+      },
+      "final_geometry_review": {
+        "status": "passed_bounded_final_leg_review",
+        "reviewed_frames": 60,
+        "composed_preview": "work/media/moving-world/clean-push-preview.mp4",
+        "preview_dimensions": [
+          1280,
+          720
+        ],
+        "preview_duration": 4,
+        "source_frames_dimensions": [
+          2560,
+          1440
+        ],
+        "preview_sha256": "3859bba4fa9858297a7113ce68d46730c4f7ade799cb9eb6b7c8a3f1bba6d7ac",
+        "contact_ground_y_720_basis": 657,
+        "sole_measurement": "Every pixel with alpha above 0.8 in the unchanged source shoe is rigidly rotated and translated using the updated 2K cycle metadata; positions are normalized to the 1280 x 720 coordinate basis.",
+        "disconnected_components_over4px": [],
+        "sole_ground_penetrations_over_0_5px": [],
+        "min_ground_clearance": 0.0,
+        "max_ground_clearance": 40.25656882048054,
+        "contact_phase_frames1_13_clearance": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "visual_review": {
+          "evidence": [
+            "final-composed-leg-phases.jpg",
+            "final-ankles15-30.jpg"
+          ],
+          "composed_phases_reviewed": [
+            1,
+            6,
+            11,
+            16,
+            21,
+            26,
+            31,
+            36,
+            41,
+            46,
+            51,
+            56
+          ],
+          "angular_update_ankle_closeups_reviewed": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "findings": "The sole stays on the pavement through 13 contact frames. The foot lifts before rotating downward, clears the ground, recovers forward and lands. Every reviewed cuff remains closed. Shoe texture and shape remain rigid. No extra foot, broken ankle, detached cuff or reversing knee bend was observed. The simpler cloth styling is deliberate.",
+          "blockers": [],
+          "scope_limit": "The four-second preview does not wrap. This review does not approve the 16-second world seam, production browser playback or deployment."
+        },
+        "frames": [
+          {
+            "frame": 1,
+            "components_over_4px": [
+              392269
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 2,
+            "components_over_4px": [
+              393396
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 3,
+            "components_over_4px": [
+              394348
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 4,
+            "components_over_4px": [
+              395507
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 5,
+            "components_over_4px": [
+              396465
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 6,
+            "components_over_4px": [
+              397789
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 7,
+            "components_over_4px": [
+              399038
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 8,
+            "components_over_4px": [
+              400661
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 9,
+            "components_over_4px": [
+              402282
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 10,
+            "components_over_4px": [
+              403811
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 11,
+            "components_over_4px": [
+              405325
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 12,
+            "components_over_4px": [
+              407112
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 13,
+            "components_over_4px": [
+              408724
+            ],
+            "shoe_lowest_opaque_y_720_basis": 657.0,
+            "ground_clearance_720_basis": 0.0
+          },
+          {
+            "frame": 14,
+            "components_over_4px": [
+              410580
+            ],
+            "shoe_lowest_opaque_y_720_basis": 656.5239207497879,
+            "ground_clearance_720_basis": 0.4760792502121376
+          },
+          {
+            "frame": 15,
+            "components_over_4px": [
+              412177
+            ],
+            "shoe_lowest_opaque_y_720_basis": 655.1633959709353,
+            "ground_clearance_720_basis": 1.836604029064688
+          },
+          {
+            "frame": 16,
+            "components_over_4px": [
+              413572
+            ],
+            "shoe_lowest_opaque_y_720_basis": 653.0199951211181,
+            "ground_clearance_720_basis": 3.980004878881914
+          },
+          {
+            "frame": 17,
+            "components_over_4px": [
+              414995
+            ],
+            "shoe_lowest_opaque_y_720_basis": 650.1952876580118,
+            "ground_clearance_720_basis": 6.804712341988193
+          },
+          {
+            "frame": 18,
+            "components_over_4px": [
+              416049
+            ],
+            "shoe_lowest_opaque_y_720_basis": 648.1069095228232,
+            "ground_clearance_720_basis": 8.89309047717677
+          },
+          {
+            "frame": 19,
+            "components_over_4px": [
+              416486
+            ],
+            "shoe_lowest_opaque_y_720_basis": 649.0803534534491,
+            "ground_clearance_720_basis": 7.919646546550894
+          },
+          {
+            "frame": 20,
+            "components_over_4px": [
+              417006
+            ],
+            "shoe_lowest_opaque_y_720_basis": 651.7707606793912,
+            "ground_clearance_720_basis": 5.229239320608826
+          },
+          {
+            "frame": 21,
+            "components_over_4px": [
+              417505
+            ],
+            "shoe_lowest_opaque_y_720_basis": 654.2893794070251,
+            "ground_clearance_720_basis": 2.7106205929749194
+          },
+          {
+            "frame": 22,
+            "components_over_4px": [
+              417853
+            ],
+            "shoe_lowest_opaque_y_720_basis": 654.9550556383523,
+            "ground_clearance_720_basis": 2.0449443616477083
+          },
+          {
+            "frame": 23,
+            "components_over_4px": [
+              418037
+            ],
+            "shoe_lowest_opaque_y_720_basis": 652.8337028620342,
+            "ground_clearance_720_basis": 4.166297137965785
+          },
+          {
+            "frame": 24,
+            "components_over_4px": [
+              418092
+            ],
+            "shoe_lowest_opaque_y_720_basis": 647.8015855093846,
+            "ground_clearance_720_basis": 9.198414490615392
+          },
+          {
+            "frame": 25,
+            "components_over_4px": [
+              418131
+            ],
+            "shoe_lowest_opaque_y_720_basis": 641.818171372615,
+            "ground_clearance_720_basis": 15.181828627385016
+          },
+          {
+            "frame": 26,
+            "components_over_4px": [
+              418252
+            ],
+            "shoe_lowest_opaque_y_720_basis": 636.3481935966345,
+            "ground_clearance_720_basis": 20.651806403365526
+          },
+          {
+            "frame": 27,
+            "components_over_4px": [
+              417981
+            ],
+            "shoe_lowest_opaque_y_720_basis": 632.3202207519196,
+            "ground_clearance_720_basis": 24.679779248080422
+          },
+          {
+            "frame": 28,
+            "components_over_4px": [
+              417863
+            ],
+            "shoe_lowest_opaque_y_720_basis": 628.8795131421938,
+            "ground_clearance_720_basis": 28.120486857806213
+          },
+          {
+            "frame": 29,
+            "components_over_4px": [
+              417650
+            ],
+            "shoe_lowest_opaque_y_720_basis": 625.9444515118506,
+            "ground_clearance_720_basis": 31.055548488149384
+          },
+          {
+            "frame": 30,
+            "components_over_4px": [
+              417197
+            ],
+            "shoe_lowest_opaque_y_720_basis": 623.46091727461,
+            "ground_clearance_720_basis": 33.53908272539002
+          },
+          {
+            "frame": 31,
+            "components_over_4px": [
+              416869
+            ],
+            "shoe_lowest_opaque_y_720_basis": 621.3805798015194,
+            "ground_clearance_720_basis": 35.61942019848061
+          },
+          {
+            "frame": 32,
+            "components_over_4px": [
+              416369
+            ],
+            "shoe_lowest_opaque_y_720_basis": 619.6696200821095,
+            "ground_clearance_720_basis": 37.33037991789047
+          },
+          {
+            "frame": 33,
+            "components_over_4px": [
+              415965
+            ],
+            "shoe_lowest_opaque_y_720_basis": 618.3144115670261,
+            "ground_clearance_720_basis": 38.68558843297387
+          },
+          {
+            "frame": 34,
+            "components_over_4px": [
+              415320
+            ],
+            "shoe_lowest_opaque_y_720_basis": 617.3240107994114,
+            "ground_clearance_720_basis": 39.67598920058856
+          },
+          {
+            "frame": 35,
+            "components_over_4px": [
+              414756
+            ],
+            "shoe_lowest_opaque_y_720_basis": 616.7920760616664,
+            "ground_clearance_720_basis": 40.20792393833358
+          },
+          {
+            "frame": 36,
+            "components_over_4px": [
+              414103
+            ],
+            "shoe_lowest_opaque_y_720_basis": 616.7434311795195,
+            "ground_clearance_720_basis": 40.25656882048054
+          },
+          {
+            "frame": 37,
+            "components_over_4px": [
+              413493
+            ],
+            "shoe_lowest_opaque_y_720_basis": 617.1669503512085,
+            "ground_clearance_720_basis": 39.83304964879153
+          },
+          {
+            "frame": 38,
+            "components_over_4px": [
+              412730
+            ],
+            "shoe_lowest_opaque_y_720_basis": 618.112742978305,
+            "ground_clearance_720_basis": 38.88725702169495
+          },
+          {
+            "frame": 39,
+            "components_over_4px": [
+              412055
+            ],
+            "shoe_lowest_opaque_y_720_basis": 619.7122299988,
+            "ground_clearance_720_basis": 37.28777000119999
+          },
+          {
+            "frame": 40,
+            "components_over_4px": [
+              411344
+            ],
+            "shoe_lowest_opaque_y_720_basis": 622.0592676843381,
+            "ground_clearance_720_basis": 34.940732315661876
+          },
+          {
+            "frame": 41,
+            "components_over_4px": [
+              409177
+            ],
+            "shoe_lowest_opaque_y_720_basis": 624.8847028989424,
+            "ground_clearance_720_basis": 32.11529710105765
+          },
+          {
+            "frame": 42,
+            "components_over_4px": [
+              405935
+            ],
+            "shoe_lowest_opaque_y_720_basis": 627.8603359259431,
+            "ground_clearance_720_basis": 29.139664074056896
+          },
+          {
+            "frame": 43,
+            "components_over_4px": [
+              402105
+            ],
+            "shoe_lowest_opaque_y_720_basis": 630.66750687438,
+            "ground_clearance_720_basis": 26.332493125619976
+          },
+          {
+            "frame": 44,
+            "components_over_4px": [
+              397662
+            ],
+            "shoe_lowest_opaque_y_720_basis": 633.2547019847478,
+            "ground_clearance_720_basis": 23.74529801525216
+          },
+          {
+            "frame": 45,
+            "components_over_4px": [
+              393889
+            ],
+            "shoe_lowest_opaque_y_720_basis": 635.4226118084812,
+            "ground_clearance_720_basis": 21.57738819151882
+          },
+          {
+            "frame": 46,
+            "components_over_4px": [
+              390800
+            ],
+            "shoe_lowest_opaque_y_720_basis": 637.0718568984116,
+            "ground_clearance_720_basis": 19.928143101588375
+          },
+          {
+            "frame": 47,
+            "components_over_4px": [
+              388316
+            ],
+            "shoe_lowest_opaque_y_720_basis": 638.353055222284,
+            "ground_clearance_720_basis": 18.646944777716044
+          },
+          {
+            "frame": 48,
+            "components_over_4px": [
+              387074
+            ],
+            "shoe_lowest_opaque_y_720_basis": 639.7365608866024,
+            "ground_clearance_720_basis": 17.263439113397567
+          },
+          {
+            "frame": 49,
+            "components_over_4px": [
+              386234
+            ],
+            "shoe_lowest_opaque_y_720_basis": 640.9000788795341,
+            "ground_clearance_720_basis": 16.099921120465865
+          },
+          {
+            "frame": 50,
+            "components_over_4px": [
+              385633
+            ],
+            "shoe_lowest_opaque_y_720_basis": 642.0882381683746,
+            "ground_clearance_720_basis": 14.911761831625427
+          },
+          {
+            "frame": 51,
+            "components_over_4px": [
+              385455
+            ],
+            "shoe_lowest_opaque_y_720_basis": 643.9285251233981,
+            "ground_clearance_720_basis": 13.071474876601883
+          },
+          {
+            "frame": 52,
+            "components_over_4px": [
+              385568
+            ],
+            "shoe_lowest_opaque_y_720_basis": 646.2392783677487,
+            "ground_clearance_720_basis": 10.760721632251261
+          },
+          {
+            "frame": 53,
+            "components_over_4px": [
+              385846
+            ],
+            "shoe_lowest_opaque_y_720_basis": 649.0643839386304,
+            "ground_clearance_720_basis": 7.935616061369615
+          },
+          {
+            "frame": 54,
+            "components_over_4px": [
+              386492
+            ],
+            "shoe_lowest_opaque_y_720_basis": 651.5029996268952,
+            "ground_clearance_720_basis": 5.497000373104811
+          },
+          {
+            "frame": 55,
+            "components_over_4px": [
+              387311
+            ],
+            "shoe_lowest_opaque_y_720_basis": 653.382652877098,
+            "ground_clearance_720_basis": 3.617347122901947
+          },
+          {
+            "frame": 56,
+            "components_over_4px": [
+              387906
+            ],
+            "shoe_lowest_opaque_y_720_basis": 654.7750190834973,
+            "ground_clearance_720_basis": 2.224980916502659
+          },
+          {
+            "frame": 57,
+            "components_over_4px": [
+              388831
+            ],
+            "shoe_lowest_opaque_y_720_basis": 655.7519284961662,
+            "ground_clearance_720_basis": 1.2480715038337848
+          },
+          {
+            "frame": 58,
+            "components_over_4px": [
+              389431
+            ],
+            "shoe_lowest_opaque_y_720_basis": 656.4036104665813,
+            "ground_clearance_720_basis": 0.5963895334186873
+          },
+          {
+            "frame": 59,
+            "components_over_4px": [
+              390352
+            ],
+            "shoe_lowest_opaque_y_720_basis": 656.7819590959408,
+            "ground_clearance_720_basis": 0.21804090405919396
+          },
+          {
+            "frame": 60,
+            "components_over_4px": [
+              391103
+            ],
+            "shoe_lowest_opaque_y_720_basis": 656.9572370854441,
+            "ground_clearance_720_basis": 0.04276291455585124
+          }
+        ]
       }
     },
     "cloudJobs": [
@@ -2023,11 +4365,20 @@
     "reference": "User-supplied skatepark character image",
     "prompt": "Use case: illustration-story. Create a premium wide 16:9 hand-drawn 2D editorial illustration for the opening of a playful website about ZOOMER. Use supplied image as strict CHARACTER IDENTITY and illustration-style reference. Same exact white-skinned elongated wojak face, rectangular tall head, short orange combed-up hair with black strokes and shaved sides, thin oval black glasses, small smirk, gray t-shirt, charcoal baggy trousers, black backpack, green camouflage high-top canvas sneakers with white rubber soles. SCENE: Zoomer is riding his skateboard toward the right through a quiet concrete city skatepark at warm late-afternoon sunset, holding an iced pale-green matcha drink carefully upright. His entire body and board are visible, his back foot rests on the board and front leg pushes off the ground; coherent anatomy with two arms and two legs. He occupies the right 45% of the landscape frame. Plenty of beautiful open apricot sky in the top half and left 45% for live HTML typography that will be added later. Low drawn skyline, sloping skatepark ramps and sparse distant trees, warm terracotta peach sky, buttery-yellow low sun, muted sage foliage and warm concrete. Medium-weight irregular clean black ink contour lines, flat matte cel color, tactile subtle paper, sharp legible character features. No 3D, no rendered gradients, no photo texture, no text, no lettering, no watermark, no logo. Art direction should feel like a high-end independent animated comic. This is an original scene of the exact supplied character, not a new design."
   },
-  "hero-world-2k.webp": {
+  "previousMovingWorldPoster": {
     "source": "First uncompressed frame of moving-world composite",
     "width": 2560,
     "height": 1440,
     "bytes": 387390,
+    "encoding": "WebP quality94 method6",
+    "matches_video_opening": true
+  },
+  "hero-clean-push-2k.webp": {
+    "source": "First uncompressed frame of corrected2D push composite",
+    "width": 2560,
+    "height": 1440,
+    "bytes": 393168,
+    "sha256": "dbeb1c74742a95674d99a87cfd8fa65b4fad78cca126179e5f965f9d2b9d4afb",
     "encoding": "WebP quality94 method6",
     "matches_video_opening": true
   }
