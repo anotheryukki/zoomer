@@ -225,8 +225,7 @@
   try { const stored = localStorage.getItem('zoomer-mood'); if (stored) setMood(stored); } catch {}
   activateScene(0);
 
-  const caChip = document.getElementById('ca-chip');
-  if (caChip) {
+  document.querySelectorAll('.ca-chip').forEach(caChip => {
     const caLabel = caChip.querySelector('.ca-chip-label');
     caChip.addEventListener('click', async () => {
       const ca = caChip.dataset.ca;
@@ -238,5 +237,5 @@
       }
       setTimeout(() => { caLabel.textContent = 'CA'; }, 1800);
     });
-  }
+  });
 })();
